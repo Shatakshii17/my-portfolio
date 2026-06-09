@@ -2,5 +2,5 @@
 My personal portfolio website built with HTML, CSS, and JavaScript
 
 ## Customize
-- Update `[Your Name]` in `index.html`.
-- Update `[your-email@example.com]` in `index.html`.
+- Update the hero heading text in `index.html`.
+- Update `your-email@example.com` in `index.html`.
