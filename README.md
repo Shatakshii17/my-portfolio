@@ -3,4 +3,3 @@ My personal portfolio website built with HTML, CSS, and JavaScript
 
 ## Customize
 - Update the hero heading text in `index.html`.
-- Update `your-email@example.com` in `index.html`.

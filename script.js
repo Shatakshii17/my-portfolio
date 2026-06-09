@@ -4,7 +4,7 @@ const formStatus = document.getElementById('form-status');
 if (contactForm && formStatus) {
   contactForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    formStatus.textContent = 'Thanks for your message! I will get back to you soon.';
+    formStatus.textContent = 'Thanks! Demo form submitted successfully.';
     contactForm.reset();
   });
 }
