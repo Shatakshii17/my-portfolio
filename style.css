@@ -1,0 +1,95 @@
+:root {
+  color-scheme: light dark;
+  --bg: #f6f8fb;
+  --text: #1f2937;
+  --primary: #2563eb;
+  --card: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.hero {
+  min-height: 60vh;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #dbeafe, #f8fafc);
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.hero-content {
+  max-width: 720px;
+  margin: 3rem auto 0;
+  text-align: center;
+}
+
+.button,
+button {
+  display: inline-block;
+  border: 0;
+  border-radius: 0.5rem;
+  background: var(--primary);
+  color: #fff;
+  padding: 0.7rem 1rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.section {
+  background: var(--card);
+  margin-bottom: 1rem;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.project-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.contact-form {
+  display: grid;
+  gap: 0.5rem;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 0.4rem;
+  border: 1px solid #d1d5db;
+}
