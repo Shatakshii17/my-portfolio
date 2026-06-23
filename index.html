@@ -4,78 +4,70 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shatakshi Iksha | Portfolio</title>
-  <meta name="description" content="Shatakshi Iksha is a Computer Systems Engineering student at Arizona State University focused on semiconductors, materials research, embedded systems, and intelligent technologies." />
-  <meta name="theme-color" content="#0b1020" />
+  <meta name="description" content="Immersive portfolio for Shatakshi Iksha: research, education, projects, coursework, travel, and beyond the lab." />
+  <meta name="theme-color" content="#120914" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #070b14;
-      --bg-soft: #0b1220;
-      --card: rgba(15, 23, 42, 0.72);
-      --card-strong: rgba(15, 23, 42, 0.92);
-      --text: #e5eefc;
-      --muted: #9fb0cc;
-      --muted-2: #6f81a3;
-      --line: rgba(148, 163, 184, 0.18);
-      --accent: #7c5cff;
-      --accent-2: #22d3ee;
-      --accent-3: #7ee787;
-      --shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
-      --radius: 24px;
-      --radius-sm: 16px;
-      --max: 1180px;
+      --bg: #0a0710;
+      --bg2: #120914;
+      --card: rgba(24, 16, 28, 0.76);
+      --card-strong: rgba(28, 19, 35, 0.94);
+      --line: rgba(228, 192, 226, 0.14);
+      --text: #f5eef7;
+      --muted: #c7b4c9;
+      --muted-2: #9e8aa5;
+      --lavender: #b8a0ff;
+      --lavender-2: #8f73ff;
+      --pink: #ef9cc9;
+      --wine: #7f2d4d;
+      --rose: #f6bed8;
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.45);
+      --radius: 28px;
+      --radius-sm: 18px;
+      --max: 1200px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
+      font-family: "Libre Baskerville", Georgia, serif;
       background:
-        radial-gradient(circle at top left, rgba(124, 92, 255, 0.16), transparent 35%),
-        radial-gradient(circle at top right, rgba(34, 211, 238, 0.14), transparent 30%),
-        radial-gradient(circle at 50% 20%, rgba(126, 231, 135, 0.08), transparent 25%),
-        linear-gradient(180deg, #050810 0%, #070b14 45%, #070b14 100%);
+        radial-gradient(circle at 10% 10%, rgba(184, 160, 255, 0.16), transparent 25%),
+        radial-gradient(circle at 90% 15%, rgba(239, 156, 201, 0.14), transparent 24%),
+        radial-gradient(circle at 50% 80%, rgba(127, 45, 77, 0.18), transparent 22%),
+        linear-gradient(180deg, #07050b 0%, #0a0710 45%, #0a0710 100%);
       min-height: 100vh;
       overflow-x: hidden;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
 
     .wrap {
-      width: min(var(--max), calc(100% - 32px));
+      width: min(var(--max), calc(100% - 28px));
       margin: 0 auto;
     }
 
-    .nav {
+    .topbar {
       position: sticky;
       top: 0;
       z-index: 50;
       backdrop-filter: blur(18px);
-      background: rgba(7, 11, 20, 0.55);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+      background: rgba(10, 7, 16, 0.66);
+      border-bottom: 1px solid rgba(228, 192, 226, 0.10);
     }
 
-    .nav-inner {
+    .topbar-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 0;
       gap: 20px;
+      padding: 16px 0;
     }
 
     .brand {
@@ -83,141 +75,168 @@
       align-items: center;
       gap: 12px;
       font-weight: 700;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
     }
 
     .brand-mark {
-      width: 40px;
-      height: 40px;
-      border-radius: 14px;
-      background:
-        linear-gradient(135deg, rgba(124, 92, 255, 1), rgba(34, 211, 238, 0.95));
-      box-shadow: 0 10px 30px rgba(124, 92, 255, 0.25);
+      width: 42px;
+      height: 42px;
+      border-radius: 15px;
       display: grid;
       place-items: center;
-      font-weight: 800;
+      color: #110814;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--lavender), var(--pink));
+      box-shadow: 0 12px 30px rgba(239, 156, 201, 0.18);
     }
 
-    .nav-links {
+    .nav {
       display: flex;
       align-items: center;
       gap: 18px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.94rem;
     }
 
-    .nav-links a {
+    .nav a {
       position: relative;
       padding: 8px 0;
       transition: color 0.2s ease;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--text);
-    }
-
-    .nav-links a::after {
+    .nav a:hover { color: var(--text); }
+    .nav a::after {
       content: "";
       position: absolute;
       left: 0;
       bottom: 2px;
       width: 100%;
       height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--lavender), var(--pink));
       transform: scaleX(0);
       transform-origin: left;
       transition: transform 0.22s ease;
-      border-radius: 999px;
     }
-
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      transform: scaleX(1);
-    }
+    .nav a:hover::after { transform: scaleX(1); }
 
     .hero {
-      padding: 72px 0 38px;
-      position: relative;
+      padding: 58px 0 26px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.4fr 0.9fr;
-      gap: 26px;
+      grid-template-columns: 1.25fr 0.9fr;
+      gap: 22px;
       align-items: stretch;
     }
 
-    .hero-card {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(148, 163, 184, 0.16);
-      border-radius: 32px;
-      background:
-        linear-gradient(180deg, rgba(15, 23, 42, 0.88), rgba(10, 16, 30, 0.86));
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(28, 19, 35, 0.82), rgba(17, 11, 23, 0.92));
       box-shadow: var(--shadow);
-      padding: 36px;
+      overflow: hidden;
     }
 
-    .hero-card::before {
+    .hero-copy {
+      padding: 34px;
+      position: relative;
+    }
+
+    .hero-copy::before {
       content: "";
       position: absolute;
-      inset: -2px;
+      inset: 0;
       background:
-        radial-gradient(circle at top right, rgba(34, 211, 238, 0.12), transparent 28%),
-        radial-gradient(circle at bottom left, rgba(124, 92, 255, 0.18), transparent 30%);
+        radial-gradient(circle at top right, rgba(184, 160, 255, 0.11), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(239, 156, 201, 0.11), transparent 28%);
       pointer-events: none;
     }
 
     .eyebrow {
+      position: relative;
+      z-index: 1;
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 8px 14px;
+      padding: 9px 14px;
       border-radius: 999px;
-      background: rgba(148, 163, 184, 0.09);
-      border: 1px solid rgba(148, 163, 184, 0.12);
-      color: #d5dded;
+      border: 1px solid rgba(228, 192, 226, 0.14);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--rose);
       font-size: 0.92rem;
       margin-bottom: 18px;
-      position: relative;
-      z-index: 1;
     }
 
     .dot {
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent-3), #22c55e);
-      box-shadow: 0 0 0 6px rgba(126, 231, 135, 0.1);
+      background: linear-gradient(135deg, var(--pink), var(--lavender));
+      box-shadow: 0 0 0 6px rgba(239, 156, 201, 0.10);
     }
 
     h1 {
-      font-size: clamp(2.8rem, 7vw, 5.2rem);
-      line-height: 0.96;
-      margin: 0 0 16px;
+      margin: 0 0 14px;
+      position: relative;
+      z-index: 1;
+      font-size: clamp(2.85rem, 6.8vw, 5.2rem);
+      line-height: 0.95;
       letter-spacing: -0.05em;
-      position: relative;
-      z-index: 1;
     }
 
-    .title {
-      font-size: clamp(1.05rem, 2vw, 1.22rem);
+    .hero-text,
+    .lead,
+    .card p,
+    .modal-body,
+    .small,
+    .meta {
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 20px;
       color: var(--muted);
-      max-width: 65ch;
-      line-height: 1.7;
-      margin: 0 0 24px;
-      position: relative;
-      z-index: 1;
+      line-height: 1.8;
+      max-width: 70ch;
+      font-size: 1.03rem;
     }
 
-    .cta-row {
+    .pill-row {
+      position: relative;
+      z-index: 1;
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
+      gap: 10px;
+      margin: 20px 0 24px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(228, 192, 226, 0.12);
+      background: rgba(255, 255, 255, 0.03);
+      color: #f2e6f0;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    .actions {
       position: relative;
       z-index: 1;
-      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     .btn {
@@ -225,31 +244,28 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      border: 1px solid rgba(148, 163, 184, 0.18);
       padding: 13px 18px;
       border-radius: 14px;
+      border: 1px solid rgba(228, 192, 226, 0.14);
       background: rgba(255, 255, 255, 0.03);
       color: var(--text);
-      font-weight: 600;
-      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
       cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      font-weight: 600;
     }
 
     .btn:hover {
       transform: translateY(-2px);
-      border-color: rgba(124, 92, 255, 0.55);
-      background: rgba(124, 92, 255, 0.12);
+      border-color: rgba(184, 160, 255, 0.45);
+      background: rgba(184, 160, 255, 0.10);
     }
 
     .btn.primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #05111a;
+      color: #140912;
       border-color: transparent;
-      box-shadow: 0 14px 30px rgba(34, 211, 238, 0.12);
-    }
-
-    .btn.primary:hover {
-      background: linear-gradient(135deg, #8b70ff, #4ddff0);
+      background: linear-gradient(135deg, var(--lavender), var(--pink));
+      box-shadow: 0 14px 30px rgba(239, 156, 201, 0.12);
     }
 
     .hero-side {
@@ -257,306 +273,422 @@
       gap: 18px;
     }
 
-    .glass {
-      border: 1px solid rgba(148, 163, 184, 0.16);
-      background: linear-gradient(180deg, rgba(15, 23, 42, 0.8), rgba(10, 16, 30, 0.86));
-      border-radius: 28px;
-      box-shadow: var(--shadow);
-      padding: 24px;
-      position: relative;
-      overflow: hidden;
+    .photo-panel {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
     }
 
-    .glass::after {
-      content: "";
+    .photo-frame {
+      position: relative;
+      min-height: 370px;
+      aspect-ratio: 4 / 5;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(228, 192, 226, 0.12);
+      background:
+        linear-gradient(135deg, rgba(184, 160, 255, 0.18), rgba(239, 156, 201, 0.10)),
+        radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 50%),
+        #140916;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .photo-fallback {
       position: absolute;
       inset: 0;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.06), transparent 32%),
-        radial-gradient(circle at top right, rgba(34, 211, 238, 0.08), transparent 24%);
-      pointer-events: none;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 24px;
+      color: rgba(245, 238, 247, 0.85);
+      line-height: 1.7;
+      background: linear-gradient(180deg, rgba(19, 10, 20, 0.35), rgba(19, 10, 20, 0.85));
     }
 
-    .metric-grid {
+    .hero-stats {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      position: relative;
-      z-index: 1;
+      gap: 12px;
     }
 
-    .metric {
-      padding: 16px;
+    .stat {
+      padding: 14px;
       border-radius: 18px;
       background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(148, 163, 184, 0.12);
+      border: 1px solid rgba(228, 192, 226, 0.10);
     }
 
-    .metric b {
+    .stat b {
       display: block;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       margin-bottom: 4px;
     }
 
-    .metric span {
+    .stat span {
       color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.4;
-    }
-
-    .focus {
-      margin-top: 18px;
-      display: grid;
-      gap: 12px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .focus .label {
-      color: var(--muted-2);
-      font-size: 0.86rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-    }
-
-    .focus .text {
-      font-size: 1.02rem;
-      line-height: 1.65;
-      color: #d9e4f7;
+      font-size: 0.9rem;
+      line-height: 1.5;
     }
 
     .section {
-      padding: 24px 0 0;
+      padding: 22px 0 0;
     }
 
     .section-head {
+      margin-bottom: 16px;
       display: flex;
       align-items: end;
       justify-content: space-between;
-      gap: 20px;
-      margin-bottom: 18px;
+      gap: 18px;
+      flex-wrap: wrap;
     }
 
-    .section h2 {
-      font-size: clamp(1.55rem, 3vw, 2.2rem);
+    h2 {
       margin: 0;
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
       letter-spacing: -0.03em;
     }
 
-    .section p.lead {
-      margin: 10px 0 0;
+    .lead {
+      margin: 8px 0 0;
       color: var(--muted);
-      max-width: 72ch;
-      line-height: 1.7;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
+      line-height: 1.8;
+      max-width: 75ch;
     }
 
     .card {
-      border: 1px solid rgba(148, 163, 184, 0.14);
-      background: linear-gradient(180deg, rgba(15,23,42,0.76), rgba(11,18,32,0.88));
+      position: relative;
+      border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 24px;
+      background: linear-gradient(180deg, rgba(29, 20, 33, 0.84), rgba(16, 10, 19, 0.93));
       box-shadow: var(--shadow);
+      overflow: hidden;
     }
 
-    .card h3 {
+    .card-pad { padding: 22px; }
+
+    .education-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+    }
+
+    .edu-main {
+      display: grid;
+      gap: 16px;
+    }
+
+    .edu-item {
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(228, 192, 226, 0.10);
+    }
+
+    .edu-item h3,
+    .card h3,
+    .project h3,
+    .beyond-card h3,
+    .modal h3 {
       margin: 0 0 10px;
       font-size: 1.15rem;
     }
 
-    .card p {
+    .edu-item p,
+    .card p,
+    .project p,
+    .beyond-card p,
+    .modal-body p {
       margin: 0;
       color: var(--muted);
-      line-height: 1.75;
+      line-height: 1.8;
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
     }
 
-    .tag-row {
+    .chips {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       margin-top: 16px;
     }
 
-    .tag {
+    .chip {
       padding: 9px 12px;
       border-radius: 999px;
-      font-size: 0.88rem;
-      color: #d6e2f7;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(148, 163, 184, 0.12);
-    }
-
-    .timeline {
-      display: grid;
-      gap: 16px;
-    }
-
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 130px 1fr;
-      gap: 18px;
-      align-items: start;
-      padding: 18px 0;
-      border-top: 1px solid rgba(148, 163, 184, 0.14);
-    }
-
-    .timeline-item:first-child {
-      border-top: 0;
-      padding-top: 0;
-    }
-
-    .timeline-date {
-      color: #a8b7d6;
-      font-size: 0.92rem;
-      letter-spacing: 0.02em;
-      padding-top: 2px;
-    }
-
-    .timeline-title {
-      margin: 0 0 8px;
-      font-size: 1.05rem;
-    }
-
-    .timeline-desc {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-
-    .project {
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid rgba(148, 163, 184, 0.14);
-      background: linear-gradient(180deg, rgba(15,23,42,0.8), rgba(11,18,32,0.94));
-      box-shadow: var(--shadow);
-      position: relative;
-    }
-
-    .project-top {
-      padding: 20px 22px 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .project-badge {
-      font-size: 0.82rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #acc4f1;
-    }
-
-    .project-body {
-      padding: 0 22px 22px;
-    }
-
-    .project h3 {
-      margin: 0 0 10px;
-      font-size: 1.2rem;
-    }
-
-    .project ul {
-      margin: 14px 0 0;
-      padding-left: 18px;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .project li + li {
-      margin-top: 6px;
-    }
-
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .skill {
-      padding: 10px 13px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.14);
+      border: 1px solid rgba(228, 192, 226, 0.10);
       background: rgba(255,255,255,0.03);
-      color: #dce6f6;
-      font-size: 0.92rem;
+      color: #f5ebf6;
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.9rem;
     }
 
-    .contact-grid {
+    .grade-box {
+      padding: 22px;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at top right, rgba(239, 156, 201, 0.14), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(184, 160, 255, 0.12), transparent 26%),
+        rgba(255,255,255,0.03);
+      border: 1px solid rgba(228, 192, 226, 0.10);
+    }
+
+    .grade {
+      font-size: 2.2rem;
+      line-height: 1;
+      margin: 8px 0 8px;
+      letter-spacing: -0.05em;
+    }
+
+    .small {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 0.95rem;
+    }
+
+    .experience-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 18px;
-      align-items: stretch;
     }
 
-    .contact-box {
-      border-radius: 28px;
-      background: linear-gradient(135deg, rgba(124,92,255,0.18), rgba(34,211,238,0.12));
-      border: 1px solid rgba(148, 163, 184, 0.16);
-      padding: 26px;
-      overflow: hidden;
+    .experience-card {
+      min-height: 400px;
       position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      transition: transform 0.25s ease, border-color 0.25s ease;
     }
 
-    .contact-box::before {
-      content: "";
+    .experience-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(184, 160, 255, 0.42);
+    }
+
+    .experience-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.05) contrast(0.95);
+      opacity: 0.92;
+    }
+
+    .experience-overlay {
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at top right, rgba(126,231,135,0.14), transparent 22%),
-        radial-gradient(circle at bottom left, rgba(124,92,255,0.16), transparent 20%);
-      pointer-events: none;
+        linear-gradient(180deg, rgba(7, 4, 10, 0.12), rgba(7, 4, 10, 0.82) 72%),
+        radial-gradient(circle at top, rgba(184, 160, 255, 0.15), transparent 34%);
     }
 
-    .contact-box * {
+    .experience-content {
       position: relative;
       z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 400px;
+      padding: 20px;
     }
 
-    .contact-links {
-      display: grid;
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .contact-link {
+    .experience-topline {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
-      padding: 14px 16px;
-      border-radius: 16px;
-      border: 1px solid rgba(148, 163, 184, 0.14);
-      background: rgba(7, 11, 20, 0.35);
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      gap: 10px;
+      margin-bottom: 12px;
     }
 
-    .contact-link:hover {
-      transform: translateY(-2px);
-      border-color: rgba(34, 211, 238, 0.38);
+    .experience-tag {
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #f2dfe9;
+    }
+
+    .hover-summary {
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.26s ease;
+      color: #f3ebf7;
+    }
+
+    .experience-card:hover .hover-summary {
+      max-height: 150px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .experience-title {
+      margin: 0 0 10px;
+      font-size: 1.25rem;
+      line-height: 1.3;
+    }
+
+    .experience-meta {
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      color: #dec9e3;
+      font-size: 0.92rem;
+      margin-bottom: 10px;
+    }
+
+    .click-note {
+      margin-top: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #f8e8f0;
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.92rem;
+      opacity: 0.9;
+    }
+
+    .subtle-line {
+      width: 36px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--pink), var(--lavender));
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 5, 10, 0.72);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 80;
+      padding: 18px;
+    }
+
+    .modal-backdrop.open { display: flex; }
+
+    .modal {
+      width: min(980px, 100%);
+      max-height: 90vh;
+      overflow: auto;
+      border-radius: 28px;
+      border: 1px solid rgba(228, 192, 226, 0.16);
+      background: linear-gradient(180deg, rgba(29, 20, 33, 0.96), rgba(15, 10, 18, 0.98));
+      box-shadow: var(--shadow);
+      padding: 20px;
+      position: relative;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: start;
+      margin-bottom: 14px;
+    }
+
+    .close-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      border: 1px solid rgba(228, 192, 226, 0.14);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .modal-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 18px;
+    }
+
+    .modal-figure {
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(228, 192, 226, 0.10);
+      background: rgba(255,255,255,0.03);
+      min-height: 320px;
+    }
+
+    .modal-figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .figure-placeholder {
+      height: 100%;
+      min-height: 320px;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      text-align: center;
+      color: #dfcfe1;
+      line-height: 1.8;
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(184, 160, 255, 0.16), transparent 30%),
+        rgba(255,255,255,0.03);
+    }
+
+    .modal-body {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .modal-body ul {
+      padding-left: 18px;
+      margin: 14px 0 0;
+      color: #efe2f1;
+      line-height: 1.75;
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    }
+
+    .modal-body li + li { margin-top: 6px; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .beyond-card {
+      min-height: 280px;
+      overflow: hidden;
+    }
+
+    .beyond-image {
+      aspect-ratio: 4 / 3;
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.05);
+    }
+
+    .beyond-body {
+      padding: 18px;
     }
 
     .footer {
-      padding: 34px 0 42px;
-      color: var(--muted-2);
+      padding: 34px 0 44px;
       text-align: center;
+      color: var(--muted-2);
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
       font-size: 0.94rem;
     }
 
     .reveal {
       opacity: 0;
-      transform: translateY(18px);
+      transform: translateY(16px);
       transition: opacity 0.7s ease, transform 0.7s ease;
     }
 
@@ -565,406 +697,436 @@
       transform: translateY(0);
     }
 
-    @media (max-width: 960px) {
+    @media (max-width: 1024px) {
       .hero-grid,
-      .grid-2,
-      .project-grid,
-      .contact-grid {
+      .education-grid,
+      .experience-grid,
+      .modal-grid,
+      .gallery-grid {
         grid-template-columns: 1fr;
-      }
-
-      .timeline-item {
-        grid-template-columns: 1fr;
-        gap: 6px;
-      }
-
-      .nav-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav-links {
-        flex-wrap: wrap;
-        gap: 14px;
-      }
-
-      .hero {
-        padding-top: 44px;
-      }
-
-      .hero-card {
-        padding: 26px;
-        border-radius: 28px;
       }
     }
 
-    @media (max-width: 560px) {
+    @media (max-width: 640px) {
       .wrap {
-        width: min(var(--max), calc(100% - 20px));
+        width: min(var(--max), calc(100% - 18px));
       }
 
-      .hero-card,
-      .glass,
-      .card {
-        padding: 20px;
+      .hero-copy,
+      .photo-panel,
+      .card-pad,
+      .modal {
+        padding: 18px;
       }
 
-      h1 {
-        font-size: clamp(2.4rem, 13vw, 3.6rem);
-      }
-
-      .metric-grid {
+      .hero-stats {
         grid-template-columns: 1fr;
+      }
+
+      .actions {
+        display: grid;
       }
 
       .btn {
         width: 100%;
       }
 
-      .cta-row {
-        display: grid;
+      h1 {
+        font-size: clamp(2.35rem, 12vw, 3.8rem);
       }
     }
   </style>
 </head>
 <body>
-  <header class="nav">
-    <div class="wrap nav-inner">
-      <a class="brand" href="#home" aria-label="Go to top">
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#home" aria-label="Back to top">
         <span class="brand-mark">SI</span>
         <span>Shatakshi Iksha</span>
       </a>
-
-      <nav class="nav-links" aria-label="Primary">
-        <a href="#about">About</a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#education">Education</a>
         <a href="#experience">Experience</a>
+        <a href="#coursework">Coursework</a>
         <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
+        <a href="#beyond">Beyond the Lab</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
-  <main id="home" class="wrap">
+  <main class="wrap" id="home">
     <section class="hero">
       <div class="hero-grid">
-        <div class="hero-card reveal">
-          <div class="eyebrow">
-            <span class="dot"></span>
-            Available for Summer 2027 internship / Fall-Spring 2027 co-op
-          </div>
-
-          <h1>Building at the intersection of chips, materials, and intelligent machines.</h1>
-
-          <p class="title">
-            I am Shatakshi Iksha, a Computer Systems Engineering student at Arizona State University
-            with a minor in Materials Science and Engineering. I work across semiconductors, thin films,
-            embedded systems, and computational research, and I love turning complex systems into something
-            measurable, elegant, and useful.
+        <article class="panel hero-copy reveal">
+          <div class="eyebrow"><span class="dot"></span> Arizona State University · Computer Systems Engineering</div>
+          <h1>Curious about the world, serious about the work.</h1>
+          <p class="hero-text">
+            I am Shatakshi Iksha, a Computer Systems Engineering student at Arizona State University with a minor in Materials Science and Engineering.
+            I work across semiconductors, thin films, embedded systems, robotics, and computational research. I am seeking opportunities in semiconductor process engineering,
+            materials R&amp;D, advanced manufacturing, thin-film technologies, and related technical roles.
           </p>
 
-          <div class="cta-row">
+          <div class="pill-row">
+            <span class="pill">GPA 3.9 / 4.0</span>
+            <span class="pill">Dean’s List</span>
+            <span class="pill">DAAD RISE 2025</span>
+            <span class="pill">Graduating May 2027</span>
+          </div>
+
+          <div class="actions">
             <a class="btn primary" href="resume.pdf" download>Download Resume</a>
-            <a class="btn" href="#projects">View Projects</a>
+            <a class="btn" href="#experience">Explore Research</a>
             <a class="btn" href="mailto:shatakshii2004@gmail.com">Email Me</a>
           </div>
-        </div>
+        </article>
 
-        <aside class="hero-side">
-          <div class="glass reveal">
-            <div class="metric-grid">
-              <div class="metric">
-                <b>3.9/4.0</b>
-                <span>Arizona State University GPA</span>
-              </div>
-              <div class="metric">
-                <b>2027</b>
-                <span>Expected graduation</span>
-              </div>
-              <div class="metric">
-                <b>3</b>
-                <span>Major research experiences</span>
-              </div>
-              <div class="metric">
-                <b>2</b>
-                <span>Research internships in Europe &amp; the U.S.</span>
-              </div>
-            </div>
-
-            <div class="focus">
-              <div class="label">Current focus</div>
-              <div class="text">
-                Semiconductor process engineering, thin-film technologies, advanced manufacturing,
-                embedded systems, and data-driven materials research.
-              </div>
+        <aside class="panel photo-panel reveal">
+          <div class="photo-frame">
+            <img src="profile.jpg" alt="Portrait of Shatakshi Iksha" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+            <div class="photo-fallback" style="display:none;">
+              Add your portrait as <strong>profile.jpg</strong>.
+              <br><br>
+              A strong, well-lit photo will make the landing page feel much more personal and immersive.
             </div>
           </div>
-
-          <div class="glass reveal">
-            <div class="label" style="color: var(--muted-2); font-size: .86rem; text-transform: uppercase; letter-spacing: .16em;">
-              Highlights
+          <div class="hero-stats">
+            <div class="stat">
+              <b>2</b>
+              <span>Study / work abroad experiences</span>
             </div>
-            <p class="text" style="margin: 12px 0 0; line-height: 1.7; color: #dbe6f8;">
-              Dean’s List Awardee. DAAD RISE 2025 Awardee. Experience in RF magnetron sputtering,
-              XRD, SEM, EBSD, Python modeling, ROS, C++, Verilog/SystemVerilog, and Vivado.
-            </p>
+            <div class="stat">
+              <b>3</b>
+              <span>Research experiences featured</span>
+            </div>
+            <div class="stat">
+              <b>4</b>
+              <span>Featured projects &amp; stories</span>
+            </div>
+            <div class="stat">
+              <b>1</b>
+              <span>Future-focused story: yours</span>
+            </div>
           </div>
         </aside>
       </div>
     </section>
 
-    <section id="about" class="section">
+    <section class="section" id="education">
       <div class="section-head">
         <div>
-          <h2>About</h2>
+          <h2>Education</h2>
           <p class="lead">
-            I like building things that sit between the physical and digital worlds. That includes thin-film
-            experiments, mechanical characterization, predictive modeling, FPGA design, and robotics systems.
-            My work often starts with data, but I care just as much about the underlying structure and process.
+            Keep this elegant and concise so the rest of the site can breathe.
           </p>
         </div>
       </div>
 
-      <div class="grid-2">
-        <div class="card reveal">
-          <h3>What I do</h3>
-          <p>
-            I design experiments, analyze data, and build models that explain how materials and devices behave.
-            I have worked on LiPON thin films for solid-state batteries, perovskite durability under cyclic bending,
-            additively manufactured metamaterials, autonomous robotics, and FPGA-based digital systems.
-          </p>
+      <div class="education-grid">
+        <div class="panel card-pad reveal">
+          <div class="edu-main">
+            <div class="edu-item">
+              <h3>B.S.E. in Computer Systems Engineering</h3>
+              <p>Arizona State University · Expected May 2027</p>
+            </div>
+            <div class="edu-item">
+              <h3>Minor in Materials Science and Engineering</h3>
+              <p>Arizona State University · Tempe, Arizona</p>
+            </div>
+          </div>
         </div>
 
-        <div class="card reveal">
-          <h3>What I enjoy</h3>
-          <p>
-            I enjoy work where experimentation, computation, and engineering logic all meet.
-            I especially like projects where the answer is not obvious, where a clean dataset or
-            well-built system can reveal a pattern that changes the design.
+        <div class="grade-box reveal">
+          <div class="small">Academic highlights</div>
+          <div class="grade">3.9/4.0</div>
+          <p class="small">
+            Dean’s List Awardee · DAAD RISE 2025 Awardee · Strong background in technical research, computation, and experimental materials work. 
           </p>
         </div>
       </div>
     </section>
 
-    <section id="experience" class="section">
+    <section class="section" id="experience">
       <div class="section-head">
         <div>
           <h2>Experience</h2>
           <p class="lead">
-            Research and development across semiconductors, thin films, computational materials, and experimental mechanics.
+            Hover for a quick summary, then click any card to open a deeper view with more details and figure placeholders.
           </p>
         </div>
       </div>
 
-      <div class="card reveal">
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-date">May 2026 – Aug 2026</div>
-            <div>
-              <h3 class="timeline-title">Research Intern · Fraunhofer USA Inc. – CMW</h3>
-              <p class="timeline-desc">
-                Fabricated and characterized LiPON thin films using RF magnetron sputtering, PVD, and XRD,
-                and used COMSOL-based FEA, predictive modeling, and electrochemical characterization to optimize
-                deposition parameters for solid-state battery applications.
-              </p>
+      <div class="experience-grid">
+        <article class="panel experience-card reveal open-modal"
+          data-title="LiPON Thin Film Research"
+          data-subtitle="Fraunhofer USA Inc. – CMW · East Lansing, MI · May 2026 – August 2026"
+          data-summary="Fabricated and characterized LiPON thin films using RF magnetron sputtering, PVD, and XRD for solid-state battery applications."
+          data-detail="I investigated processing–structure–property relationships for LiPON thin films and used COMSOL-based finite element analysis, predictive modeling, and electrochemical characterization to evaluate and optimize performance for next-generation energy storage devices."
+          data-bullets="RF magnetron sputtering, PVD, XRD|COMSOL-based FEA|Deposition optimization|Electrochemical characterization"
+          data-figure="Add a micrograph, XRD plot, thickness map, or deposition schematic here."
+          data-image="research-lipon.jpg"
+        >
+          <div class="experience-bg" style="background-image:url('research-lipon.jpg');"></div>
+          <div class="experience-overlay"></div>
+          <div class="experience-content">
+            <div class="experience-topline">
+              <span class="experience-tag">Research I</span>
+              <span class="experience-tag">Thin Films</span>
             </div>
+            <h3 class="experience-title">LiPON Thin Film Research</h3>
+            <div class="experience-meta">Fraunhofer USA · energy storage · deposition science</div>
+            <p class="hover-summary">Fabricated LiPON thin films, studied structure-property relationships, and optimized deposition conditions for solid-state battery work.</p>
+            <div class="click-note"><span class="subtle-line"></span> Click to open the full research story</div>
           </div>
+        </article>
 
-          <div class="timeline-item">
-            <div class="timeline-date">May 2024 – Jan 2026</div>
-            <div>
-              <h3 class="timeline-title">Student Researcher · Rolston Lab, ASU Research Park</h3>
-              <p class="timeline-desc">
-                Designed and performed 200+ cyclic-bending experiments and photoluminescence measurements on flexible
-                MAPbI₃ perovskite thin films, then developed Python-based regression and statistical degradation models
-                for 1,000+ samples to study mechanical durability and optical stability.
-              </p>
+        <article class="panel experience-card reveal open-modal"
+          data-title="Perovskite Durability Modeling"
+          data-subtitle="Rolston Lab · ASU Research Park, Tempe, AZ · May 2024 – Jan 2026"
+          data-summary="Designed and performed 200+ cyclic-bending experiments and photoluminescence measurements on flexible MAPbI₃ perovskite thin films."
+          data-detail="I developed Python-based regression and statistical degradation models to analyze more than 1,000 perovskite samples, identifying processing conditions that improved mechanical durability and photoluminescence stability under cyclic bending."
+          data-bullets="200+ cyclic-bending experiments|1,000+ samples analyzed|Python regression models|Photoluminescence stability analysis"
+          data-figure="Add cyclic-bending images, degradation curves, PL spectra, or model outputs here."
+          data-image="research-perovskite.jpg"
+        >
+          <div class="experience-bg" style="background-image:url('research-perovskite.jpg');"></div>
+          <div class="experience-overlay"></div>
+          <div class="experience-content">
+            <div class="experience-topline">
+              <span class="experience-tag">Research II</span>
+              <span class="experience-tag">Perovskites</span>
             </div>
+            <h3 class="experience-title">Perovskite Durability Modeling</h3>
+            <div class="experience-meta">Rolston Lab · experimental mechanics · predictive modeling</div>
+            <p class="hover-summary">Built statistical and regression models from large experimental datasets to understand durability and optical stability under bending.</p>
+            <div class="click-note"><span class="subtle-line"></span> Click to open the full research story</div>
           </div>
+        </article>
 
-          <div class="timeline-item">
-            <div class="timeline-date">May 2025 – Aug 2025</div>
-            <div>
-              <h3 class="timeline-title">Research Intern · Fraunhofer IWS, TU Dresden</h3>
-              <p class="timeline-desc">
-                Developed Python-based probabilistic modeling and optimization frameworks for additively manufactured
-                316L stainless steel metamaterials, integrating SEM fractography, in situ mechanical characterization,
-                and 1,000+ cyclic tensile-testing data points to validate computational predictions.
-              </p>
+        <article class="panel experience-card reveal open-modal"
+          data-title="Metamaterials + In Situ Testing"
+          data-subtitle="Fraunhofer IWS · TU Dresden, Germany · May 2025 – August 2025"
+          data-summary="Developed probabilistic modeling and design optimization frameworks for additively manufactured 316L stainless steel metamaterials."
+          data-detail="I combined Python-based data analysis, SEM fractography, and in situ mechanical characterization to evaluate 1,000+ cyclic tensile-testing data points. This work helped identify strain localization and fracture mechanisms that validated computational predictions and informed metamaterial design optimization."
+          data-bullets="Probabilistic modeling|Design optimization|SEM fractography|1,000+ cyclic tensile-testing points"
+          data-figure="Add a stress-strain curve, SEM fracture image, lattice diagram, or workflow chart here."
+          data-image="research-metamaterials.jpg"
+        >
+          <div class="experience-bg" style="background-image:url('research-metamaterials.jpg');"></div>
+          <div class="experience-overlay"></div>
+          <div class="experience-content">
+            <div class="experience-topline">
+              <span class="experience-tag">Research III</span>
+              <span class="experience-tag">Metamaterials</span>
             </div>
+            <h3 class="experience-title">Metamaterials + Mechanical Testing</h3>
+            <div class="experience-meta">Fraunhofer IWS · computational design · in situ characterization</div>
+            <p class="hover-summary">Used probabilistic modeling and mechanical testing to understand how geometry and strain localization affect performance.</p>
+            <div class="click-note"><span class="subtle-line"></span> Click to open the full research story</div>
           </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="coursework">
+      <div class="section-head">
+        <div>
+          <h2>Relevant Coursework</h2>
+          <p class="lead">
+            A clean way to show technical depth without overwhelming the page.
+          </p>
+        </div>
+      </div>
+
+      <div class="panel card-pad reveal">
+        <div class="chips">
+          <span class="chip">Computer Architecture</span>
+          <span class="chip">Digital Logic Design</span>
+          <span class="chip">FPGA Development</span>
+          <span class="chip">Statistical Analysis</span>
+          <span class="chip">Finite Element Analysis</span>
+          <span class="chip">Machine Learning</span>
+          <span class="chip">Probabilistic Modeling</span>
+          <span class="chip">Materials Characterization</span>
+          <span class="chip">Mechanical Testing</span>
+          <span class="chip">Embedded Systems</span>
         </div>
       </div>
     </section>
 
-    <section id="projects" class="section">
+    <section class="section" id="projects">
       <div class="section-head">
         <div>
           <h2>Projects</h2>
           <p class="lead">
-            A few projects that show the mix of hardware, software, robotics, and modeling in my work.
+            This section can feel like a storybook of where you have been and what you have built.
           </p>
         </div>
       </div>
 
-      <div class="project-grid">
-        <article class="project reveal">
-          <div class="project-top">
-            <span class="project-badge">Robotics</span>
-            <span class="tag">ROS · C++ · UART</span>
-          </div>
-          <div class="project-body">
-            <h3>Autonomous Robotics Navigation System</h3>
-            <p>
-              Programmed swarm robots using ROS, C++, and UART communication protocols, integrating sensors for
-              localization, environmental awareness, and inter-robot coordination.
-            </p>
-            <ul>
-              <li>Designed and tuned PID control algorithms for real-time motion control and obstacle avoidance.</li>
-              <li>Improved navigation accuracy and system stability during autonomous operation.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="project reveal">
-          <div class="project-top">
-            <span class="project-badge">FPGA</span>
-            <span class="tag">Verilog · Vivado</span>
-          </div>
-          <div class="project-body">
-            <h3>FPGA Digital Design Project</h3>
-            <p>
-              Designed, simulated, and validated FPGA-based digital systems in Verilog/SystemVerilog using Xilinx Vivado.
-            </p>
-            <ul>
-              <li>Implemented finite state machines and sequential logic for embedded hardware applications.</li>
-              <li>Conducted simulation, debugging, and hardware validation for timing and functional correctness.</li>
-            </ul>
+      <div class="experience-grid">
+        <article class="panel experience-card reveal open-modal"
+          data-title="Study / Work Abroad in South Africa"
+          data-subtitle="Global experience · South Africa"
+          data-summary="A chapter that shows independence, curiosity, and global perspective."
+          data-detail="We will turn this into a polished story with your exact program name, location, responsibilities, and what you learned. This section is perfect for photos, journal-style notes, and a narrative about adapting to new environments while continuing to grow academically and personally."
+          data-bullets="Add program name|Add dates|Add outcomes|Add photos or memory-style figures"
+          data-figure="Add travel images, campus photos, or a map highlight here."
+          data-image="south-africa.jpg"
+        >
+          <div class="experience-bg" style="background-image:url('south-africa.jpg');"></div>
+          <div class="experience-overlay"></div>
+          <div class="experience-content">
+            <div class="experience-topline">
+              <span class="experience-tag">Project / Experience</span>
+              <span class="experience-tag">South Africa</span>
+            </div>
+            <h3 class="experience-title">Study / Work Abroad Experience</h3>
+            <div class="experience-meta">Global learning · independence · perspective</div>
+            <p class="hover-summary">A meaningful abroad experience that will be framed as a personal and academic growth story.</p>
+            <div class="click-note"><span class="subtle-line"></span> Click to add details</div>
           </div>
         </article>
 
-        <article class="project reveal">
-          <div class="project-top">
-            <span class="project-badge">Materials Research</span>
-            <span class="tag">Python · Modeling</span>
-          </div>
-          <div class="project-body">
-            <h3>Perovskite Durability Modeling</h3>
-            <p>
-              Built Python-based regression and statistical degradation models to analyze 1,000+ perovskite samples.
-            </p>
-            <ul>
-              <li>Used cyclic-bending and photoluminescence data to study thin-film failure modes.</li>
-              <li>Identified processing conditions that improved mechanical durability and optical stability.</li>
-            </ul>
+        <article class="panel experience-card reveal open-modal"
+          data-title="Study / Work Abroad in Germany"
+          data-subtitle="Global experience · Germany"
+          data-summary="A second global chapter that can highlight technical exposure, cultural learning, and research growth."
+          data-detail="We will make this feel distinct from South Africa by focusing on what was unique about Germany: your technical setting, the way you worked, the people you met, and how the experience shaped your goals."
+          data-bullets="Add program name|Add city or institution|Add work scope|Add lessons learned"
+          data-figure="Add architecture photos, lab photos, a map, or your favorite memory here."
+          data-image="germany.jpg"
+        >
+          <div class="experience-bg" style="background-image:url('germany.jpg');"></div>
+          <div class="experience-overlay"></div>
+          <div class="experience-content">
+            <div class="experience-topline">
+              <span class="experience-tag">Project / Experience</span>
+              <span class="experience-tag">Germany</span>
+            </div>
+            <h3 class="experience-title">Study / Work Abroad Experience</h3>
+            <div class="experience-meta">Research culture · travel · technical growth</div>
+            <p class="hover-summary">A global experience that will sit beautifully beside your research and engineering story.</p>
+            <div class="click-note"><span class="subtle-line"></span> Click to add details</div>
           </div>
         </article>
 
-        <article class="project reveal">
-          <div class="project-top">
-            <span class="project-badge">Semiconductors</span>
-            <span class="tag">XRD · PVD · COMSOL</span>
+        <article class="panel experience-card reveal open-modal"
+          data-title="Autonomous Robotics Navigation System"
+          data-subtitle="CHART Labs · robotics and control"
+          data-summary="Programmed swarm robots using ROS, C++, and UART communication protocols."
+          data-detail="I integrated sensors for localization, environmental awareness, and inter-robot coordination, then designed and tuned PID control algorithms for motion control and obstacle avoidance to improve navigation stability and accuracy."
+          data-bullets="ROS and C++ implementation|UART communication|PID tuning|Obstacle avoidance"
+          data-figure="Add robot photos, wiring, simulation screenshots, or a flow diagram here."
+          data-image="robotics.jpg"
+        >
+          <div class="experience-bg" style="background-image:url('robotics.jpg');"></div>
+          <div class="experience-overlay"></div>
+          <div class="experience-content">
+            <div class="experience-topline">
+              <span class="experience-tag">Project</span>
+              <span class="experience-tag">Robotics</span>
+            </div>
+            <h3 class="experience-title">Autonomous Robotics Navigation</h3>
+            <div class="experience-meta">ROS · C++ · controls · sensing</div>
+            <p class="hover-summary">A systems project where software, sensing, and motion control came together.</p>
+            <div class="click-note"><span class="subtle-line"></span> Click to open the project view</div>
           </div>
-          <div class="project-body">
-            <h3>LiPON Thin Film Research</h3>
-            <p>
-              Fabricated and characterized LiPON thin films for solid-state battery applications using RF sputtering,
-              PVD, XRD, electrochemical characterization, and finite element analysis.
-            </p>
-            <ul>
-              <li>Investigated processing–structure–property relationships.</li>
-              <li>Optimized deposition parameters for next-generation energy storage devices.</li>
-            </ul>
+        </article>
+
+        <article class="panel experience-card reveal open-modal"
+          data-title="FPGA Digital Design Project"
+          data-subtitle="Hardware design · embedded logic"
+          data-summary="Designed, simulated, and validated FPGA-based digital systems in Verilog/SystemVerilog using Xilinx Vivado."
+          data-detail="This project centered on finite state machines, sequential logic, simulation, debugging, and hardware validation. It is a great place to show waveforms, block diagrams, and a polished explanation of how your design moved from code to hardware."
+          data-bullets="Verilog/SystemVerilog|Xilinx Vivado|FSMs and sequential logic|Timing and correctness validation"
+          data-figure="Add waveforms, RTL views, or a board photo here."
+          data-image="fpga.jpg"
+        >
+          <div class="experience-bg" style="background-image:url('fpga.jpg');"></div>
+          <div class="experience-overlay"></div>
+          <div class="experience-content">
+            <div class="experience-topline">
+              <span class="experience-tag">Project</span>
+              <span class="experience-tag">FPGA</span>
+            </div>
+            <h3 class="experience-title">FPGA Digital Design</h3>
+            <div class="experience-meta">Verilog · Vivado · verification</div>
+            <p class="hover-summary">A hardware-centered project that shows your comfort with digital systems and validation workflows.</p>
+            <div class="click-note"><span class="subtle-line"></span> Click to open the project view</div>
           </div>
         </article>
       </div>
     </section>
 
-    <section id="skills" class="section">
+    <section class="section" id="beyond">
       <div class="section-head">
         <div>
-          <h2>Skills</h2>
+          <h2>Beyond the Lab</h2>
           <p class="lead">
-            Tools I use across research, systems work, and analysis.
+            This is the section that makes the site feel human. Keep it soft, personal, and visual.
           </p>
         </div>
       </div>
 
-      <div class="card reveal">
-        <div class="skills">
-          <span class="skill">Python</span>
-          <span class="skill">C</span>
-          <span class="skill">C++</span>
-          <span class="skill">Verilog</span>
-          <span class="skill">SystemVerilog</span>
-          <span class="skill">Linux</span>
-          <span class="skill">MATLAB</span>
-          <span class="skill">Git</span>
-          <span class="skill">Vivado</span>
-          <span class="skill">ROS</span>
-          <span class="skill">COMSOL</span>
-          <span class="skill">SEM</span>
-          <span class="skill">EBSD</span>
-          <span class="skill">EDS</span>
-          <span class="skill">XRD</span>
-          <span class="skill">PVD</span>
-          <span class="skill">FEA</span>
-          <span class="skill">Machine Learning</span>
-          <span class="skill">Probabilistic Modeling</span>
-          <span class="skill">Statistical Analysis</span>
-        </div>
+      <div class="gallery-grid">
+        <article class="panel beyond-card reveal">
+          <div class="beyond-image" style="background-image:url('hiking.jpg');"></div>
+          <div class="beyond-body">
+            <h3>Hiking</h3>
+            <p>Mountain trails, quiet views, and the kind of reset that helps everything else feel clear again.</p>
+          </div>
+        </article>
+
+        <article class="panel beyond-card reveal">
+          <div class="beyond-image" style="background-image:url('travel.jpg');"></div>
+          <div class="beyond-body">
+            <h3>Travel</h3>
+            <p>Places, textures, and memories from different corners of the world that shaped how I see engineering and life.</p>
+          </div>
+        </article>
+
+        <article class="panel beyond-card reveal">
+          <div class="beyond-image" style="background-image:url('life.jpg');"></div>
+          <div class="beyond-body">
+            <h3>Everyday Joys</h3>
+            <p>Little things outside the lab that keep me grounded, curious, and ready to build again.</p>
+          </div>
+        </article>
       </div>
     </section>
 
-    <section id="contact" class="section">
+    <section class="section" id="contact">
       <div class="section-head">
         <div>
           <h2>Contact</h2>
           <p class="lead">
-            I am always open to research, engineering, and internship conversations.
+            This can stay simple and elegant. People should know exactly how to reach you.
           </p>
         </div>
       </div>
 
-      <div class="contact-grid">
-        <div class="contact-box reveal">
-          <h3 style="margin: 0 0 10px; font-size: 1.4rem;">Let’s build something meaningful.</h3>
-          <p style="margin: 0; line-height: 1.75; color: #dbe6f8;">
-            If you are looking for someone who can move between experiments, data, and systems thinking,
-            I would love to connect.
+      <div class="education-grid">
+        <div class="panel card-pad reveal">
+          <h3>Let’s connect</h3>
+          <p>
+            I am open to research, internship, co-op, and collaboration opportunities in semiconductor process engineering,
+            materials R&amp;D, advanced manufacturing, thin-film technologies, embedded systems, and related technical work.
           </p>
-
-          <div class="contact-links">
-            <a class="contact-link" href="mailto:shatakshii2004@gmail.com">
-              <span>Email</span>
-              <span>shatakshii2004@gmail.com</span>
-            </a>
-            <a class="contact-link" href="https://www.linkedin.com/in/shatakshi-iksha" target="_blank" rel="noreferrer">
-              <span>LinkedIn</span>
-              <span>linkedin.com/in/shatakshi-iksha</span>
-            </a>
-            <a class="contact-link" href="https://github.com/Shatakshii17" target="_blank" rel="noreferrer">
-              <span>GitHub</span>
-              <span>github.com/Shatakshii17</span>
-            </a>
+          <div class="chips" style="margin-top:18px;">
+            <a class="chip" href="mailto:shatakshii2004@gmail.com">Email</a>
+            <a class="chip" href="https://www.linkedin.com/in/shatakshi-iksha" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="chip" href="https://github.com/Shatakshii17" target="_blank" rel="noreferrer">GitHub</a>
           </div>
         </div>
 
-        <div class="card reveal">
-          <h3>Quick summary</h3>
+        <div class="panel card-pad reveal">
+          <h3>Site files to add</h3>
           <p>
-            Computer Systems Engineering student at Arizona State University, graduating in May 2027, with a minor
-            in Materials Science and Engineering. Interested in semiconductor process engineering, materials R&amp;D,
-            advanced manufacturing, thin-film technologies, embedded systems, and robotics.
+            <strong>profile.jpg</strong> for your portrait,<br>
+            <strong>resume.pdf</strong> for the download button,<br>
+            and optional images like <strong>research-lipon.jpg</strong>, <strong>south-africa.jpg</strong>, <strong>hiking.jpg</strong>, or your own filenames.
           </p>
-          <div class="tag-row">
-            <span class="tag">ASU</span>
-            <span class="tag">Semiconductors</span>
-            <span class="tag">Thin Films</span>
-            <span class="tag">Embedded Systems</span>
-            <span class="tag">Robotics</span>
-            <span class="tag">Research</span>
-          </div>
         </div>
       </div>
     </section>
@@ -974,42 +1136,111 @@
     </footer>
   </main>
 
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <div>
+          <h3 id="modalTitle">Title</h3>
+          <div class="meta" id="modalSubtitle" style="color: var(--muted); font-size: .95rem; margin-top: 6px;"></div>
+        </div>
+        <button class="close-btn" id="closeModal" aria-label="Close modal">×</button>
+      </div>
+
+      <div class="modal-grid">
+        <div class="modal-figure" id="modalFigure">
+          <div class="figure-placeholder" id="figurePlaceholder">
+            Figure / image placeholder
+          </div>
+          <img id="modalImage" alt="" style="display:none;" />
+        </div>
+
+        <div class="modal-body">
+          <p id="modalSummary"></p>
+          <p id="modalDetail" style="margin-top: 12px;"></p>
+          <ul id="modalBullets"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
-    const year = document.getElementById("year");
-    year.textContent = new Date().getFullYear();
+    const yearEl = document.getElementById('year');
+    yearEl.textContent = new Date().getFullYear();
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-          }
-        });
-      },
-      { threshold: 0.14 }
-    );
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, { threshold: 0.12 });
 
-    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
-    const navLinks = Array.from(document.querySelectorAll(".nav-links a"));
-    const sections = navLinks
-      .map((link) => document.querySelector(link.getAttribute("href")))
-      .filter(Boolean);
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalSubtitle = document.getElementById('modalSubtitle');
+    const modalSummary = document.getElementById('modalSummary');
+    const modalDetail = document.getElementById('modalDetail');
+    const modalBullets = document.getElementById('modalBullets');
+    const modalImage = document.getElementById('modalImage');
+    const figurePlaceholder = document.getElementById('figurePlaceholder');
+    const closeModal = document.getElementById('closeModal');
 
-    window.addEventListener("scroll", () => {
-      const scrollPos = window.scrollY + 120;
+    function openModal(card) {
+      const title = card.dataset.title || 'Details';
+      const subtitle = card.dataset.subtitle || '';
+      const summary = card.dataset.summary || '';
+      const detail = card.dataset.detail || '';
+      const bullets = (card.dataset.bullets || '').split('|').filter(Boolean);
+      const image = card.dataset.image || '';
+      const figure = card.dataset.figure || 'Add your figure here.';
 
-      let currentId = "";
-      sections.forEach((section) => {
-        if (section.offsetTop <= scrollPos) {
-          currentId = section.id;
+      modalTitle.textContent = title;
+      modalSubtitle.textContent = subtitle;
+      modalSummary.textContent = summary;
+      modalDetail.textContent = detail;
+      modalBullets.innerHTML = bullets.map((b) => `<li>${b}</li>`).join('');
+
+      if (image) {
+        modalImage.src = image;
+        modalImage.alt = title;
+        modalImage.style.display = 'block';
+        figurePlaceholder.style.display = 'none';
+      } else {
+        modalImage.style.display = 'none';
+        figurePlaceholder.style.display = 'grid';
+        figurePlaceholder.textContent = figure;
+      }
+
+      modalBackdrop.classList.add('open');
+      modalBackdrop.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+      modalBackdrop.classList.remove('open');
+      modalBackdrop.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.open-modal').forEach((card) => {
+      card.addEventListener('click', () => openModal(card));
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openModal(card);
         }
       });
+      card.tabIndex = 0;
+      card.setAttribute('role', 'button');
+      card.setAttribute('aria-label', 'Open details');
+    });
 
-      navLinks.forEach((link) => {
-        const active = link.getAttribute("href") === `#${currentId}`;
-        link.classList.toggle("active", active);
-      });
+    closeModal.addEventListener('click', close);
+    modalBackdrop.addEventListener('click', (e) => {
+      if (e.target === modalBackdrop) close();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modalBackdrop.classList.contains('open')) close();
     });
   </script>
 </body>
