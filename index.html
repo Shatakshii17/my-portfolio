@@ -1,1247 +1,986 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shatakshi Iksha | Portfolio</title>
-  <meta name="description" content="Immersive portfolio for Shatakshi Iksha: research, education, projects, coursework, travel, and beyond the lab." />
-  <meta name="theme-color" content="#120914" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0a0710;
-      --bg2: #120914;
-      --card: rgba(24, 16, 28, 0.76);
-      --card-strong: rgba(28, 19, 35, 0.94);
-      --line: rgba(228, 192, 226, 0.14);
-      --text: #f5eef7;
-      --muted: #c7b4c9;
-      --muted-2: #9e8aa5;
-      --lavender: #b8a0ff;
-      --lavender-2: #8f73ff;
-      --pink: #ef9cc9;
-      --wine: #7f2d4d;
-      --rose: #f6bed8;
-      --shadow: 0 28px 80px rgba(0, 0, 0, 0.45);
-      --radius: 28px;
-      --radius-sm: 18px;
-      --max: 1200px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      color: var(--text);
-      font-family: "Libre Baskerville", Georgia, serif;
-      background:
-        radial-gradient(circle at 10% 10%, rgba(184, 160, 255, 0.16), transparent 25%),
-        radial-gradient(circle at 90% 15%, rgba(239, 156, 201, 0.14), transparent 24%),
-        radial-gradient(circle at 50% 80%, rgba(127, 45, 77, 0.18), transparent 22%),
-        linear-gradient(180deg, #07050b 0%, #0a0710 45%, #0a0710 100%);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
-
-    .wrap {
-      width: min(var(--max), calc(100% - 28px));
-      margin: 0 auto;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(18px);
-      background: rgba(10, 7, 16, 0.66);
-      border-bottom: 1px solid rgba(228, 192, 226, 0.10);
-    }
-
-    .topbar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 16px 0;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      white-space: nowrap;
-    }
-
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 15px;
-      display: grid;
-      place-items: center;
-      color: #110814;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--lavender), var(--pink));
-      box-shadow: 0 12px 30px rgba(239, 156, 201, 0.18);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-      color: var(--muted);
-      font-size: 0.94rem;
-    }
-
-    .nav a {
-      position: relative;
-      padding: 8px 0;
-      transition: color 0.2s ease;
-    }
-
-    .nav a:hover { color: var(--text); }
-    .nav a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 2px;
-      width: 100%;
-      height: 2px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--lavender), var(--pink));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.22s ease;
-    }
-    .nav a:hover::after { transform: scaleX(1); }
-
-    .hero {
-      padding: 58px 0 26px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.25fr 0.9fr;
-      gap: 22px;
-      align-items: stretch;
-    }
-
-    .panel {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(28, 19, 35, 0.82), rgba(17, 11, 23, 0.92));
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .hero-copy {
-      padding: 34px;
-      position: relative;
-    }
-
-    .hero-copy::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at top right, rgba(184, 160, 255, 0.11), transparent 28%),
-        radial-gradient(circle at bottom left, rgba(239, 156, 201, 0.11), transparent 28%);
-      pointer-events: none;
-    }
-
-    .eyebrow {
-      position: relative;
-      z-index: 1;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 9px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(228, 192, 226, 0.14);
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--rose);
-      font-size: 0.92rem;
-      margin-bottom: 18px;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--pink), var(--lavender));
-      box-shadow: 0 0 0 6px rgba(239, 156, 201, 0.10);
-    }
-
-    h1 {
-      margin: 0 0 14px;
-      position: relative;
-      z-index: 1;
-      font-size: clamp(2.85rem, 6.8vw, 5.2rem);
-      line-height: 0.95;
-      letter-spacing: -0.05em;
-    }
-
-    .hero-text,
-    .lead,
-    .card p,
-    .modal-body,
-    .small,
-    .meta {
-      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-    }
-
-    .hero-text {
-      position: relative;
-      z-index: 1;
-      margin: 0 0 20px;
-      color: var(--muted);
-      line-height: 1.8;
-      max-width: 70ch;
-      font-size: 1.03rem;
-    }
-
-    .pill-row {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 20px 0 24px;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(228, 192, 226, 0.12);
-      background: rgba(255, 255, 255, 0.03);
-      color: #f2e6f0;
-      font-size: 0.9rem;
-      white-space: nowrap;
-    }
-
-    .actions {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 13px 18px;
-      border-radius: 14px;
-      border: 1px solid rgba(228, 192, 226, 0.14);
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--text);
-      cursor: pointer;
-      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-      font-weight: 600;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      border-color: rgba(184, 160, 255, 0.45);
-      background: rgba(184, 160, 255, 0.10);
-    }
-
-    .btn.primary {
-      color: #140912;
-      border-color: transparent;
-      background: linear-gradient(135deg, var(--lavender), var(--pink));
-      box-shadow: 0 14px 30px rgba(239, 156, 201, 0.12);
-    }
-
-    .hero-side {
-      display: grid;
-      gap: 18px;
-    }
-
-    .photo-panel {
-      padding: 18px;
-      display: grid;
-      gap: 14px;
-    }
-
-    .photo-frame {
-      position: relative;
-      min-height: 370px;
-      aspect-ratio: 4 / 5;
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid rgba(228, 192, 226, 0.12);
-      background:
-        linear-gradient(135deg, rgba(184, 160, 255, 0.18), rgba(239, 156, 201, 0.10)),
-        radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 50%),
-        #140916;
-    }
-
-    .photo-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-    }
-
-    .photo-fallback {
-      position: absolute;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 24px;
-      color: rgba(245, 238, 247, 0.85);
-      line-height: 1.7;
-      background: linear-gradient(180deg, rgba(19, 10, 20, 0.35), rgba(19, 10, 20, 0.85));
-    }
-
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .stat {
-      padding: 14px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(228, 192, 226, 0.10);
-    }
-
-    .stat b {
-      display: block;
-      font-size: 1.1rem;
-      margin-bottom: 4px;
-    }
-
-    .stat span {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-
-    .section {
-      padding: 22px 0 0;
-    }
-
-    .section-head {
-      margin-bottom: 16px;
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    h2 {
-      margin: 0;
-      font-size: clamp(1.5rem, 3vw, 2.1rem);
-      letter-spacing: -0.03em;
-    }
-
-    .lead {
-      margin: 8px 0 0;
-      color: var(--muted);
-      line-height: 1.8;
-      max-width: 75ch;
-    }
-
-    .card {
-      position: relative;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(29, 20, 33, 0.84), rgba(16, 10, 19, 0.93));
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .card-pad { padding: 22px; }
-
-    .education-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 18px;
-    }
-
-    .edu-main {
-      display: grid;
-      gap: 16px;
-    }
-
-    .edu-item {
-      padding: 18px;
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(228, 192, 226, 0.10);
-    }
-
-    .edu-item h3,
-    .card h3,
-    .project h3,
-    .beyond-card h3,
-    .modal h3 {
-      margin: 0 0 10px;
-      font-size: 1.15rem;
-    }
-
-    .edu-item p,
-    .card p,
-    .project p,
-    .beyond-card p,
-    .modal-body p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.8;
-      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .chip {
-      padding: 9px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(228, 192, 226, 0.10);
-      background: rgba(255,255,255,0.03);
-      color: #f5ebf6;
-      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-      font-size: 0.9rem;
-    }
-
-    .grade-box {
-      padding: 22px;
-      border-radius: 24px;
-      background:
-        radial-gradient(circle at top right, rgba(239, 156, 201, 0.14), transparent 28%),
-        radial-gradient(circle at bottom left, rgba(184, 160, 255, 0.12), transparent 26%),
-        rgba(255,255,255,0.03);
-      border: 1px solid rgba(228, 192, 226, 0.10);
-    }
-
-    .grade {
-      font-size: 2.2rem;
-      line-height: 1;
-      margin: 8px 0 8px;
-      letter-spacing: -0.05em;
-    }
-
-    .small {
-      color: var(--muted);
-      line-height: 1.75;
-      font-size: 0.95rem;
-    }
-
-    .experience-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .experience-card {
-      min-height: 400px;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      transform-style: preserve-3d;
-      transition: transform 0.25s ease, border-color 0.25s ease;
-    }
-
-    .experience-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(184, 160, 255, 0.42);
-    }
-
-    .experience-bg {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      filter: saturate(1.05) contrast(0.95);
-      opacity: 0.92;
-    }
-
-    .experience-overlay {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(7, 4, 10, 0.12), rgba(7, 4, 10, 0.82) 72%),
-        radial-gradient(circle at top, rgba(184, 160, 255, 0.15), transparent 34%);
-    }
-
-    .experience-content {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      min-height: 400px;
-      padding: 20px;
-    }
-
-    .experience-topline {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-
-    .experience-tag {
-      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #f2dfe9;
-    }
-
-    .hover-summary {
-      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: all 0.26s ease;
-      color: #f3ebf7;
-    }
-
-    .experience-card:hover .hover-summary {
-      max-height: 150px;
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .experience-title {
-      margin: 0 0 10px;
-      font-size: 1.25rem;
-      line-height: 1.3;
-    }
-
-    .experience-meta {
-      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-      color: #dec9e3;
-      font-size: 0.92rem;
-      margin-bottom: 10px;
-    }
-
-    .click-note {
-      margin-top: 14px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: #f8e8f0;
-      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-      font-size: 0.92rem;
-      opacity: 0.9;
-    }
-
-    .subtle-line {
-      width: 36px;
-      height: 2px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--pink), var(--lavender));
-    }
-
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(8, 5, 10, 0.72);
-      backdrop-filter: blur(8px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 80;
-      padding: 18px;
-    }
-
-    .modal-backdrop.open { display: flex; }
-
-    .modal {
-      width: min(980px, 100%);
-      max-height: 90vh;
-      overflow: auto;
-      border-radius: 28px;
-      border: 1px solid rgba(228, 192, 226, 0.16);
-      background: linear-gradient(180deg, rgba(29, 20, 33, 0.96), rgba(15, 10, 18, 0.98));
-      box-shadow: var(--shadow);
-      padding: 20px;
-      position: relative;
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      align-items: start;
-      margin-bottom: 14px;
-    }
-
-    .close-btn {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      border: 1px solid rgba(228, 192, 226, 0.14);
-      background: rgba(255,255,255,0.03);
-      color: var(--text);
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-
-    .modal-grid {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 18px;
-    }
-
-    .modal-figure {
-      border-radius: 22px;
-      overflow: hidden;
-      border: 1px solid rgba(228, 192, 226, 0.10);
-      background: rgba(255,255,255,0.03);
-      min-height: 320px;
-    }
-
-    .modal-figure img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .figure-placeholder {
-      height: 100%;
-      min-height: 320px;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      text-align: center;
-      color: #dfcfe1;
-      line-height: 1.8;
-      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-      background:
-        radial-gradient(circle at top, rgba(184, 160, 255, 0.16), transparent 30%),
-        rgba(255,255,255,0.03);
-    }
-
-    .modal-body {
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    .modal-body ul {
-      padding-left: 18px;
-      margin: 14px 0 0;
-      color: #efe2f1;
-      line-height: 1.75;
-      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-    }
-
-    .modal-body li + li { margin-top: 6px; }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .beyond-card {
-      min-height: 280px;
-      overflow: hidden;
-    }
-
-    .beyond-image {
-      aspect-ratio: 4 / 3;
-      background-size: cover;
-      background-position: center;
-      filter: saturate(1.05);
-    }
-
-    .beyond-body {
-      padding: 18px;
-    }
-
-    .footer {
-      padding: 34px 0 44px;
-      text-align: center;
-      color: var(--muted-2);
-      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-      font-size: 0.94rem;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .reveal.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 1024px) {
-      .hero-grid,
-      .education-grid,
-      .experience-grid,
-      .modal-grid,
-      .gallery-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .wrap {
-        width: min(var(--max), calc(100% - 18px));
-      }
-
-      .hero-copy,
-      .photo-panel,
-      .card-pad,
-      .modal {
-        padding: 18px;
-      }
-
-      .hero-stats {
-        grid-template-columns: 1fr;
-      }
-
-      .actions {
-        display: grid;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      h1 {
-        font-size: clamp(2.35rem, 12vw, 3.8rem);
-      }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shatakshi Iksha — Computational Materials &amp; Systems Engineering</title>
+<meta name="description" content="Portfolio of Shatakshi Iksha: thin-film and materials research, computer systems engineering, and computational modeling at Arizona State University." />
+<meta name="theme-color" content="#0b0d10" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;1,9..144,460&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0d10;
+    --bg2:#12161b;
+    --panel:#141920;
+    --panel-2: #171d24;
+    --line: rgba(206,216,224,0.10);
+    --line-strong: rgba(206,216,224,0.20);
+    --text:#eef1f0;
+    --muted:#9aa7b1;
+    --muted-2:#6d7981;
+    --copper:#c9834f;
+    --copper-soft: rgba(201,131,79,0.14);
+    --blue:#6fa2c4;
+    --blue-soft: rgba(111,162,196,0.14);
+    --radius: 20px;
+    --radius-sm: 12px;
+    --max: 1180px;
+    --shadow: 0 30px 70px rgba(0,0,0,0.45);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--text);
+    font-family:'Inter', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  .mono{font-family:'IBM Plex Mono', ui-monospace, monospace;}
+  .wrap{width:min(var(--max), calc(100% - 32px)); margin:0 auto;}
+
+  h1,h2,h3{font-family:'Fraunces', Georgia, serif; margin:0; letter-spacing:-0.01em;}
+
+  /* ---------- background lattice canvas ---------- */
+  .lattice-bg{
+    position:fixed; inset:0; z-index:-2;
+    width:100%; height:100%; display:block;
+  }
+  .grain{
+    position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:0.035;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode: overlay;
+  }
+
+  /* ---------- topbar ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    background: rgba(11,13,16,0.78);
+    backdrop-filter: blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:20px; padding:16px 0;
+  }
+  .brand{display:flex; align-items:center; gap:12px; font-weight:600; white-space:nowrap;}
+  .brand-mark{
+    width:38px; height:38px; border-radius:9px;
+    display:grid; place-items:center;
+    background:
+      linear-gradient(135deg, var(--copper), var(--blue));
+    color:#0b0d10; font-weight:700; font-family:'IBM Plex Mono', monospace; font-size:0.82rem;
+  }
+  .brand-name{font-family:'Fraunces', serif; font-size:1.02rem;}
+  .nav{display:flex; gap:22px; flex-wrap:wrap; font-size:0.88rem; color:var(--muted);}
+  .nav a{position:relative; padding:6px 0;}
+  .nav a::after{
+    content:""; position:absolute; left:0; bottom:0; height:1px; width:100%;
+    background: var(--copper); transform:scaleX(0); transform-origin:left;
+    transition: transform 0.2s ease;
+  }
+  .nav a:hover{color:var(--text);}
+  .nav a:hover::after{transform:scaleX(1);}
+  .nav a.active{color:var(--text);}
+  .nav a.active::after{transform:scaleX(1); background:var(--copper);}
+
+  /* ---------- hero ---------- */
+  .hero{padding:64px 0 20px; position:relative;}
+  .hero-grid{display:grid; grid-template-columns: 1.15fr 0.85fr; gap:20px; align-items:stretch;}
+  .panel{
+    border:1px solid var(--line); border-radius: var(--radius);
+    background: linear-gradient(180deg, rgba(20,25,32,0.90), rgba(23,29,36,0.94));
+    backdrop-filter: blur(6px);
+    box-shadow: var(--shadow);
+  }
+  .hero-copy{padding:38px; position:relative; overflow:hidden;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:7px 12px; border-radius:999px;
+    border:1px solid var(--line-strong);
+    color: var(--blue);
+    font-family:'IBM Plex Mono', monospace; font-size:0.76rem; letter-spacing:0.06em; text-transform:uppercase;
+    margin-bottom:22px;
+  }
+  .eyebrow .dot{width:6px; height:6px; border-radius:50%; background:var(--copper);}
+  h1.display{
+    font-size: clamp(2.6rem, 5.6vw, 4.4rem);
+    line-height:1.02;
+    margin-bottom:18px;
+  }
+  h1.display em{
+    font-style:italic; font-weight:400; color: var(--copper);
+  }
+  .hero-text{
+    color:var(--muted); line-height:1.85; max-width:60ch; font-size:1.03rem; margin-bottom:26px;
+  }
+  .actions{display:flex; flex-wrap:wrap; gap:12px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:9px;
+    padding:12px 18px; border-radius:11px;
+    border:1px solid var(--line-strong);
+    background: rgba(255,255,255,0.02);
+    font-weight:600; font-size:0.92rem;
+    cursor:pointer; transition: all .18s ease;
+  }
+  .btn:hover{ transform: translateY(-2px); border-color: var(--blue); }
+  .btn.primary{
+    background: linear-gradient(135deg, var(--copper), #a9673c);
+    color:#140b06; border-color:transparent;
+  }
+  .btn.primary:hover{ border-color:transparent; filter:brightness(1.06); }
+
+  /* hero side: lattice diagram */
+  .hero-side{display:grid; gap:18px;}
+  .lattice-panel{padding:20px; position:relative;}
+  .lattice-caption{
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--muted-2);
+    text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px;
+  }
+  svg.lattice{width:100%; height:auto; display:block;}
+  .lattice-node{ fill: var(--blue); animation: pulse 3.6s ease-in-out infinite; cursor:pointer; transition: filter .15s ease; }
+  .lattice-node.hot{ fill: var(--copper); }
+  .lattice-node:hover{ filter: brightness(1.6); }
+  .lattice-edge{ stroke: rgba(206,216,224,0.18); stroke-width:1; transition: stroke .2s ease, opacity .2s ease; }
+  .lattice-edge.hot{ stroke: var(--copper); stroke-width:1.4; opacity:0.8; }
+  svg.lattice:hover .lattice-edge{ stroke: var(--blue); opacity:0.55; }
+  @keyframes pulse{
+    0%,100%{ opacity:.55; r:3.2; }
+    50%{ opacity:1; r:4.4; }
+  }
+
+  .hero-stats{display:grid; grid-template-columns:repeat(2,1fr); gap:12px;}
+  .stat{
+    padding:16px; border-radius:14px;
+    background: rgba(255,255,255,0.02); border:1px solid var(--line);
+  }
+  .stat b{
+    display:block; font-family:'Fraunces', serif; font-size:1.3rem; margin-bottom:4px; color:var(--text);
+  }
+  .stat span{color:var(--muted); font-size:0.84rem; line-height:1.5;}
+
+  /* ---------- sections ---------- */
+  .section{padding:64px 0 0;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end; gap:20px;
+    flex-wrap:wrap; margin-bottom:26px;
+  }
+  .section-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:0.76rem; color:var(--copper);
+    text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px; display:block;
+  }
+  h2{font-size: clamp(1.5rem, 2.8vw, 2rem);}
+  .lead{color:var(--muted); line-height:1.8; max-width:64ch; margin:10px 0 0;}
+
+  .card-pad{padding:26px;}
+
+  /* scroll progress */
+  .progress-bar{
+    position:fixed; top:0; left:0; height:2px; width:0%;
+    background: linear-gradient(90deg, var(--copper), var(--blue));
+    z-index:100; transition: width 0.08s linear;
+  }
+
+  /* why / paradigm */
+  em.mono-em{ font-style:normal; color:var(--copper); font-family:'IBM Plex Mono', monospace; font-size:0.94em; }
+  .paradigm-row{
+    display:grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+    gap:14px; align-items:start; padding:28px 26px 8px;
+  }
+  .paradigm-step{ padding:6px 2px; transition: transform .25s ease; }
+  .paradigm-step:hover{ transform: translateY(-4px); }
+  .paradigm-index{ display:block; color:var(--blue); font-size:0.78rem; margin-bottom:8px; }
+  .paradigm-step h3{ font-size:1.02rem; margin-bottom:8px; }
+  .paradigm-step p{ margin:0; color:var(--muted); font-size:0.88rem; line-height:1.65; }
+  .paradigm-arrow{ color:var(--muted-2); font-size:1.2rem; padding-top:34px; }
+  .paradigm-note{
+    margin:0; padding:20px 26px 26px; color:var(--muted); line-height:1.8; font-size:0.94rem;
+    border-top:1px solid var(--line);
+  }
+  @media (max-width:900px){
+    .paradigm-row{ grid-template-columns:1fr; }
+    .paradigm-arrow{ display:none; }
+  }
+
+  /* education */
+  .education-grid{display:grid; grid-template-columns:1.2fr 0.8fr; gap:18px;}
+  .edu-item{padding:18px 0; border-bottom:1px solid var(--line);}
+  .edu-item:last-child{border-bottom:none; padding-bottom:0;}
+  .edu-item h3{font-size:1.1rem; margin-bottom:6px;}
+  .edu-item p{margin:0; color:var(--muted); line-height:1.7;}
+  .grade-box{padding:26px; display:flex; flex-direction:column; justify-content:center;}
+  .grade-label{font-family:'IBM Plex Mono', monospace; font-size:0.76rem; color:var(--muted-2); text-transform:uppercase; letter-spacing:.08em;}
+  .grade{font-family:'Fraunces', serif; font-size:2.4rem; margin:8px 0; color:var(--text);}
+  .small{color:var(--muted); line-height:1.75; font-size:0.92rem;}
+
+  /* research / lab-notebook style entries */
+  .lab-log{display:grid; gap:16px;}
+  .lab-entry{
+    display:grid; grid-template-columns: 92px 1fr auto; gap:20px; align-items:start;
+    padding:24px; cursor:pointer; transition: border-color .2s ease, transform .2s ease;
+  }
+  .lab-entry:hover{ border-color: var(--blue); transform: translateX(2px); }
+  .fig-tag{
+    font-family:'IBM Plex Mono', monospace; color:var(--copper); font-size:0.86rem;
+    padding-top:4px;
+  }
+  .lab-entry h3{font-size:1.16rem; margin-bottom:6px;}
+  .lab-meta{font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--muted-2); margin-bottom:10px;}
+  .lab-entry p{margin:0; color:var(--muted); line-height:1.75; font-size:0.96rem;}
+  .lab-open{
+    align-self:center; font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--blue);
+    white-space:nowrap;
+  }
+
+  /* engagement / project grid */
+  .cards-3{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  .cards-2{display:grid; grid-template-columns:repeat(2,1fr); gap:16px;}
+  .simple-card{padding:22px; transition: transform .2s ease, border-color .2s ease;}
+  .simple-card.clickable{cursor:pointer;}
+  .simple-card.clickable:hover{ transform:translateY(-3px); border-color: var(--blue); }
+  .simple-card .tag{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--copper);
+    text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px; display:inline-block;
+  }
+  .simple-card h3{font-size:1.05rem; margin-bottom:8px;}
+  .simple-card .meta{font-family:'IBM Plex Mono', monospace; font-size:0.76rem; color:var(--muted-2); margin-bottom:10px;}
+  .simple-card p{margin:0; color:var(--muted); line-height:1.7; font-size:0.92rem;}
+
+  /* honors list */
+  .honors-list{display:grid; gap:0;}
+  .honor-row{
+    display:grid; grid-template-columns: 1fr auto; gap:16px;
+    padding:16px 26px; border-bottom:1px solid var(--line);
+  }
+  .honor-row:last-child{border-bottom:none;}
+  .honor-row .name{font-weight:600;}
+  .honor-row .venue{color:var(--muted); font-size:0.9rem; margin-top:3px;}
+  .honor-row .year{font-family:'IBM Plex Mono', monospace; color:var(--muted-2); font-size:0.86rem; white-space:nowrap;}
+
+  /* chips */
+  .chips{display:flex; flex-wrap:wrap; gap:9px;}
+  .chip{
+    padding:8px 12px; border-radius:999px; border:1px solid var(--line);
+    background: rgba(255,255,255,0.02);
+    font-family:'IBM Plex Mono', monospace; font-size:0.8rem; color:#e7ecee;
+  }
+
+  /* skills */
+  .skills-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px;}
+  .skill-col h3{font-size:0.98rem; margin-bottom:14px; color:var(--blue); font-family:'IBM Plex Mono', monospace; text-transform:uppercase; letter-spacing:.05em; font-weight:600;}
+
+  /* beyond the lab */
+  .beyond-row{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
+  .beyond-card{padding:20px; text-align:center;}
+  .beyond-card .glyph{
+    width:44px; height:44px; margin:0 auto 12px; border-radius:12px;
+    display:grid; place-items:center;
+    background: var(--blue-soft); color: var(--blue); font-family:'IBM Plex Mono', monospace; font-size:0.9rem;
+  }
+  .beyond-card h3{font-size:0.98rem; margin-bottom:6px;}
+  .beyond-card p{margin:0; color:var(--muted); font-size:0.86rem; line-height:1.6;}
+
+  /* contact */
+  .contact-grid{display:grid; grid-template-columns:1.2fr 0.8fr; gap:18px;}
+  .contact-links{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px;}
+
+  .footer{
+    padding:40px 0 50px; text-align:center; color:var(--muted-2);
+    font-family:'IBM Plex Mono', monospace; font-size:0.82rem;
+  }
+
+  /* modal */
+  .modal-backdrop{
+    position:fixed; inset:0; background:rgba(6,7,9,0.75); backdrop-filter:blur(6px);
+    display:none; align-items:center; justify-content:center; z-index:80; padding:20px;
+  }
+  .modal-backdrop.open{display:flex;}
+  .modal{
+    width:min(760px,100%); max-height:88vh; overflow:auto;
+    border-radius:22px; border:1px solid var(--line-strong);
+    background: linear-gradient(180deg, var(--panel-2), var(--bg2));
+    box-shadow: var(--shadow); padding:28px; position:relative;
+  }
+  .modal-header{display:flex; justify-content:space-between; gap:16px; align-items:flex-start; margin-bottom:16px;}
+  .modal-header .fig-tag{font-size:0.8rem;}
+  .modal-header h3{font-size:1.3rem; margin:6px 0 6px;}
+  .modal-header .meta{font-family:'IBM Plex Mono', monospace; color:var(--muted-2); font-size:0.82rem;}
+  .close-btn{
+    width:36px; height:36px; border-radius:10px; border:1px solid var(--line-strong);
+    background: rgba(255,255,255,0.02); color:var(--text); font-size:1.1rem; cursor:pointer; flex:none;
+  }
+  .modal-body p{color:var(--muted); line-height:1.8; margin:0 0 14px;}
+  .modal-body ul{padding-left:18px; margin:0; color:#e5ebec; line-height:1.8;}
+  .modal-figure{
+    margin-bottom:16px; border-radius:14px; border:1px dashed var(--line-strong);
+    background: rgba(255,255,255,0.02); padding:22px; text-align:center;
+    color:var(--muted-2); font-family:'IBM Plex Mono', monospace; font-size:0.82rem; line-height:1.7;
+  }
+
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.show{opacity:1; transform:translateY(0);}
+
+  @media (max-width:1024px){
+    .hero-grid, .education-grid, .cards-3, .cards-2, .contact-grid, .beyond-row{grid-template-columns:1fr;}
+    .beyond-row{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:640px){
+    .hero-copy, .card-pad, .modal, .lattice-panel{padding:20px;}
+    .lab-entry{grid-template-columns:1fr; gap:8px;}
+    .lab-open{justify-self:start;}
+    .beyond-row{grid-template-columns:1fr;}
+    .nav{display:none;}
+  }
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="wrap topbar-inner">
-      <a class="brand" href="#home" aria-label="Back to top">
-        <span class="brand-mark">SI</span>
-        <span>Shatakshi Iksha</span>
-      </a>
-      <nav class="nav" aria-label="Primary navigation">
-        <a href="#education">Education</a>
-        <a href="#experience">Experience</a>
-        <a href="#coursework">Coursework</a>
-        <a href="#projects">Projects</a>
-        <a href="#beyond">Beyond the Lab</a>
-        <a href="#contact">Contact</a>
-      </nav>
+<div class="progress-bar" id="progressBar"></div>
+<canvas id="latticeCanvas" class="lattice-bg"></canvas>
+<div class="grain"></div>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="#home">
+      <span class="brand-mark">SI</span>
+      <span class="brand-name">Shatakshi Iksha</span>
+    </a>
+    <nav class="nav">
+      <a href="#why">Why MatSci</a>
+      <a href="#education">Education</a>
+      <a href="#research">Research</a>
+      <a href="#engagement">Engagement</a>
+      <a href="#projects">Projects</a>
+      <a href="#honors">Honors</a>
+      <a href="#skills">Skills</a>
+      <a href="#beyond">Beyond the Lab</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid">
+      <article class="panel hero-copy reveal">
+        <div class="eyebrow"><span class="dot"></span>Computer Systems Engineering · Materials Science Minor · ASU</div>
+        <h1 class="display">Processing shapes structure.<br>Structure shapes <em>performance.</em></h1>
+        <p class="hero-text">
+          I'm Shatakshi Iksha, a computer systems engineering student at Arizona State University with a minor in materials science.
+          I fabricate and characterize thin films, build statistical and machine-learned models of material degradation, and
+          apply that same process → structure → property lens to embedded systems and hardware. Currently an R&amp;D
+          engineering intern at Fraunhofer USA, optimizing thin-film sputtering processes.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="resume.pdf" download>Download résumé</a>
+          <a class="btn" href="#research">See the research</a>
+          <a class="btn" href="mailto:shatakshii2004@gmail.com">Email me</a>
+        </div>
+      </article>
+
+      <aside class="hero-side">
+        <div class="panel lattice-panel reveal">
+          <div class="lattice-caption"><span>Fig. 00 — Unit cell</span><span>Diamond cubic lattice</span></div>
+          <svg class="lattice" viewBox="0 0 320 260" xmlns="http://www.w3.org/2000/svg">
+            <g class="lattice-edge">
+              <line x1="60" y1="40" x2="160" y2="20"/>
+              <line x1="160" y1="20" x2="260" y2="40"/>
+              <line x1="60" y1="40" x2="60" y2="140"/>
+              <line x1="260" y1="40" x2="260" y2="140"/>
+              <line x1="60" y1="140" x2="160" y2="120"/>
+              <line x1="160" y1="120" x2="260" y2="140"/>
+              <line x1="160" y1="20" x2="160" y2="120"/>
+              <line x1="60" y1="140" x2="60" y2="220"/>
+              <line x1="260" y1="140" x2="260" y2="220"/>
+              <line x1="60" y1="220" x2="160" y2="240"/>
+              <line x1="160" y1="240" x2="260" y2="220"/>
+              <line x1="160" y1="120" x2="160" y2="240"/>
+            </g>
+            <line class="lattice-edge hot" x1="160" y1="20" x2="160" y2="120"/>
+            <line class="lattice-edge hot" x1="160" y1="120" x2="110" y2="180"/>
+            <g>
+              <circle class="lattice-node" cx="60" cy="40" r="3.6"/>
+              <circle class="lattice-node" cx="160" cy="20" r="3.6" style="animation-delay:.3s"/>
+              <circle class="lattice-node" cx="260" cy="40" r="3.6" style="animation-delay:.6s"/>
+              <circle class="lattice-node" cx="60" cy="140" r="3.6" style="animation-delay:.9s"/>
+              <circle class="lattice-node hot" cx="160" cy="120" r="4" style="animation-delay:.2s"/>
+              <circle class="lattice-node" cx="260" cy="140" r="3.6" style="animation-delay:1.1s"/>
+              <circle class="lattice-node" cx="60" cy="220" r="3.6" style="animation-delay:.5s"/>
+              <circle class="lattice-node hot" cx="110" cy="180" r="4" style="animation-delay:.8s"/>
+              <circle class="lattice-node" cx="160" cy="240" r="3.6" style="animation-delay:1.3s"/>
+              <circle class="lattice-node" cx="260" cy="220" r="3.6" style="animation-delay:.4s"/>
+            </g>
+          </svg>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><b>3.5 / 4.0</b><span>GPA · Dean's List</span></div>
+          <div class="stat"><b>May 2027</b><span>Expected graduation</span></div>
+          <div class="stat"><b>1,000+</b><span>Reliability test cycles run</span></div>
+          <div class="stat"><b>3</b><span>Countries worked in: US · Germany · South Africa</span></div>
+        </div>
+      </aside>
     </div>
-  </header>
+  </section>
 
-  <main class="wrap" id="home">
-    <section class="hero">
-      <div class="hero-grid">
-        <article class="panel hero-copy reveal">
-          <div class="eyebrow"><span class="dot"></span> Arizona State University · Computer Systems Engineering</div>
-          <h1>Blank Space.</h1>
-          <p class="hero-text">
-            I am Shatakshi Iksha, a Computer Systems Engineering student at Arizona State University with a minor in Materials Science and Engineering.
-            I work across semiconductors, thin films, embedded systems, robotics, and computational research. I am seeking opportunities in semiconductor process engineering,
-            materials R&amp;D, advanced manufacturing, thin-film technologies, and related technical roles.
-          </p>
-
-          <div class="pill-row">
-            <span class="pill">GPA 3.9 / 4.0</span>
-            <span class="pill">Dean’s List</span>
-            <span class="pill">DAAD RISE 2025</span>
-            <span class="pill">Graduating May 2027</span>
-          </div>
-
-          <div class="actions">
-            <a class="btn primary" href="resume.pdf" download>Download Resume</a>
-            <a class="btn" href="#experience">Explore Research</a>
-            <a class="btn" href="mailto:shatakshii2004@gmail.com">Email Me</a>
-          </div>
-        </article>
-
-        <aside class="panel photo-panel reveal">
-          <div class="photo-frame">
-            <img src="profile.jpg" alt="Portrait of Shatakshi Iksha" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
-            <div class="photo-fallback" style="display:none;">
-              Add your portrait as <strong>profile.jpg</strong>.
-              <br><br>
-              A strong, well-lit photo will make the landing page feel much more personal and immersive.
-            </div>
-          </div>
-          <div class="hero-stats">
-            <div class="stat">
-              <b>2</b>
-              <span>Study / work abroad experiences</span>
-            </div>
-            <div class="stat">
-              <b>3</b>
-              <span>Research experiences featured</span>
-            </div>
-            <div class="stat">
-              <b>4</b>
-              <span>Featured projects &amp; stories</span>
-            </div>
-            <div class="stat">
-              <b>1</b>
-              <span>Future-focused story: yours</span>
-            </div>
-          </div>
-        </aside>
+  <!-- WHY MATSCI -->
+  <section class="section" id="why">
+    <div class="section-head">
+      <div>
+        <span class="section-tag">Why a CSE major, MatSci minor</span>
+        <h2>The paradigm behind the path</h2>
+        <p class="lead">Materials science runs on one loop: how you <em class="mono-em">process</em> a material sets its <em class="mono-em">structure</em>, structure sets its <em class="mono-em">properties</em>, and properties set its <em class="mono-em">performance</em>. CSE gave me the tools to model and automate every step of that loop — so I stayed in systems engineering and pulled materials science in alongside it, instead of switching majors.</p>
       </div>
-    </section>
-
-    <section class="section" id="education">
-      <div class="section-head">
-        <div>
-          <h2>Education</h2>
-          <p class="lead">
-            Keep this elegant and concise so the rest of the site can breathe.
-          </p>
+    </div>
+    <div class="panel reveal">
+      <div class="paradigm-row">
+        <div class="paradigm-step" data-step="processing">
+          <span class="paradigm-index mono">01</span>
+          <h3>Processing</h3>
+          <p>Sputtering, PVD, additive manufacturing, DOE design — the physical inputs I control in the lab.</p>
+        </div>
+        <div class="paradigm-arrow mono">→</div>
+        <div class="paradigm-step" data-step="structure">
+          <span class="paradigm-index mono">02</span>
+          <h3>Structure</h3>
+          <p>XRD, SEM, EBSD, AFM — reading the atomic and microstructural result of that processing.</p>
+        </div>
+        <div class="paradigm-arrow mono">→</div>
+        <div class="paradigm-step" data-step="property">
+          <span class="paradigm-index mono">03</span>
+          <h3>Property</h3>
+          <p>Mechanical, electrochemical, and optical behavior measured through testing and characterization.</p>
+        </div>
+        <div class="paradigm-arrow mono">→</div>
+        <div class="paradigm-step" data-step="performance">
+          <span class="paradigm-index mono">04</span>
+          <h3>Performance</h3>
+          <p>Python/R models — Weibull, regression, Random Forest, Bayesian — that turn all of the above into a process recommendation.</p>
         </div>
       </div>
+      <p class="paradigm-note">CSE is the thread that runs underneath every stage: the code that designs the DOE, the models that close the loop from structure back to processing, and eventually the embedded systems that could run that loop autonomously. That's the engineer I'm training to be — not a materials scientist instead of a systems engineer, but a systems engineer who happens to work on materials.</p>
+    </div>
+  </section>
 
-      <div class="education-grid">
-        <div class="panel card-pad reveal">
-          <div class="edu-main">
-            <div class="edu-item">
-              <h3>B.S.E. in Computer Systems Engineering</h3>
-              <p>Arizona State University · Expected May 2027</p>
-            </div>
-            <div class="edu-item">
-              <h3>Minor in Materials Science and Engineering</h3>
-              <p>Arizona State University · Tempe, Arizona</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="grade-box reveal">
-          <div class="small">Academic highlights</div>
-          <div class="grade">3.9/4.0</div>
-          <p class="small">
-            Dean’s List Awardee · DAAD RISE 2025 Awardee · Strong background in technical research, computation, and experimental materials work. 
-          </p>
-        </div>
+  <!-- EDUCATION -->
+  <section class="section" id="education">
+    <div class="section-head">
+      <div>
+        <span class="section-tag">Education</span>
+        <h2>Arizona State University</h2>
       </div>
-    </section>
-
-    <section class="section" id="experience">
-      <div class="section-head">
-        <div>
-          <h2>Experience</h2>
-          <p class="lead">
-            Hover for a quick summary, then click any card to open a deeper view with more details and figure placeholders.
-          </p>
-        </div>
-      </div>
-
-      <div class="experience-grid">
-        <article class="panel experience-card reveal open-modal"
-          data-title="LiPON Thin Film Research"
-          data-subtitle="Fraunhofer USA Inc. – CMW · East Lansing, MI · May 2026 – August 2026"
-          data-summary="Fabricated and characterized LiPON thin films using RF magnetron sputtering, PVD, and XRD for solid-state battery applications."
-          data-detail="I investigated processing–structure–property relationships for LiPON thin films and used COMSOL-based finite element analysis, predictive modeling, and electrochemical characterization to evaluate and optimize performance for next-generation energy storage devices."
-          data-bullets="RF magnetron sputtering, PVD, XRD|COMSOL-based FEA|Deposition optimization|Electrochemical characterization"
-          data-figure="Add a micrograph, XRD plot, thickness map, or deposition schematic here."
-          data-image="research-lipon.jpg"
-        >
-          <div class="experience-bg" style="background-image:url('research-lipon.jpg');"></div>
-          <div class="experience-overlay"></div>
-          <div class="experience-content">
-            <div class="experience-topline">
-              <span class="experience-tag">Research I</span>
-              <span class="experience-tag">Thin Films</span>
-            </div>
-            <h3 class="experience-title">LiPON Thin Film Research</h3>
-            <div class="experience-meta">Fraunhofer USA · energy storage · deposition science</div>
-            <p class="hover-summary">Fabricated LiPON thin films, studied structure-property relationships, and optimized deposition conditions for solid-state battery work.</p>
-            <div class="click-note"><span class="subtle-line"></span> Click to open the full research story</div>
-          </div>
-        </article>
-
-        <article class="panel experience-card reveal open-modal"
-          data-title="Perovskite Durability Modeling"
-          data-subtitle="Rolston Lab · ASU Research Park, Tempe, AZ · May 2024 – Jan 2026"
-          data-summary="Designed and performed 200+ cyclic-bending experiments and photoluminescence measurements on flexible MAPbI₃ perovskite thin films."
-          data-detail="I developed Python-based regression and statistical degradation models to analyze more than 1,000 perovskite samples, identifying processing conditions that improved mechanical durability and photoluminescence stability under cyclic bending."
-          data-bullets="200+ cyclic-bending experiments|1,000+ samples analyzed|Python regression models|Photoluminescence stability analysis"
-          data-figure="Add cyclic-bending images, degradation curves, PL spectra, or model outputs here."
-          data-image="research-perovskite.jpg"
-        >
-          <div class="experience-bg" style="background-image:url('research-perovskite.jpg');"></div>
-          <div class="experience-overlay"></div>
-          <div class="experience-content">
-            <div class="experience-topline">
-              <span class="experience-tag">Research II</span>
-              <span class="experience-tag">Perovskites</span>
-            </div>
-            <h3 class="experience-title">Perovskite Durability Modeling</h3>
-            <div class="experience-meta">Rolston Lab · experimental mechanics · predictive modeling</div>
-            <p class="hover-summary">Built statistical and regression models from large experimental datasets to understand durability and optical stability under bending.</p>
-            <div class="click-note"><span class="subtle-line"></span> Click to open the full research story</div>
-          </div>
-        </article>
-
-        <article class="panel experience-card reveal open-modal"
-          data-title="Metamaterials + In Situ Testing"
-          data-subtitle="Fraunhofer IWS · TU Dresden, Germany · May 2025 – August 2025"
-          data-summary="Developed probabilistic modeling and design optimization frameworks for additively manufactured 316L stainless steel metamaterials."
-          data-detail="I combined Python-based data analysis, SEM fractography, and in situ mechanical characterization to evaluate 1,000+ cyclic tensile-testing data points. This work helped identify strain localization and fracture mechanisms that validated computational predictions and informed metamaterial design optimization."
-          data-bullets="Probabilistic modeling|Design optimization|SEM fractography|1,000+ cyclic tensile-testing points"
-          data-figure="Add a stress-strain curve, SEM fracture image, lattice diagram, or workflow chart here."
-          data-image="research-metamaterials.jpg"
-        >
-          <div class="experience-bg" style="background-image:url('research-metamaterials.jpg');"></div>
-          <div class="experience-overlay"></div>
-          <div class="experience-content">
-            <div class="experience-topline">
-              <span class="experience-tag">Research III</span>
-              <span class="experience-tag">Metamaterials</span>
-            </div>
-            <h3 class="experience-title">Metamaterials + Mechanical Testing</h3>
-            <div class="experience-meta">Fraunhofer IWS · computational design · in situ characterization</div>
-            <p class="hover-summary">Used probabilistic modeling and mechanical testing to understand how geometry and strain localization affect performance.</p>
-            <div class="click-note"><span class="subtle-line"></span> Click to open the full research story</div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="coursework">
-      <div class="section-head">
-        <div>
-          <h2>Relevant Coursework</h2>
-          <p class="lead">
-            A clean way to show technical depth without overwhelming the page.
-          </p>
-        </div>
-      </div>
-
+    </div>
+    <div class="education-grid">
       <div class="panel card-pad reveal">
+        <div class="edu-item">
+          <h3>B.S.E. in Computer Systems Engineering</h3>
+          <p>Aug. 2023 – May 2027 (expected) · Tempe, AZ</p>
+        </div>
+        <div class="edu-item">
+          <h3>Minor in Materials Science and Engineering</h3>
+          <p>Coursework spans thin-film processing, materials characterization, and mechanical testing alongside a core systems engineering curriculum.</p>
+        </div>
+      </div>
+      <div class="panel grade-box reveal">
+        <span class="grade-label">Cumulative GPA</span>
+        <div class="grade">3.5<span style="color:var(--muted-2); font-size:1.3rem;">/4.0</span></div>
+        <p class="small">Dean's List awardee. See Honors for scholarships and conference presentations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section class="section" id="research">
+    <div class="section-head">
+      <div>
+        <span class="section-tag">Research experience</span>
+        <h2>Lab notebook</h2>
+        <p class="lead">Three research roles, one throughline: run controlled experiments, then build the statistical or machine-learned model that turns the data into a process recommendation. Click an entry for the full write-up.</p>
+      </div>
+    </div>
+
+    <div class="lab-log">
+      <article class="panel lab-entry reveal open-modal"
+        data-fig="Fig. 01"
+        data-title="R&amp;D Engineering Intern"
+        data-meta="Fraunhofer USA, Inc. · Coatings Technology Group · East Lansing, MI · May 2026 – Present"
+        data-summary="Designing and executing 50+ DOE-based experiments to optimize RF magnetron sputtering and PVD thin-film processes."
+        data-bullets="Design and execute 50+ DOE-based experiments optimizing RF magnetron sputtering and PVD thin-film processes|Analyze XRD, AFM, and electrochemical data to isolate root causes of process variability|Work within the Coatings Technology Group on thin-film coating development"
+        data-figure="Fig. 01 — add an XRD pattern, AFM surface scan, or sputtering chamber photo here.">
+        <div class="fig-tag">Fig. 01</div>
+        <div>
+          <h3>R&amp;D Engineering Intern</h3>
+          <div class="lab-meta">Fraunhofer USA · Coatings Technology Group · East Lansing, MI · May 2026 – Present</div>
+          <p>Designing and executing 50+ DOE-based experiments to optimize RF magnetron sputtering and PVD thin-film processes, using XRD, AFM, and electrochemical data to isolate root causes of process variability.</p>
+        </div>
+        <div class="lab-open">Open →</div>
+      </article>
+
+      <article class="panel lab-entry reveal open-modal"
+        data-fig="Fig. 02"
+        data-title="Research Assistant"
+        data-meta="Fraunhofer IWS · Dresden, Germany · May 2025 – Aug. 2025 · DAAD RISE Germany Scholar"
+        data-summary="Characterized mechanical behavior of laser powder bed fusion (LPBF) metamaterials via tensile testing, SEM, EBSD, and DIC."
+        data-bullets="Characterized mechanical behavior of LPBF metamaterials via tensile testing, SEM, EBSD, and digital image correlation (DIC)|Applied Random Forest and Bayesian models linking process parameters to mechanical performance|Funded by a DAAD RISE Germany scholarship"
+        data-figure="Fig. 02 — add a stress-strain curve, SEM fractograph, or lattice geometry render here.">
+        <div class="fig-tag">Fig. 02</div>
+        <div>
+          <h3>Research Assistant</h3>
+          <div class="lab-meta">Fraunhofer IWS · Dresden, Germany · May 2025 – Aug. 2025</div>
+          <p>Characterized the mechanical behavior of laser powder bed fusion (LPBF) metamaterials via tensile testing, SEM, EBSD, and DIC, then applied Random Forest and Bayesian models linking process parameters to performance.</p>
+        </div>
+        <div class="lab-open">Open →</div>
+      </article>
+
+      <article class="panel lab-entry reveal open-modal"
+        data-fig="Fig. 03"
+        data-title="Undergraduate Research Assistant"
+        data-meta="Arizona State University · Tempe, AZ · May 2024 – Dec. 2025"
+        data-summary="Ran 1,000+ cycle reliability tests on MAPbI3 perovskite thin films and built Weibull/regression degradation models."
+        data-bullets="Ran 1,000+ cycle reliability tests on MAPbI3 perovskite thin films|Built Weibull and regression models in Python/R to translate degradation trends into process recommendations|Presented findings at FURI and C3E symposiums"
+        data-figure="Fig. 03 — add a Weibull degradation plot or cyclic-bending setup photo here.">
+        <div class="fig-tag">Fig. 03</div>
+        <div>
+          <h3>Undergraduate Research Assistant</h3>
+          <div class="lab-meta">Arizona State University · Tempe, AZ · May 2024 – Dec. 2025</div>
+          <p>Ran 1,000+ cycle reliability tests on MAPbI3 perovskite thin films and built Weibull and regression models in Python/R, translating degradation trends into process recommendations.</p>
+        </div>
+        <div class="lab-open">Open →</div>
+      </article>
+    </div>
+  </section>
+
+  <!-- CAMPUS ENGAGEMENT -->
+  <section class="section" id="engagement">
+    <div class="section-head">
+      <div>
+        <span class="section-tag">Campus engagement</span>
+        <h2>Outside the lab bench</h2>
+        <p class="lead">Operational roles across ASU — planning events, supporting students, and keeping time-sensitive processes on track.</p>
+      </div>
+    </div>
+    <div class="cards-3">
+      <div class="panel simple-card reveal">
+        <span class="tag">Current</span>
+        <h3>Special Events Assistant</h3>
+        <div class="meta">The Design School, Herberger Institute · March 2026 – Present</div>
+        <p>Partner with faculty to plan and run school-wide events, including the TDS Community Celebration and Final Reviews, grounded in the school's life-centered design philosophy.</p>
+      </div>
+      <div class="panel simple-card reveal">
+        <span class="tag">Sept 2025 – Mar 2026</span>
+        <h3>Student Engagement Assistant</h3>
+        <div class="meta">EdPlus, Arizona State University</div>
+        <p>Supported ASU Online students by phone and helped organize virtual club and graduation events, building community for students without a physical campus presence.</p>
+      </div>
+      <div class="panel simple-card reveal">
+        <span class="tag">Mar 2024 – Sept 2025</span>
+        <h3>Front Office Assistant</h3>
+        <div class="meta">School of Molecular Sciences, ASU</div>
+        <p>Processed course overrides and managed advising cases in Salesforce for pre-med students, making time-sensitive calls that kept students on track toward degree and admissions deadlines.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="section-head">
+      <div>
+        <span class="section-tag">Projects</span>
+        <h2>Built, tested, shipped</h2>
+        <p class="lead">Hands-on engineering work spanning electrical design, additive manufacturing, robotics, and digital logic.</p>
+      </div>
+    </div>
+    <div class="cards-2">
+      <article class="panel simple-card clickable open-modal reveal"
+        data-fig="Project"
+        data-title="EPICS @ ASU — Wheels2Africa"
+        data-meta="Electrical Lead · Johannesburg, South Africa · May 2026"
+        data-summary="Led electrical design of a low-cost, joystick-controlled automatic wheelchair for children with cerebral palsy."
+        data-bullets="Led electrical design of a low-cost, joystick-controlled automatic wheelchair for children with cerebral palsy|Worked directly with children and caregivers to design for mobility, dignity, and inclusion|Delivered a working prototype and established a partnership with the University of Johannesburg, which took on production and supply of wheelchairs to local schools"
+        data-figure="Project photos — add wiring diagrams, prototype photos, or team photos from Johannesburg here.">
+        <span class="tag">Electrical Lead</span>
+        <h3>EPICS @ ASU — Wheels2Africa</h3>
+        <div class="meta">Johannesburg, South Africa · May 2026</div>
+        <p>Led electrical design of a low-cost, joystick-controlled automatic wheelchair for children with cerebral palsy, working with children and caregivers to design for mobility, dignity, and inclusion. Delivered a working prototype and helped establish a production partnership with the University of Johannesburg.</p>
+      </article>
+
+      <article class="panel simple-card clickable open-modal reveal"
+        data-fig="Project"
+        data-title="3D Printed Prosthetics"
+        data-meta="Prototyping Lead · Tempe, AZ · Jan 2024 – May 2024"
+        data-summary="Delivered a functional, low-cost prosthetic device via CAD modeling and iterative additive manufacturing."
+        data-bullets="Delivered a functional, low-cost prosthetic device via CAD modeling and iterative additive manufacturing|Validated the design through successful assembly and user-centered testing"
+        data-figure="Project photos — add CAD renders or print iterations here.">
+        <span class="tag">Prototyping Lead</span>
+        <h3>3D Printed Prosthetics</h3>
+        <div class="meta">Tempe, AZ · Jan 2024 – May 2024</div>
+        <p>Delivered a functional, low-cost prosthetic device via CAD modeling and iterative additive manufacturing, validated through successful assembly and user-centered testing.</p>
+      </article>
+
+      <article class="panel simple-card clickable open-modal reveal"
+        data-fig="Project"
+        data-title="Autonomous Robotics Navigation"
+        data-meta="CHART Labs · Robotics and control"
+        data-summary="Programmed swarm robots using ROS, C++, and UART communication protocols."
+        data-bullets="Programmed swarm robots using ROS, C++, and UART communication protocols|Integrated sensors for localization, environmental awareness, and inter-robot coordination|Designed and tuned PID control algorithms for motion control and obstacle avoidance"
+        data-figure="Project photos — add robot photos, wiring, or a navigation flow diagram here.">
+        <span class="tag">Robotics</span>
+        <h3>Autonomous Robotics Navigation</h3>
+        <div class="meta">CHART Labs</div>
+        <p>Programmed swarm robots using ROS, C++, and UART communication, integrating sensors for localization and inter-robot coordination, then tuning PID control for motion and obstacle avoidance.</p>
+      </article>
+
+      <article class="panel simple-card clickable open-modal reveal"
+        data-fig="Project"
+        data-title="FPGA Digital Design"
+        data-meta="Hardware design · embedded logic"
+        data-summary="Designed, simulated, and validated FPGA-based digital systems in Verilog/SystemVerilog using Xilinx Vivado."
+        data-bullets="Designed finite state machines and sequential logic in Verilog/SystemVerilog|Simulated and debugged designs in Xilinx Vivado|Validated timing and correctness on hardware"
+        data-figure="Project photos — add waveforms, RTL views, or a board photo here.">
+        <span class="tag">FPGA</span>
+        <h3>FPGA Digital Design</h3>
+        <div class="meta">Verilog/SystemVerilog · Xilinx Vivado</div>
+        <p>Designed, simulated, and validated FPGA-based digital systems centered on finite state machines and sequential logic, with simulation, debugging, and hardware timing validation in Xilinx Vivado.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- HONORS -->
+  <section class="section" id="honors">
+    <div class="section-head">
+      <div>
+        <span class="section-tag">Honors, awards &amp; presentations</span>
+        <h2>Recognition</h2>
+      </div>
+    </div>
+    <div class="panel reveal">
+      <div class="honors-list">
+        <div class="honor-row">
+          <div><div class="name">DAAD RISE Germany Scholar</div><div class="venue">German Academic Exchange Service (DAAD)</div></div>
+          <div class="year">2025</div>
+        </div>
+        <div class="honor-row">
+          <div><div class="name">Dean's List</div><div class="venue">Arizona State University</div></div>
+          <div class="year">—</div>
+        </div>
+        <div class="honor-row">
+          <div><div class="name">Poster Presenter, C3E Symposium</div><div class="venue">Clean Energy Education &amp; Empowerment, Stanford University</div></div>
+          <div class="year">2024</div>
+        </div>
+        <div class="honor-row">
+          <div><div class="name">Poster Presenter, FURI Symposium</div><div class="venue">Fulton Undergraduate Research Initiative, ASU</div></div>
+          <div class="year">2024–2025</div>
+        </div>
+        <div class="honor-row">
+          <div><div class="name">Poster Presenter, oSTEM National Conference</div><div class="venue">Oregon Convention Center</div></div>
+          <div class="year">2024</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS + COURSEWORK -->
+  <section class="section" id="skills">
+    <div class="section-head">
+      <div>
+        <span class="section-tag">Skills &amp; coursework</span>
+        <h2>Toolkit</h2>
+      </div>
+    </div>
+    <div class="panel card-pad reveal">
+      <div class="skills-grid">
+        <div class="skill-col">
+          <h3>Programming</h3>
+          <div class="chips">
+            <span class="chip">Python</span>
+            <span class="chip">R</span>
+            <span class="chip">C / C++</span>
+            <span class="chip">Verilog / SystemVerilog</span>
+          </div>
+        </div>
+        <div class="skill-col">
+          <h3>Research &amp; process</h3>
+          <div class="chips">
+            <span class="chip">Thin-film fabrication</span>
+            <span class="chip">Materials characterization</span>
+            <span class="chip">COMSOL</span>
+            <span class="chip">Statistical analysis</span>
+            <span class="chip">Semiconductors &amp; solid-state batteries</span>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:22px; padding-top:22px; border-top:1px solid var(--line);">
+        <h3 style="font-size:0.98rem; margin-bottom:14px; color:var(--blue); font-family:'IBM Plex Mono',monospace; text-transform:uppercase; letter-spacing:.05em;">Relevant coursework</h3>
         <div class="chips">
           <span class="chip">Computer Architecture</span>
           <span class="chip">Digital Logic Design</span>
           <span class="chip">FPGA Development</span>
+          <span class="chip">Embedded Systems</span>
           <span class="chip">Statistical Analysis</span>
           <span class="chip">Finite Element Analysis</span>
           <span class="chip">Machine Learning</span>
-          <span class="chip">Probabilistic Modeling</span>
           <span class="chip">Materials Characterization</span>
           <span class="chip">Mechanical Testing</span>
-          <span class="chip">Embedded Systems</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="projects">
-      <div class="section-head">
-        <div>
-          <h2>Projects</h2>
-          <p class="lead">
-            This section can feel like a storybook of where you have been and what you have built.
-          </p>
-        </div>
-      </div>
-
-      <div class="experience-grid">
-        <article class="panel experience-card reveal open-modal"
-          data-title="Study / Work Abroad in South Africa"
-          data-subtitle="Global experience · South Africa"
-          data-summary="A chapter that shows independence, curiosity, and global perspective."
-          data-detail="We will turn this into a polished story with your exact program name, location, responsibilities, and what you learned. This section is perfect for photos, journal-style notes, and a narrative about adapting to new environments while continuing to grow academically and personally."
-          data-bullets="Add program name|Add dates|Add outcomes|Add photos or memory-style figures"
-          data-figure="Add travel images, campus photos, or a map highlight here."
-          data-image="south-africa.jpg"
-        >
-          <div class="experience-bg" style="background-image:url('south-africa.jpg');"></div>
-          <div class="experience-overlay"></div>
-          <div class="experience-content">
-            <div class="experience-topline">
-              <span class="experience-tag">Project / Experience</span>
-              <span class="experience-tag">South Africa</span>
-            </div>
-            <h3 class="experience-title">Study / Work Abroad Experience</h3>
-            <div class="experience-meta">Global learning · independence · perspective</div>
-            <p class="hover-summary">A meaningful abroad experience that will be framed as a personal and academic growth story.</p>
-            <div class="click-note"><span class="subtle-line"></span> Click to add details</div>
-          </div>
-        </article>
-
-        <article class="panel experience-card reveal open-modal"
-          data-title="Study / Work Abroad in Germany"
-          data-subtitle="Global experience · Germany"
-          data-summary="A second global chapter that can highlight technical exposure, cultural learning, and research growth."
-          data-detail="We will make this feel distinct from South Africa by focusing on what was unique about Germany: your technical setting, the way you worked, the people you met, and how the experience shaped your goals."
-          data-bullets="Add program name|Add city or institution|Add work scope|Add lessons learned"
-          data-figure="Add architecture photos, lab photos, a map, or your favorite memory here."
-          data-image="germany.jpg"
-        >
-          <div class="experience-bg" style="background-image:url('germany.jpg');"></div>
-          <div class="experience-overlay"></div>
-          <div class="experience-content">
-            <div class="experience-topline">
-              <span class="experience-tag">Project / Experience</span>
-              <span class="experience-tag">Germany</span>
-            </div>
-            <h3 class="experience-title">Study / Work Abroad Experience</h3>
-            <div class="experience-meta">Research culture · travel · technical growth</div>
-            <p class="hover-summary">A global experience that will sit beautifully beside your research and engineering story.</p>
-            <div class="click-note"><span class="subtle-line"></span> Click to add details</div>
-          </div>
-        </article>
-
-        <article class="panel experience-card reveal open-modal"
-          data-title="Autonomous Robotics Navigation System"
-          data-subtitle="CHART Labs · robotics and control"
-          data-summary="Programmed swarm robots using ROS, C++, and UART communication protocols."
-          data-detail="I integrated sensors for localization, environmental awareness, and inter-robot coordination, then designed and tuned PID control algorithms for motion control and obstacle avoidance to improve navigation stability and accuracy."
-          data-bullets="ROS and C++ implementation|UART communication|PID tuning|Obstacle avoidance"
-          data-figure="Add robot photos, wiring, simulation screenshots, or a flow diagram here."
-          data-image="robotics.jpg"
-        >
-          <div class="experience-bg" style="background-image:url('robotics.jpg');"></div>
-          <div class="experience-overlay"></div>
-          <div class="experience-content">
-            <div class="experience-topline">
-              <span class="experience-tag">Project</span>
-              <span class="experience-tag">Robotics</span>
-            </div>
-            <h3 class="experience-title">Autonomous Robotics Navigation</h3>
-            <div class="experience-meta">ROS · C++ · controls · sensing</div>
-            <p class="hover-summary">A systems project where software, sensing, and motion control came together.</p>
-            <div class="click-note"><span class="subtle-line"></span> Click to open the project view</div>
-          </div>
-        </article>
-
-        <article class="panel experience-card reveal open-modal"
-          data-title="FPGA Digital Design Project"
-          data-subtitle="Hardware design · embedded logic"
-          data-summary="Designed, simulated, and validated FPGA-based digital systems in Verilog/SystemVerilog using Xilinx Vivado."
-          data-detail="This project centered on finite state machines, sequential logic, simulation, debugging, and hardware validation. It is a great place to show waveforms, block diagrams, and a polished explanation of how your design moved from code to hardware."
-          data-bullets="Verilog/SystemVerilog|Xilinx Vivado|FSMs and sequential logic|Timing and correctness validation"
-          data-figure="Add waveforms, RTL views, or a board photo here."
-          data-image="fpga.jpg"
-        >
-          <div class="experience-bg" style="background-image:url('fpga.jpg');"></div>
-          <div class="experience-overlay"></div>
-          <div class="experience-content">
-            <div class="experience-topline">
-              <span class="experience-tag">Project</span>
-              <span class="experience-tag">FPGA</span>
-            </div>
-            <h3 class="experience-title">FPGA Digital Design</h3>
-            <div class="experience-meta">Verilog · Vivado · verification</div>
-            <p class="hover-summary">A hardware-centered project that shows your comfort with digital systems and validation workflows.</p>
-            <div class="click-note"><span class="subtle-line"></span> Click to open the project view</div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="beyond">
-      <div class="section-head">
-        <div>
-          <h2>Beyond the Lab</h2>
-          <p class="lead">
-            This is the section that makes the site feel human. Keep it soft, personal, and visual.
-          </p>
-        </div>
-      </div>
-
-      <div class="gallery-grid">
-        <article class="panel beyond-card reveal">
-          <div class="beyond-image" style="background-image:url('hiking.jpg');"></div>
-          <div class="beyond-body">
-            <h3>Hiking</h3>
-            <p>Mountain trails, quiet views, and the kind of reset that helps everything else feel clear again.</p>
-          </div>
-        </article>
-
-        <article class="panel beyond-card reveal">
-          <div class="beyond-image" style="background-image:url('travel.jpg');"></div>
-          <div class="beyond-body">
-            <h3>Travel</h3>
-            <p>Places, textures, and memories from different corners of the world that shaped how I see engineering and life.</p>
-          </div>
-        </article>
-
-        <article class="panel beyond-card reveal">
-          <div class="beyond-image" style="background-image:url('life.jpg');"></div>
-          <div class="beyond-body">
-            <h3>Everyday Joys</h3>
-            <p>Little things outside the lab that keep me grounded, curious, and ready to build again.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="section-head">
-        <div>
-          <h2>Contact</h2>
-          <p class="lead">
-            This can stay simple and elegant. People should know exactly how to reach you.
-          </p>
-        </div>
-      </div>
-
-      <div class="education-grid">
-        <div class="panel card-pad reveal">
-          <h3>Let’s connect</h3>
-          <p>
-            I am open to research, internship, co-op, and collaboration opportunities in semiconductor process engineering,
-            materials R&amp;D, advanced manufacturing, thin-film technologies, embedded systems, and related technical work.
-          </p>
-          <div class="chips" style="margin-top:18px;">
-            <a class="chip" href="mailto:shatakshii2004@gmail.com">Email</a>
-            <a class="chip" href="https://www.linkedin.com/in/shatakshi-iksha" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a class="chip" href="https://github.com/Shatakshii17" target="_blank" rel="noreferrer">GitHub</a>
-          </div>
-        </div>
-
-        <div class="panel card-pad reveal">
-          <h3>Site files to add</h3>
-          <p>
-            <strong>profile.jpg</strong> for your portrait,<br>
-            <strong>resume.pdf</strong> for the download button,<br>
-            and optional images like <strong>research-lipon.jpg</strong>, <strong>south-africa.jpg</strong>, <strong>hiking.jpg</strong>, or your own filenames.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      © <span id="year"></span> Shatakshi Iksha · Built with HTML, CSS, and JavaScript
-    </footer>
-  </main>
-
-  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <div class="modal-header">
-        <div>
-          <h3 id="modalTitle">Title</h3>
-          <div class="meta" id="modalSubtitle" style="color: var(--muted); font-size: .95rem; margin-top: 6px;"></div>
-        </div>
-        <button class="close-btn" id="closeModal" aria-label="Close modal">×</button>
-      </div>
-
-      <div class="modal-grid">
-        <div class="modal-figure" id="modalFigure">
-          <div class="figure-placeholder" id="figurePlaceholder">
-            Figure / image placeholder
-          </div>
-          <img id="modalImage" alt="" style="display:none;" />
-        </div>
-
-        <div class="modal-body">
-          <p id="modalSummary"></p>
-          <p id="modalDetail" style="margin-top: 12px;"></p>
-          <ul id="modalBullets"></ul>
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- BEYOND THE LAB -->
+  <section class="section" id="beyond">
+    <div class="section-head">
+      <div>
+        <span class="section-tag">Beyond the lab</span>
+        <h2>Off the clock</h2>
+      </div>
+    </div>
+    <div class="beyond-row">
+      <div class="panel beyond-card reveal">
+        <div class="glyph">▲</div>
+        <h3>Hiking</h3>
+        <p>Trails and a clear head between experiments.</p>
+      </div>
+      <div class="panel beyond-card reveal">
+        <div class="glyph">⛺</div>
+        <h3>Backpacking</h3>
+        <p>Longer trips, lighter packs, slower pace.</p>
+      </div>
+      <div class="panel beyond-card reveal">
+        <div class="glyph">〰</div>
+        <h3>Kayaking</h3>
+        <p>Water sports, flat lakes and moving current alike.</p>
+      </div>
+      <div class="panel beyond-card reveal">
+        <div class="glyph">☕</div>
+        <h3>Coffee brewing</h3>
+        <p>Another process with variables worth dialing in.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="section-head">
+      <div>
+        <span class="section-tag">Contact</span>
+        <h2>Let's talk</h2>
+      </div>
+    </div>
+    <div class="contact-grid">
+      <div class="panel card-pad reveal">
+        <h3 style="font-size:1.15rem; margin-bottom:10px;">Get in touch</h3>
+        <p style="color:var(--muted); line-height:1.8; margin:0;">
+          Open to research, internship, and full-time roles in semiconductor process engineering, materials R&amp;D,
+          thin-film technologies, and related technical work.
+        </p>
+        <div class="contact-links">
+          <a class="chip" href="mailto:shatakshii2004@gmail.com">Email</a>
+          <a class="chip" href="https://www.linkedin.com/in/shatakshi-iksha" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="chip" href="https://github.com/Shatakshii17" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="chip" href="resume.pdf" download>Résumé (PDF)</a>
+        </div>
+      </div>
+      <div class="panel card-pad reveal">
+        <h3 style="font-size:1.15rem; margin-bottom:10px;">Based in</h3>
+        <p style="color:var(--muted); line-height:1.8; margin:0;">Tempe, Arizona</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">© <span id="year"></span> Shatakshi Iksha</footer>
+</main>
+
+<div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-header">
+      <div>
+        <div class="fig-tag mono" id="modalFig"></div>
+        <h3 id="modalTitle"></h3>
+        <div class="meta" id="modalMeta"></div>
+      </div>
+      <button class="close-btn" id="closeModal" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-figure" id="modalFigureNote"></div>
+      <p id="modalSummary"></p>
+      <ul id="modalBullets"></ul>
+    </div>
   </div>
+</div>
 
-  <script>
-    const yearEl = document.getElementById('year');
-    yearEl.textContent = new Date().getFullYear();
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add('show');
-      });
-    }, { threshold: 0.12 });
+  // ---------- interactive atomic lattice background ----------
+  (function(){
+    const canvas = document.getElementById('latticeCanvas');
+    const ctx = canvas.getContext('2d');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let w, h, atoms = [];
+    const mouse = { x: -9999, y: -9999, active: false };
 
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    const BLUE = '111,162,196';
+    const COPPER = '201,131,79';
+    const LINK_DIST = 130;
+    const PROBE_RADIUS = 160;
 
-    const modalBackdrop = document.getElementById('modalBackdrop');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalSubtitle = document.getElementById('modalSubtitle');
-    const modalSummary = document.getElementById('modalSummary');
-    const modalDetail = document.getElementById('modalDetail');
-    const modalBullets = document.getElementById('modalBullets');
-    const modalImage = document.getElementById('modalImage');
-    const figurePlaceholder = document.getElementById('figurePlaceholder');
-    const closeModal = document.getElementById('closeModal');
-
-    function openModal(card) {
-      const title = card.dataset.title || 'Details';
-      const subtitle = card.dataset.subtitle || '';
-      const summary = card.dataset.summary || '';
-      const detail = card.dataset.detail || '';
-      const bullets = (card.dataset.bullets || '').split('|').filter(Boolean);
-      const image = card.dataset.image || '';
-      const figure = card.dataset.figure || 'Add your figure here.';
-
-      modalTitle.textContent = title;
-      modalSubtitle.textContent = subtitle;
-      modalSummary.textContent = summary;
-      modalDetail.textContent = detail;
-      modalBullets.innerHTML = bullets.map((b) => `<li>${b}</li>`).join('');
-
-      if (image) {
-        modalImage.src = image;
-        modalImage.alt = title;
-        modalImage.style.display = 'block';
-        figurePlaceholder.style.display = 'none';
-      } else {
-        modalImage.style.display = 'none';
-        figurePlaceholder.style.display = 'grid';
-        figurePlaceholder.textContent = figure;
-      }
-
-      modalBackdrop.classList.add('open');
-      modalBackdrop.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
+    function resize(){
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+      const count = Math.max(36, Math.min(90, Math.floor((w*h)/26000)));
+      atoms = Array.from({length: count}, () => ({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        vx: (Math.random()-0.5)*0.18,
+        vy: (Math.random()-0.5)*0.18,
+        r: Math.random()*1.2 + 1.4
+      }));
     }
 
-    function close() {
-      modalBackdrop.classList.remove('open');
-      modalBackdrop.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-
-    document.querySelectorAll('.open-modal').forEach((card) => {
-      card.addEventListener('click', () => openModal(card));
-      card.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          openModal(card);
+    function step(){
+      ctx.clearRect(0,0,w,h);
+      // update positions (gentle thermal drift)
+      atoms.forEach(a => {
+        a.x += a.vx; a.y += a.vy;
+        if (a.x < 0 || a.x > w) a.vx *= -1;
+        if (a.y < 0 || a.y > h) a.vy *= -1;
+        // gentle repulsion from probe (cursor)
+        if (mouse.active){
+          const dx = a.x - mouse.x, dy = a.y - mouse.y;
+          const d = Math.hypot(dx,dy);
+          if (d < PROBE_RADIUS && d > 0.01){
+            const f = (1 - d/PROBE_RADIUS) * 0.6;
+            a.x += (dx/d)*f; a.y += (dy/d)*f;
+          }
         }
       });
-      card.tabIndex = 0;
-      card.setAttribute('role', 'button');
-      card.setAttribute('aria-label', 'Open details');
-    });
+      // bonds
+      for (let i=0;i<atoms.length;i++){
+        for (let j=i+1;j<atoms.length;j++){
+          const a=atoms[i], b=atoms[j];
+          const d = Math.hypot(a.x-b.x, a.y-b.y);
+          if (d < LINK_DIST){
+            const near = mouse.active && (Math.hypot(a.x-mouse.x,a.y-mouse.y) < PROBE_RADIUS || Math.hypot(b.x-mouse.x,b.y-mouse.y) < PROBE_RADIUS);
+            const op = (1 - d/LINK_DIST) * (near ? 0.55 : 0.16);
+            ctx.strokeStyle = `rgba(${near?COPPER:BLUE},${op})`;
+            ctx.lineWidth = near ? 1.1 : 0.7;
+            ctx.beginPath();
+            ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
+            ctx.stroke();
+          }
+        }
+      }
+      // atoms
+      atoms.forEach(a => {
+        const near = mouse.active && Math.hypot(a.x-mouse.x,a.y-mouse.y) < PROBE_RADIUS;
+        ctx.fillStyle = near ? `rgba(${COPPER},0.9)` : `rgba(${BLUE},0.55)`;
+        ctx.beginPath();
+        ctx.arc(a.x,a.y,near ? a.r*1.8 : a.r,0,Math.PI*2);
+        ctx.fill();
+      });
+      if (!reduceMotion) requestAnimationFrame(step);
+    }
 
-    closeModal.addEventListener('click', close);
-    modalBackdrop.addEventListener('click', (e) => {
-      if (e.target === modalBackdrop) close();
+    window.addEventListener('resize', resize, { passive:true });
+    window.addEventListener('mousemove', (e) => { mouse.x=e.clientX; mouse.y=e.clientY; mouse.active=true; }, { passive:true });
+    window.addEventListener('mouseleave', () => { mouse.active=false; });
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches[0]){ mouse.x=e.touches[0].clientX; mouse.y=e.touches[0].clientY; mouse.active=true; }
+    }, { passive:true });
+
+    resize();
+    step();
+    if (reduceMotion){ setInterval(step, 1200); } // occasional static redraw only
+  })();
+
+  // ---------- scroll-spy nav ----------
+  (function(){
+    const links = Array.from(document.querySelectorAll('.nav a'));
+    const targets = links.map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const link = links.find(l => l.getAttribute('href') === '#' + entry.target.id);
+        if (!link) return;
+        if (entry.isIntersecting) links.forEach(l => l.classList.remove('active')), link.classList.add('active');
+      });
+    }, { rootMargin: '-40% 0px -50% 0px' });
+    targets.forEach(t => spy.observe(t));
+  })();
+
+  const progressBar = document.getElementById('progressBar');
+  function updateProgress(){
+    const h = document.documentElement;
+    const scrolled = h.scrollTop;
+    const max = h.scrollHeight - h.clientHeight;
+    progressBar.style.width = (max > 0 ? (scrolled / max) * 100 : 0) + '%';
+  }
+  document.addEventListener('scroll', updateProgress, { passive:true });
+  updateProgress();
+
+  // subtle 3D tilt on interactive cards (mouse users only)
+  const tiltEls = document.querySelectorAll('.lab-entry, .simple-card.clickable');
+  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (canHover){
+    tiltEls.forEach((el) => {
+      el.style.willChange = 'transform';
+      el.addEventListener('mousemove', (e) => {
+        const r = el.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = `perspective(700px) rotateX(${(-py*2.2).toFixed(2)}deg) rotateY(${(px*2.6).toFixed(2)}deg) translateY(-2px)`;
+      });
+      el.addEventListener('mouseleave', () => { el.style.transform = ''; });
     });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modalBackdrop.classList.contains('open')) close();
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('show'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  const backdrop = document.getElementById('modalBackdrop');
+  const modalFig = document.getElementById('modalFig');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalMeta = document.getElementById('modalMeta');
+  const modalSummary = document.getElementById('modalSummary');
+  const modalBullets = document.getElementById('modalBullets');
+  const modalFigureNote = document.getElementById('modalFigureNote');
+  const closeBtn = document.getElementById('closeModal');
+
+  function openModal(card){
+    modalFig.textContent = card.dataset.fig || '';
+    modalTitle.textContent = card.dataset.title || '';
+    modalMeta.textContent = card.dataset.meta || '';
+    modalSummary.textContent = card.dataset.summary || '';
+    modalFigureNote.textContent = card.dataset.figure || '';
+    const bullets = (card.dataset.bullets || '').split('|').filter(Boolean);
+    modalBullets.innerHTML = bullets.map(b => `<li>${b}</li>`).join('');
+    backdrop.classList.add('open');
+    backdrop.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModalFn(){
+    backdrop.classList.remove('open');
+    backdrop.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.open-modal').forEach((card) => {
+    card.tabIndex = 0;
+    card.setAttribute('role','button');
+    card.addEventListener('click', () => openModal(card));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(card); }
     });
-  </script>
+  });
+  closeBtn.addEventListener('click', closeModalFn);
+  backdrop.addEventListener('click', (e) => { if (e.target === backdrop) closeModalFn(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModalFn(); });
+</script>
 </body>
 </html>
