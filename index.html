@@ -144,15 +144,22 @@
     text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px;
   }
   svg.lattice{width:100%; height:auto; display:block;}
-  .lattice-node{ fill: var(--blue); animation: pulse 3.6s ease-in-out infinite; cursor:pointer; transition: filter .15s ease; }
-  .lattice-node.hot{ fill: var(--copper); }
-  .lattice-node:hover{ filter: brightness(1.6); }
-  .lattice-edge{ stroke: rgba(206,216,224,0.18); stroke-width:1; transition: stroke .2s ease, opacity .2s ease; }
-  .lattice-edge.hot{ stroke: var(--copper); stroke-width:1.4; opacity:0.8; }
-  svg.lattice:hover .lattice-edge{ stroke: var(--blue); opacity:0.55; }
-  @keyframes pulse{
-    0%,100%{ opacity:.55; r:3.2; }
-    50%{ opacity:1; r:4.4; }
+  #crystalCanvas{
+    width:100%; aspect-ratio: 1 / 0.92; display:block; border-radius:14px;
+    cursor:grab; touch-action:none;
+  }
+  #crystalCanvas:active{ cursor:grabbing; }
+  .lattice-controls{ display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
+  .view-btn{
+    padding:7px 11px; border-radius:8px; border:1px solid var(--line-strong);
+    background: rgba(255,255,255,0.02); color:var(--muted);
+    font-family:'IBM Plex Mono', monospace; font-size:0.74rem; cursor:pointer;
+    transition: all .15s ease;
+  }
+  .view-btn:hover{ color:var(--text); border-color:var(--blue); }
+  .lattice-hint{
+    margin:10px 0 0; text-align:center; color:var(--muted-2);
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem;
   }
 
   .hero-stats{display:grid; grid-template-columns:repeat(2,1fr); gap:12px;}
@@ -371,12 +378,12 @@
     <div class="hero-grid">
       <article class="panel hero-copy reveal">
         <div class="eyebrow"><span class="dot"></span>Computer Systems Engineering · Materials Science Minor · ASU</div>
-        <h1 class="display">Processing shapes structure.<br>Structure shapes <em>performance.</em></h1>
+        <h1 class="display">Computational materials science.</h1>
         <p class="hero-text">
-          I'm Shatakshi Iksha, a computer systems engineering student at Arizona State University with a minor in materials science.
-          I fabricate and characterize thin films, build statistical and machine-learned models of material degradation, and
-          apply that same process → structure → property lens to embedded systems and hardware. Currently an R&amp;D
-          engineering intern at Fraunhofer USA, optimizing thin-film sputtering processes.
+          I'm Shatakshi Iksha, a computer systems engineering student at Arizona State University with a minor in materials science engineering.
+          I fabricate and characterize thin films, build statistical and machine learning models of material degradation data, and apply
+          computational methods to embedded systems and hardware. Currently an R&amp;D engineering intern at Fraunhofer USA, optimizing
+          thin-film sputtering processes.
         </p>
         <div class="actions">
           <a class="btn primary" href="resume.pdf" download>Download résumé</a>
@@ -387,37 +394,15 @@
 
       <aside class="hero-side">
         <div class="panel lattice-panel reveal">
-          <div class="lattice-caption"><span>Fig. 00 — Unit cell</span><span>Diamond cubic lattice</span></div>
-          <svg class="lattice" viewBox="0 0 320 260" xmlns="http://www.w3.org/2000/svg">
-            <g class="lattice-edge">
-              <line x1="60" y1="40" x2="160" y2="20"/>
-              <line x1="160" y1="20" x2="260" y2="40"/>
-              <line x1="60" y1="40" x2="60" y2="140"/>
-              <line x1="260" y1="40" x2="260" y2="140"/>
-              <line x1="60" y1="140" x2="160" y2="120"/>
-              <line x1="160" y1="120" x2="260" y2="140"/>
-              <line x1="160" y1="20" x2="160" y2="120"/>
-              <line x1="60" y1="140" x2="60" y2="220"/>
-              <line x1="260" y1="140" x2="260" y2="220"/>
-              <line x1="60" y1="220" x2="160" y2="240"/>
-              <line x1="160" y1="240" x2="260" y2="220"/>
-              <line x1="160" y1="120" x2="160" y2="240"/>
-            </g>
-            <line class="lattice-edge hot" x1="160" y1="20" x2="160" y2="120"/>
-            <line class="lattice-edge hot" x1="160" y1="120" x2="110" y2="180"/>
-            <g>
-              <circle class="lattice-node" cx="60" cy="40" r="3.6"/>
-              <circle class="lattice-node" cx="160" cy="20" r="3.6" style="animation-delay:.3s"/>
-              <circle class="lattice-node" cx="260" cy="40" r="3.6" style="animation-delay:.6s"/>
-              <circle class="lattice-node" cx="60" cy="140" r="3.6" style="animation-delay:.9s"/>
-              <circle class="lattice-node hot" cx="160" cy="120" r="4" style="animation-delay:.2s"/>
-              <circle class="lattice-node" cx="260" cy="140" r="3.6" style="animation-delay:1.1s"/>
-              <circle class="lattice-node" cx="60" cy="220" r="3.6" style="animation-delay:.5s"/>
-              <circle class="lattice-node hot" cx="110" cy="180" r="4" style="animation-delay:.8s"/>
-              <circle class="lattice-node" cx="160" cy="240" r="3.6" style="animation-delay:1.3s"/>
-              <circle class="lattice-node" cx="260" cy="220" r="3.6" style="animation-delay:.4s"/>
-            </g>
-          </svg>
+          <div class="lattice-caption"><span>Diamond cubic unit cell</span><span id="latticeViewLabel">Isometric</span></div>
+          <canvas id="crystalCanvas"></canvas>
+          <div class="lattice-controls">
+            <button type="button" class="view-btn" data-view="x">View a</button>
+            <button type="button" class="view-btn" data-view="y">View b</button>
+            <button type="button" class="view-btn" data-view="z">View c</button>
+            <button type="button" class="view-btn" data-view="iso">Reset</button>
+          </div>
+          <p class="lattice-hint">Drag to rotate</p>
         </div>
         <div class="hero-stats">
           <div class="stat"><b>3.5 / 4.0</b><span>GPA · Dean's List</span></div>
@@ -433,9 +418,9 @@
   <section class="section" id="why">
     <div class="section-head">
       <div>
-        <span class="section-tag">Why a CSE major, MatSci minor</span>
-        <h2>The paradigm behind the path</h2>
-        <p class="lead">Materials science runs on one loop: how you <em class="mono-em">process</em> a material sets its <em class="mono-em">structure</em>, structure sets its <em class="mono-em">properties</em>, and properties set its <em class="mono-em">performance</em>. CSE gave me the tools to model and automate every step of that loop — so I stayed in systems engineering and pulled materials science in alongside it, instead of switching majors.</p>
+        <span class="section-tag">Why CSE + materials science</span>
+        <h2>Where the two fields overlap</h2>
+        <p class="lead">Materials research produces data: XRD scans, mechanical test cycles, degradation curves. My CSE background is what lets me process that data — writing the Python/R models that turn thousands of data points into a process recommendation, and building the automation and embedded systems that could run these experiments directly. The minor gives me the materials background to know what to measure; the major gives me the tools to build the systems that measure and model it.</p>
       </div>
     </div>
     <div class="panel reveal">
@@ -443,28 +428,28 @@
         <div class="paradigm-step" data-step="processing">
           <span class="paradigm-index mono">01</span>
           <h3>Processing</h3>
-          <p>Sputtering, PVD, additive manufacturing, DOE design — the physical inputs I control in the lab.</p>
+          <p>Sputtering, PVD, additive manufacturing, DOE design — the physical inputs controlled in the lab.</p>
         </div>
         <div class="paradigm-arrow mono">→</div>
         <div class="paradigm-step" data-step="structure">
           <span class="paradigm-index mono">02</span>
           <h3>Structure</h3>
-          <p>XRD, SEM, EBSD, AFM — reading the atomic and microstructural result of that processing.</p>
+          <p>XRD, SEM, EBSD, AFM — the atomic and microstructural result of that processing.</p>
         </div>
         <div class="paradigm-arrow mono">→</div>
         <div class="paradigm-step" data-step="property">
           <span class="paradigm-index mono">03</span>
           <h3>Property</h3>
-          <p>Mechanical, electrochemical, and optical behavior measured through testing and characterization.</p>
+          <p>Mechanical, electrochemical, and optical behavior measured through testing.</p>
         </div>
         <div class="paradigm-arrow mono">→</div>
         <div class="paradigm-step" data-step="performance">
           <span class="paradigm-index mono">04</span>
           <h3>Performance</h3>
-          <p>Python/R models — Weibull, regression, Random Forest, Bayesian — that turn all of the above into a process recommendation.</p>
+          <p>Weibull, regression, Random Forest, and Bayesian models built in Python/R from that data.</p>
         </div>
       </div>
-      <p class="paradigm-note">CSE is the thread that runs underneath every stage: the code that designs the DOE, the models that close the loop from structure back to processing, and eventually the embedded systems that could run that loop autonomously. That's the engineer I'm training to be — not a materials scientist instead of a systems engineer, but a systems engineer who happens to work on materials.</p>
+      <p class="paradigm-note">This is the loop across every research role below: process a material, characterize its structure, measure its properties, then model how those properties translate to performance.</p>
     </div>
   </section>
 
@@ -744,22 +729,22 @@
       <div class="panel beyond-card reveal">
         <div class="glyph">▲</div>
         <h3>Hiking</h3>
-        <p>Trails and a clear head between experiments.</p>
+        <p>Weekend trail hikes.</p>
       </div>
       <div class="panel beyond-card reveal">
         <div class="glyph">⛺</div>
         <h3>Backpacking</h3>
-        <p>Longer trips, lighter packs, slower pace.</p>
+        <p>Multi-day backpacking trips.</p>
       </div>
       <div class="panel beyond-card reveal">
         <div class="glyph">〰</div>
         <h3>Kayaking</h3>
-        <p>Water sports, flat lakes and moving current alike.</p>
+        <p>Kayaking on lakes and rivers.</p>
       </div>
       <div class="panel beyond-card reveal">
         <div class="glyph">☕</div>
         <h3>Coffee brewing</h3>
-        <p>Another process with variables worth dialing in.</p>
+        <p>Home coffee brewing.</p>
       </div>
     </div>
   </section>
@@ -897,6 +882,154 @@
     resize();
     step();
     if (reduceMotion){ setInterval(step, 1200); } // occasional static redraw only
+  })();
+
+  // ---------- interactive diamond cubic crystal viewer ----------
+  (function(){
+    const canvas = document.getElementById('crystalCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const label = document.getElementById('latticeViewLabel');
+
+    // build diamond cubic basis (fractional coords, unit cell 0..1), with
+    // boundary replicas so corner/face atoms show on all sides, like a
+    // standard crystallography unit-cell figure.
+    const basis = [
+      [0,0,0], [0,0.5,0.5], [0.5,0,0.5], [0.5,0.5,0],
+      [0.25,0.25,0.25], [0.75,0.75,0.25], [0.75,0.25,0.75], [0.25,0.75,0.75]
+    ];
+    function replicas(p){
+      const opts = p.map(c => c === 0 ? [0,1] : [c]);
+      const out = [];
+      opts[0].forEach(x => opts[1].forEach(y => opts[2].forEach(z => out.push([x,y,z]))));
+      return out;
+    }
+    let atoms = [];
+    basis.forEach(p => replicas(p).forEach(r => atoms.push({ p: r.map(c => c - 0.5) })));
+    // dedupe
+    const seen = new Set();
+    atoms = atoms.filter(a => {
+      const k = a.p.map(v => v.toFixed(3)).join(',');
+      if (seen.has(k)) return false;
+      seen.add(k); return true;
+    });
+    // bonds: nearest-neighbor distance in this scheme ~= 0.433
+    const bonds = [];
+    for (let i=0;i<atoms.length;i++){
+      for (let j=i+1;j<atoms.length;j++){
+        const d = Math.hypot(...atoms[i].p.map((v,k)=>v-atoms[j].p[k]));
+        if (d < 0.45) bonds.push([i,j]);
+      }
+    }
+
+    let rotX = -0.5, rotY = -0.7;
+    let targetRotX = rotX, targetRotY = rotY;
+    let dragging = false, lastX=0, lastY=0;
+    let idleTimer = null, autoRotate = true;
+
+    function setView(view){
+      autoRotate = false;
+      clearTimeout(idleTimer);
+      const views = {
+        x: { rx: 0, ry: Math.PI/2, label: 'View along a' },
+        y: { rx: Math.PI/2, ry: 0, label: 'View along b' },
+        z: { rx: 0, ry: 0, label: 'View along c' },
+        iso:{ rx: -0.5, ry: -0.7, label: 'Isometric' }
+      };
+      const v = views[view] || views.iso;
+      targetRotX = v.rx; targetRotY = v.ry;
+      label.textContent = v.label;
+      idleTimer = setTimeout(() => { autoRotate = true; }, 3500);
+    }
+
+    function project(p, rx, ry){
+      let [x,y,z] = p;
+      let y1 = y*Math.cos(rx) - z*Math.sin(rx);
+      let z1 = y*Math.sin(rx) + z*Math.cos(rx);
+      let x1 = x*Math.cos(ry) + z1*Math.sin(ry);
+      let z2 = -x*Math.sin(ry) + z1*Math.cos(ry);
+      return { x: x1, y: y1, z: z2 };
+    }
+
+    function draw(){
+      const w = canvas.width = canvas.clientWidth * devicePixelRatio;
+      const h = canvas.height = canvas.clientHeight * devicePixelRatio;
+      ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+      const cw = canvas.clientWidth, ch = canvas.clientHeight;
+      ctx.clearRect(0,0,cw,ch);
+
+      if (autoRotate){ rotY += 0.0035; }
+      else { rotX += (targetRotX-rotX)*0.12; rotY += (targetRotY-rotY)*0.12; }
+
+      const scale = Math.min(cw,ch) * 0.62;
+      const cx = cw/2, cy = ch/2;
+      const projected = atoms.map(a => {
+        const r = project(a.p, rotX, rotY);
+        return { x: cx + r.x*scale, y: cy + r.y*scale, z: r.z, depth: r.z };
+      });
+
+      // bonds (behind atoms, sorted back-to-front by avg depth)
+      const bondList = bonds.map(([i,j]) => ({ i, j, d: (projected[i].z+projected[j].z)/2 }));
+      bondList.sort((a,b) => a.d - b.d);
+      bondList.forEach(({i,j}) => {
+        const a = projected[i], b = projected[j];
+        const avgDepth = (a.z+b.z)/2;
+        const op = 0.25 + (avgDepth+0.9)/1.8*0.35;
+        ctx.strokeStyle = `rgba(111,162,196,${Math.max(0.12,Math.min(0.55,op))})`;
+        ctx.lineWidth = 1.3;
+        ctx.beginPath();
+        ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
+        ctx.stroke();
+      });
+
+      // atoms, sorted back-to-front
+      const order = projected.map((p,idx)=>idx).sort((a,b)=>projected[a].z-projected[b].z);
+      order.forEach(idx => {
+        const p = projected[idx];
+        const depthT = (p.z + 0.9) / 1.8; // 0..1
+        const r = 5 + depthT*6;
+        const isInterior = atoms[idx].p.every(c => Math.abs(c) < 0.4);
+        ctx.fillStyle = isInterior ? `rgba(201,131,79,${0.55+depthT*0.4})` : `rgba(111,162,196,${0.55+depthT*0.4})`;
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,r,0,Math.PI*2);
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(10,12,15,0.5)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      });
+
+      requestAnimationFrame(draw);
+    }
+
+    function pointerDown(x,y){
+      dragging = true; autoRotate = false; clearTimeout(idleTimer);
+      lastX = x; lastY = y;
+    }
+    function pointerMove(x,y){
+      if (!dragging) return;
+      const dx = x-lastX, dy = y-lastY;
+      targetRotY = rotY += dx*0.008;
+      targetRotX = rotX += dy*0.008;
+      lastX = x; lastY = y;
+    }
+    function pointerUp(){
+      dragging = false;
+      idleTimer = setTimeout(() => { autoRotate = true; }, 3500);
+    }
+
+    canvas.addEventListener('mousedown', e => pointerDown(e.clientX,e.clientY));
+    window.addEventListener('mousemove', e => pointerMove(e.clientX,e.clientY));
+    window.addEventListener('mouseup', pointerUp);
+    canvas.addEventListener('touchstart', e => { const t=e.touches[0]; pointerDown(t.clientX,t.clientY); }, {passive:true});
+    canvas.addEventListener('touchmove', e => { const t=e.touches[0]; pointerMove(t.clientX,t.clientY); }, {passive:true});
+    canvas.addEventListener('touchend', pointerUp);
+
+    document.querySelectorAll('.view-btn').forEach(btn => {
+      btn.addEventListener('click', () => setView(btn.dataset.view));
+    });
+
+    idleTimer = setTimeout(() => { autoRotate = true; }, 1500);
+    draw();
   })();
 
   // ---------- scroll-spy nav ----------
