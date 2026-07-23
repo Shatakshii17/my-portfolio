@@ -46,6 +46,12 @@
 
   h1,h2,h3{font-family:'Fraunces', Georgia, serif; margin:0; letter-spacing:-0.01em;}
 
+  :focus-visible{
+    outline: 2px solid var(--blue);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
   /* ---------- background lattice canvas ---------- */
   .lattice-bg{
     position:fixed; inset:0; z-index:-2;
@@ -88,6 +94,24 @@
   .nav a:hover::after{transform:scaleX(1);}
   .nav a.active{color:var(--text);}
   .nav a.active::after{transform:scaleX(1); background:var(--copper);}
+
+  .nav-toggle{
+    display:none; width:40px; height:40px; border-radius:10px;
+    border:1px solid var(--line-strong); background: rgba(255,255,255,0.02);
+    color: var(--text); cursor:pointer; align-items:center; justify-content:center;
+    flex:none;
+  }
+  .nav-toggle .bars{ width:18px; height:12px; position:relative; }
+  .nav-toggle .bars span{
+    position:absolute; left:0; width:100%; height:1.6px; background:currentColor;
+    transition: transform .22s ease, opacity .22s ease, top .22s ease;
+  }
+  .nav-toggle .bars span:nth-child(1){ top:0; }
+  .nav-toggle .bars span:nth-child(2){ top:5px; }
+  .nav-toggle .bars span:nth-child(3){ top:10px; }
+  .topbar.nav-open .nav-toggle .bars span:nth-child(1){ top:5px; transform:rotate(45deg); }
+  .topbar.nav-open .nav-toggle .bars span:nth-child(2){ opacity:0; }
+  .topbar.nav-open .nav-toggle .bars span:nth-child(3){ top:5px; transform:rotate(-45deg); }
 
   /* ---------- hero ---------- */
   .hero{padding:64px 0 20px; position:relative;}
@@ -157,10 +181,21 @@
     transition: all .15s ease;
   }
   .view-btn:hover{ color:var(--text); border-color:var(--blue); }
+  .view-btn.active{ color: var(--text); border-color: var(--copper); background: var(--copper-soft); }
   .lattice-hint{
     margin:10px 0 0; text-align:center; color:var(--muted-2);
     font-family:'IBM Plex Mono', monospace; font-size:0.72rem;
   }
+  .structure-tabs{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+  .structure-tab{
+    padding:7px 12px; border-radius:999px; border:1px solid var(--line-strong);
+    background: rgba(255,255,255,0.02); color:var(--muted);
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; cursor:pointer;
+    transition: all .15s ease;
+  }
+  .structure-tab:hover{ color: var(--text); border-color: var(--blue); }
+  .structure-tab.active{ color:#140b06; border-color:transparent; background: linear-gradient(135deg, var(--copper), var(--blue)); }
+  .structure-desc{ color:var(--muted-2); font-size:0.78rem; line-height:1.6; margin:10px 2px 0; font-family:'IBM Plex Mono', monospace; }
 
   .hero-stats{display:grid; grid-template-columns:repeat(2,1fr); gap:12px;}
   .stat{
@@ -284,18 +319,34 @@
 
   /* beyond the lab */
   .beyond-row{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
-  .beyond-card{padding:20px; text-align:center;}
+  .beyond-card{padding:20px; text-align:center; transition: transform .2s ease, border-color .2s ease;}
+  .beyond-card:hover{ transform: translateY(-3px); border-color: var(--blue); }
   .beyond-card .glyph{
-    width:44px; height:44px; margin:0 auto 12px; border-radius:12px;
+    width:52px; height:52px; margin:0 auto 12px; border-radius:14px;
     display:grid; place-items:center;
-    background: var(--blue-soft); color: var(--blue); font-family:'IBM Plex Mono', monospace; font-size:0.9rem;
+    background: var(--blue-soft); color: var(--blue);
   }
+  .beyond-card .glyph svg{ width:26px; height:26px; }
   .beyond-card h3{font-size:0.98rem; margin-bottom:6px;}
   .beyond-card p{margin:0; color:var(--muted); font-size:0.86rem; line-height:1.6;}
 
   /* contact */
   .contact-grid{display:grid; grid-template-columns:1.2fr 0.8fr; gap:18px;}
   .contact-links{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px;}
+
+  .waypoints{ position:relative; display:grid; gap:18px; padding-left:6px; }
+  .waypoints::before{
+    content:""; position:absolute; left:9.5px; top:6px; bottom:6px; width:1px;
+    background: repeating-linear-gradient(180deg, var(--line-strong) 0 4px, transparent 4px 8px);
+  }
+  .waypoint{ display:flex; gap:14px; align-items:flex-start; position:relative; }
+  .wp-dot{
+    width:9px; height:9px; border-radius:50%; margin-top:5px; flex:none;
+    background: var(--muted-2); border:2px solid var(--bg2); box-shadow:0 0 0 1px var(--line-strong);
+  }
+  .wp-dot.wp-current{ background: var(--copper); box-shadow:0 0 0 1px var(--copper), 0 0 10px var(--copper-soft); }
+  .wp-name{ font-weight:600; font-size:0.95rem; }
+  .wp-sub{ color:var(--muted); font-size:0.84rem; margin-top:2px; }
 
   .footer{
     padding:40px 0 50px; text-align:center; color:var(--muted-2);
@@ -325,9 +376,13 @@
   .modal-body p{color:var(--muted); line-height:1.8; margin:0 0 14px;}
   .modal-body ul{padding-left:18px; margin:0; color:#e5ebec; line-height:1.8;}
   .modal-figure{
-    margin-bottom:16px; border-radius:14px; border:1px dashed var(--line-strong);
-    background: rgba(255,255,255,0.02); padding:22px; text-align:center;
-    color:var(--muted-2); font-family:'IBM Plex Mono', monospace; font-size:0.82rem; line-height:1.7;
+    margin-bottom:18px; border-radius:14px; border:1px solid var(--line-strong);
+    background: rgba(255,255,255,0.02); padding:18px 18px 10px;
+  }
+  .modal-figure svg{ width:100%; height:auto; display:block; }
+  .modal-figure figcaption{
+    margin-top:10px; color:var(--muted-2); font-family:'IBM Plex Mono', monospace; font-size:0.74rem; line-height:1.6;
+    text-align:center;
   }
 
   .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease;}
@@ -342,7 +397,23 @@
     .lab-entry{grid-template-columns:1fr; gap:8px;}
     .lab-open{justify-self:start;}
     .beyond-row{grid-template-columns:1fr;}
-    .nav{display:none;}
+    .nav-toggle{ display:inline-flex; }
+    .nav{
+      display:flex; position:fixed; inset:64px 12px auto 12px;
+      flex-direction:column; gap:2px; padding:10px;
+      background: rgba(15,18,22,0.98); border:1px solid var(--line-strong);
+      border-radius:16px; box-shadow: var(--shadow);
+      transform: translateY(-14px); opacity:0; pointer-events:none;
+      transition: transform .2s ease, opacity .2s ease;
+      z-index:60;
+    }
+    .topbar.nav-open .nav{ transform:translateY(0); opacity:1; pointer-events:auto; }
+    .nav a{ padding:12px 10px; border-radius:10px; }
+    .nav a:hover{ background: rgba(255,255,255,0.03); }
+    .nav a::after{ display:none; }
+  }
+  @media (min-width:641px){
+    .nav-toggle{ display:none !important; }
   }
 </style>
 </head>
@@ -351,13 +422,13 @@
 <canvas id="latticeCanvas" class="lattice-bg"></canvas>
 <div class="grain"></div>
 
-<header class="topbar">
+<header class="topbar" id="topbar">
   <div class="wrap topbar-inner">
     <a class="brand" href="#home">
       <span class="brand-mark">SI</span>
       <span class="brand-name">Shatakshi Iksha</span>
     </a>
-    <nav class="nav">
+    <nav class="nav" id="siteNav">
       <a href="#why">Why MatSci</a>
       <a href="#education">Education</a>
       <a href="#research">Research</a>
@@ -368,6 +439,9 @@
       <a href="#beyond">Beyond the Lab</a>
       <a href="#contact">Contact</a>
     </nav>
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="siteNav">
+      <span class="bars"><span></span><span></span><span></span></span>
+    </button>
   </div>
 </header>
 
@@ -394,20 +468,26 @@
 
       <aside class="hero-side">
         <div class="panel lattice-panel reveal">
-          <div class="lattice-caption"><span>Diamond cubic unit cell</span><span id="latticeViewLabel">Isometric</span></div>
+          <div class="lattice-caption"><span id="latticeStructName">Diamond cubic (Si)</span><span id="latticeViewLabel">Isometric</span></div>
+          <div class="structure-tabs" id="structureTabs">
+            <button type="button" class="structure-tab active" data-structure="diamond">Si — sputtering</button>
+            <button type="button" class="structure-tab" data-structure="perovskite">MAPbI3 — perovskite</button>
+            <button type="button" class="structure-tab" data-structure="fcc">Octet-truss — LPBF lattice</button>
+          </div>
           <canvas id="crystalCanvas"></canvas>
+          <p class="structure-desc" id="structureDesc">Diamond cubic silicon — the film structure grown and optimized via RF magnetron sputtering at Fraunhofer USA.</p>
           <div class="lattice-controls">
             <button type="button" class="view-btn" data-view="x">View a</button>
             <button type="button" class="view-btn" data-view="y">View b</button>
             <button type="button" class="view-btn" data-view="z">View c</button>
             <button type="button" class="view-btn" data-view="iso">Reset</button>
           </div>
-          <p class="lattice-hint">Drag to rotate</p>
+          <p class="lattice-hint">Drag to rotate · tabs switch structure per project</p>
         </div>
         <div class="hero-stats">
           <div class="stat"><b>3.5 / 4.0</b><span>GPA · Dean's List</span></div>
           <div class="stat"><b>May 2027</b><span>Expected graduation</span></div>
-          <div class="stat"><b>1,000+</b><span>Reliability test cycles run</span></div>
+          <div class="stat"><b>50+</b><span>DOE-based sputtering experiments run</span></div>
           <div class="stat"><b>3</b><span>Countries worked in: US · Germany · South Africa</span></div>
         </div>
       </aside>
@@ -497,7 +577,7 @@
         data-meta="Fraunhofer USA, Inc. · Coatings Technology Group · East Lansing, MI · May 2026 – Present"
         data-summary="Designing and executing 50+ DOE-based experiments to optimize RF magnetron sputtering and PVD thin-film processes."
         data-bullets="Design and execute 50+ DOE-based experiments optimizing RF magnetron sputtering and PVD thin-film processes|Analyze XRD, AFM, and electrochemical data to isolate root causes of process variability|Work within the Coatings Technology Group on thin-film coating development"
-        data-figure="Fig. 01 — add an XRD pattern, AFM surface scan, or sputtering chamber photo here.">
+        data-chart="doe">
         <div class="fig-tag">Fig. 01</div>
         <div>
           <h3>R&amp;D Engineering Intern</h3>
@@ -513,7 +593,7 @@
         data-meta="Fraunhofer IWS · Dresden, Germany · May 2025 – Aug. 2025 · DAAD RISE Germany Scholar"
         data-summary="Characterized mechanical behavior of laser powder bed fusion (LPBF) metamaterials via tensile testing, SEM, EBSD, and DIC."
         data-bullets="Characterized mechanical behavior of LPBF metamaterials via tensile testing, SEM, EBSD, and digital image correlation (DIC)|Applied Random Forest and Bayesian models linking process parameters to mechanical performance|Funded by a DAAD RISE Germany scholarship"
-        data-figure="Fig. 02 — add a stress-strain curve, SEM fractograph, or lattice geometry render here.">
+        data-chart="stress-strain">
         <div class="fig-tag">Fig. 02</div>
         <div>
           <h3>Research Assistant</h3>
@@ -529,7 +609,7 @@
         data-meta="Arizona State University · Tempe, AZ · May 2024 – Dec. 2025"
         data-summary="Ran 1,000+ cycle reliability tests on MAPbI3 perovskite thin films and built Weibull/regression degradation models."
         data-bullets="Ran 1,000+ cycle reliability tests on MAPbI3 perovskite thin films|Built Weibull and regression models in Python/R to translate degradation trends into process recommendations|Presented findings at FURI and C3E symposiums"
-        data-figure="Fig. 03 — add a Weibull degradation plot or cyclic-bending setup photo here.">
+        data-chart="weibull">
         <div class="fig-tag">Fig. 03</div>
         <div>
           <h3>Undergraduate Research Assistant</h3>
@@ -588,7 +668,7 @@
         data-meta="Electrical Lead · Johannesburg, South Africa · May 2026"
         data-summary="Led electrical design of a low-cost, joystick-controlled automatic wheelchair for children with cerebral palsy."
         data-bullets="Led electrical design of a low-cost, joystick-controlled automatic wheelchair for children with cerebral palsy|Worked directly with children and caregivers to design for mobility, dignity, and inclusion|Delivered a working prototype and established a partnership with the University of Johannesburg, which took on production and supply of wheelchairs to local schools"
-        data-figure="Project photos — add wiring diagrams, prototype photos, or team photos from Johannesburg here.">
+        data-chart="circuit">
         <span class="tag">Electrical Lead</span>
         <h3>EPICS @ ASU — Wheels2Africa</h3>
         <div class="meta">Johannesburg, South Africa · May 2026</div>
@@ -601,7 +681,7 @@
         data-meta="Prototyping Lead · Tempe, AZ · Jan 2024 – May 2024"
         data-summary="Delivered a functional, low-cost prosthetic device via CAD modeling and iterative additive manufacturing."
         data-bullets="Delivered a functional, low-cost prosthetic device via CAD modeling and iterative additive manufacturing|Validated the design through successful assembly and user-centered testing"
-        data-figure="Project photos — add CAD renders or print iterations here.">
+        data-chart="iterations">
         <span class="tag">Prototyping Lead</span>
         <h3>3D Printed Prosthetics</h3>
         <div class="meta">Tempe, AZ · Jan 2024 – May 2024</div>
@@ -614,7 +694,7 @@
         data-meta="CHART Labs · Robotics and control"
         data-summary="Programmed swarm robots using ROS, C++, and UART communication protocols."
         data-bullets="Programmed swarm robots using ROS, C++, and UART communication protocols|Integrated sensors for localization, environmental awareness, and inter-robot coordination|Designed and tuned PID control algorithms for motion control and obstacle avoidance"
-        data-figure="Project photos — add robot photos, wiring, or a navigation flow diagram here.">
+        data-chart="pid">
         <span class="tag">Robotics</span>
         <h3>Autonomous Robotics Navigation</h3>
         <div class="meta">CHART Labs</div>
@@ -627,7 +707,7 @@
         data-meta="Hardware design · embedded logic"
         data-summary="Designed, simulated, and validated FPGA-based digital systems in Verilog/SystemVerilog using Xilinx Vivado."
         data-bullets="Designed finite state machines and sequential logic in Verilog/SystemVerilog|Simulated and debugged designs in Xilinx Vivado|Validated timing and correctness on hardware"
-        data-figure="Project photos — add waveforms, RTL views, or a board photo here.">
+        data-chart="waveform">
         <span class="tag">FPGA</span>
         <h3>FPGA Digital Design</h3>
         <div class="meta">Verilog/SystemVerilog · Xilinx Vivado</div>
@@ -727,24 +807,24 @@
     </div>
     <div class="beyond-row">
       <div class="panel beyond-card reveal">
-        <div class="glyph">▲</div>
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 20 L9 8 L13 15 L16 10 L21 20 Z"/><circle cx="17" cy="5" r="2"/></svg></div>
         <h3>Hiking</h3>
-        <p>Weekend trail hikes.</p>
+        <p>Weekend trail hikes around the Superstitions and South Mountain.</p>
       </div>
       <div class="panel beyond-card reveal">
-        <div class="glyph">⛺</div>
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 L20 19 H4 Z"/><path d="M12 3 V19"/></svg></div>
         <h3>Backpacking</h3>
-        <p>Multi-day backpacking trips.</p>
+        <p>Multi-day trips — planning routes is its own kind of DOE.</p>
       </div>
       <div class="panel beyond-card reveal">
-        <div class="glyph">〰</div>
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 15q2.5-2 5 0t5 0 5 0 5 0" /><path d="M6 15 L18 6" stroke-width="1.4"/><ellipse cx="12" cy="15" rx="8" ry="1.6" stroke-width="1.2"/></svg></div>
         <h3>Kayaking</h3>
-        <p>Kayaking on lakes and rivers.</p>
+        <p>Lakes and slow rivers — good place to think through a stuck problem.</p>
       </div>
       <div class="panel beyond-card reveal">
-        <div class="glyph">☕</div>
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 9h11v5a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5Z"/><path d="M16 10h2a2 2 0 0 1 0 4h-2"/><path d="M7 3q1 2 0 3 M11 3q1 2 0 3"/></svg></div>
         <h3>Coffee brewing</h3>
-        <p>Home coffee brewing.</p>
+        <p>V60 pour-overs at home — dialing in a recipe scratches the same itch as a DOE run.</p>
       </div>
     </div>
   </section>
@@ -772,8 +852,22 @@
         </div>
       </div>
       <div class="panel card-pad reveal">
-        <h3 style="font-size:1.15rem; margin-bottom:10px;">Based in</h3>
-        <p style="color:var(--muted); line-height:1.8; margin:0;">Tempe, Arizona</p>
+        <h3 style="font-size:1.15rem; margin-bottom:4px;">Basecamp</h3>
+        <div class="mono" style="color:var(--muted-2); font-size:0.78rem; letter-spacing:0.03em; margin-bottom:16px;">33.4242° N, 111.9281° W</div>
+        <div class="waypoints">
+          <div class="waypoint">
+            <span class="wp-dot wp-current"></span>
+            <div><div class="wp-name">Tempe, Arizona</div><div class="wp-sub">Home base · ASU</div></div>
+          </div>
+          <div class="waypoint">
+            <span class="wp-dot"></span>
+            <div><div class="wp-name">Dresden, Germany</div><div class="wp-sub">Fraunhofer IWS · DAAD RISE Scholar</div></div>
+          </div>
+          <div class="waypoint">
+            <span class="wp-dot"></span>
+            <div><div class="wp-name">Johannesburg, South Africa</div><div class="wp-sub">EPICS Wheels2Africa deployment</div></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -792,7 +886,7 @@
       <button class="close-btn" id="closeModal" aria-label="Close">×</button>
     </div>
     <div class="modal-body">
-      <div class="modal-figure" id="modalFigureNote"></div>
+      <figure class="modal-figure" id="modalFigure"></figure>
       <p id="modalSummary"></p>
       <ul id="modalBullets"></ul>
     </div>
@@ -801,6 +895,23 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---------- mobile nav toggle ----------
+  (function(){
+    const topbar = document.getElementById('topbar');
+    const toggle = document.getElementById('navToggle');
+    const nav = document.getElementById('siteNav');
+    function closeNav(){
+      topbar.classList.remove('nav-open');
+      toggle.setAttribute('aria-expanded','false');
+    }
+    toggle.addEventListener('click', () => {
+      const open = topbar.classList.toggle('nav-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+  })();
 
   // ---------- interactive atomic lattice background ----------
   (function(){
@@ -830,12 +941,10 @@
 
     function step(){
       ctx.clearRect(0,0,w,h);
-      // update positions (gentle thermal drift)
       atoms.forEach(a => {
         a.x += a.vx; a.y += a.vy;
         if (a.x < 0 || a.x > w) a.vx *= -1;
         if (a.y < 0 || a.y > h) a.vy *= -1;
-        // gentle repulsion from probe (cursor)
         if (mouse.active){
           const dx = a.x - mouse.x, dy = a.y - mouse.y;
           const d = Math.hypot(dx,dy);
@@ -845,7 +954,6 @@
           }
         }
       });
-      // bonds
       for (let i=0;i<atoms.length;i++){
         for (let j=i+1;j<atoms.length;j++){
           const a=atoms[i], b=atoms[j];
@@ -861,7 +969,6 @@
           }
         }
       }
-      // atoms
       atoms.forEach(a => {
         const near = mouse.active && Math.hypot(a.x-mouse.x,a.y-mouse.y) < PROBE_RADIUS;
         ctx.fillStyle = near ? `rgba(${COPPER},0.9)` : `rgba(${BLUE},0.55)`;
@@ -881,51 +988,94 @@
 
     resize();
     step();
-    if (reduceMotion){ setInterval(step, 1200); } // occasional static redraw only
+    if (reduceMotion){ setInterval(step, 1200); }
   })();
 
-  // ---------- interactive diamond cubic crystal viewer ----------
+  // ---------- interactive crystal viewer (multi-structure) ----------
   (function(){
     const canvas = document.getElementById('crystalCanvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     const label = document.getElementById('latticeViewLabel');
+    const structNameEl = document.getElementById('latticeStructName');
+    const descEl = document.getElementById('structureDesc');
 
-    // build diamond cubic basis (fractional coords, unit cell 0..1), with
-    // boundary replicas so corner/face atoms show on all sides, like a
-    // standard crystallography unit-cell figure.
-    const basis = [
-      [0,0,0], [0,0.5,0.5], [0.5,0,0.5], [0.5,0.5,0],
-      [0.25,0.25,0.25], [0.75,0.75,0.25], [0.75,0.25,0.75], [0.25,0.75,0.75]
-    ];
     function replicas(p){
-      const opts = p.map(c => c === 0 ? [0,1] : [c]);
+      const opts = p.map(c => (c === 0 || c === 1) ? [0,1] : [c]);
       const out = [];
       opts[0].forEach(x => opts[1].forEach(y => opts[2].forEach(z => out.push([x,y,z]))));
       return out;
     }
-    let atoms = [];
-    basis.forEach(p => replicas(p).forEach(r => atoms.push({ p: r.map(c => c - 0.5) })));
-    // dedupe
-    const seen = new Set();
-    atoms = atoms.filter(a => {
-      const k = a.p.map(v => v.toFixed(3)).join(',');
-      if (seen.has(k)) return false;
-      seen.add(k); return true;
-    });
-    // bonds: nearest-neighbor distance in this scheme ~= 0.433
-    const bonds = [];
-    for (let i=0;i<atoms.length;i++){
-      for (let j=i+1;j<atoms.length;j++){
-        const d = Math.hypot(...atoms[i].p.map((v,k)=>v-atoms[j].p[k]));
-        if (d < 0.45) bonds.push([i,j]);
+    function buildFrom(basisList, bondCutoff){
+      let atoms = [];
+      basisList.forEach(b => replicas(b.p).forEach(r => atoms.push({ p: r.map(c => c - 0.5), kind: b.kind })));
+      const seen = new Set();
+      atoms = atoms.filter(a => {
+        const k = a.p.map(v => v.toFixed(3)).join(',') + '|' + a.kind;
+        if (seen.has(k)) return false;
+        seen.add(k); return true;
+      });
+      const bonds = [];
+      for (let i=0;i<atoms.length;i++){
+        for (let j=i+1;j<atoms.length;j++){
+          const d = Math.hypot(...atoms[i].p.map((v,k)=>v-atoms[j].p[k]));
+          if (d < bondCutoff) bonds.push([i,j]);
+        }
       }
+      return { atoms, bonds };
     }
+
+    const structures = {
+      diamond: {
+        name: 'Diamond cubic (Si)',
+        desc: 'Diamond cubic silicon — the film structure grown and optimized via RF magnetron sputtering at Fraunhofer USA.',
+        cutoff: 0.45,
+        basis: [
+          {p:[0,0,0], kind:'a'}, {p:[0,0.5,0.5], kind:'a'}, {p:[0.5,0,0.5], kind:'a'}, {p:[0.5,0.5,0], kind:'a'},
+          {p:[0.25,0.25,0.25], kind:'b'}, {p:[0.75,0.75,0.25], kind:'b'}, {p:[0.75,0.25,0.75], kind:'b'}, {p:[0.25,0.75,0.75], kind:'b'}
+        ]
+      },
+      perovskite: {
+        name: 'ABX\u2083 perovskite (MAPbI\u2083)',
+        desc: 'Methylammonium lead iodide perovskite (idealized cubic cell) — the thin-film material behind the cyclic reliability testing at ASU. MA\u207a at the corners (A-site, 12-fold coordination), Pb\u00b2\u207a at the body center (B-site), I\u207b at the face centers (X-site), forming PbI\u2086 octahedra. Note: MAPbI\u2083 is actually tetragonal near room temperature and only adopts this cubic phase above ~57°C — shown here in its simplified cubic form.',
+        cutoff: 0.62,
+        basis: [
+          {p:[0,0,0], kind:'b'},
+          {p:[0.5,0.5,0.5], kind:'a'},
+          {p:[0.5,0.5,0], kind:'c'}, {p:[0.5,0,0.5], kind:'c'}, {p:[0,0.5,0.5], kind:'c'}
+        ]
+      },
+      fcc: {
+        name: 'Octet-truss unit cell (metamaterial)',
+        desc: 'Not an atomic crystal structure — this is the mathematically-derived, mm-scale strut lattice architecture (octet-truss topology) printed via LPBF and characterized at Fraunhofer IWS. The base alloy itself has its own separate atomic crystal structure (e.g., FCC austenitic steel, or BCC/HCP for titanium alloys) — the two are independent length scales, and I\u2019m keeping this placeholder honest until real strut/node data comes in.',
+        cutoff: 0.75,
+        strut: true,
+        basis: [
+          {p:[0,0,0], kind:'s'},
+          {p:[0.5,0.5,0], kind:'s'}, {p:[0.5,0,0.5], kind:'s'}, {p:[0,0.5,0.5], kind:'s'}
+        ]
+      }
+    };
+
+    let current = 'diamond';
+    let strutMode = false;
+    let scene = buildFrom(structures.diamond.basis, structures.diamond.cutoff);
 
     let rotX = -0.5, rotY = -0.7;
     let targetRotX = rotX, targetRotY = rotY;
     let dragging = false, lastX=0, lastY=0;
     let idleTimer = null, autoRotate = true;
+
+    function setStructure(key){
+      const s = structures[key];
+      if (!s) return;
+      current = key;
+      strutMode = !!s.strut;
+      scene = buildFrom(s.basis, s.cutoff);
+      structNameEl.textContent = s.name;
+      descEl.textContent = s.desc;
+      document.querySelectorAll('.structure-tab').forEach(t => t.classList.toggle('active', t.dataset.structure === key));
+    }
 
     function setView(view){
       autoRotate = false;
@@ -951,6 +1101,13 @@
       return { x: x1, y: y1, z: z2 };
     }
 
+    const kindColor = {
+      a: {fill:'201,131,79', r:1.0},
+      b: {fill:'111,162,196', r:0.82},
+      c: {fill:'238,241,240', r:1.25},
+      s: {fill:'157,167,174', r:0.55}
+    };
+
     function draw(){
       const w = canvas.width = canvas.clientWidth * devicePixelRatio;
       const h = canvas.height = canvas.clientHeight * devicePixelRatio;
@@ -963,33 +1120,39 @@
 
       const scale = Math.min(cw,ch) * 0.62;
       const cx = cw/2, cy = ch/2;
+      const atoms = scene.atoms, bonds = scene.bonds;
       const projected = atoms.map(a => {
         const r = project(a.p, rotX, rotY);
         return { x: cx + r.x*scale, y: cy + r.y*scale, z: r.z, depth: r.z };
       });
 
-      // bonds (behind atoms, sorted back-to-front by avg depth)
       const bondList = bonds.map(([i,j]) => ({ i, j, d: (projected[i].z+projected[j].z)/2 }));
       bondList.sort((a,b) => a.d - b.d);
       bondList.forEach(({i,j}) => {
         const a = projected[i], b = projected[j];
         const avgDepth = (a.z+b.z)/2;
-        const op = 0.25 + (avgDepth+0.9)/1.8*0.35;
-        ctx.strokeStyle = `rgba(111,162,196,${Math.max(0.12,Math.min(0.55,op))})`;
-        ctx.lineWidth = 1.3;
+        const op = 0.3 + (avgDepth+0.9)/1.8*0.4;
+        if (strutMode){
+          ctx.strokeStyle = `rgba(157,167,174,${Math.max(0.35,Math.min(0.85,op+0.15))})`;
+          ctx.lineWidth = 3.2;
+          ctx.lineCap = 'round';
+        } else {
+          ctx.strokeStyle = `rgba(111,162,196,${Math.max(0.12,Math.min(0.55,op))})`;
+          ctx.lineWidth = 1.3;
+          ctx.lineCap = 'butt';
+        }
         ctx.beginPath();
         ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
         ctx.stroke();
       });
 
-      // atoms, sorted back-to-front
       const order = projected.map((p,idx)=>idx).sort((a,b)=>projected[a].z-projected[b].z);
       order.forEach(idx => {
         const p = projected[idx];
-        const depthT = (p.z + 0.9) / 1.8; // 0..1
-        const r = 5 + depthT*6;
-        const isInterior = atoms[idx].p.every(c => Math.abs(c) < 0.4);
-        ctx.fillStyle = isInterior ? `rgba(201,131,79,${0.55+depthT*0.4})` : `rgba(111,162,196,${0.55+depthT*0.4})`;
+        const depthT = (p.z + 0.9) / 1.8;
+        const kc = kindColor[atoms[idx].kind] || kindColor.a;
+        const r = (5 + depthT*6) * kc.r;
+        ctx.fillStyle = `rgba(${kc.fill},${0.55+depthT*0.4})`;
         ctx.beginPath();
         ctx.arc(p.x,p.y,r,0,Math.PI*2);
         ctx.fill();
@@ -1027,6 +1190,12 @@
     document.querySelectorAll('.view-btn').forEach(btn => {
       btn.addEventListener('click', () => setView(btn.dataset.view));
     });
+    document.querySelectorAll('.structure-tab').forEach(btn => {
+      btn.addEventListener('click', () => setStructure(btn.dataset.structure));
+    });
+
+    // expose for modal deep-links
+    window.__setCrystalStructure = setStructure;
 
     idleTimer = setTimeout(() => { autoRotate = true; }, 1500);
     draw();
@@ -1077,26 +1246,221 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
+  // ---------- modal + inline SVG figures ----------
   const backdrop = document.getElementById('modalBackdrop');
   const modalFig = document.getElementById('modalFig');
   const modalTitle = document.getElementById('modalTitle');
   const modalMeta = document.getElementById('modalMeta');
   const modalSummary = document.getElementById('modalSummary');
   const modalBullets = document.getElementById('modalBullets');
-  const modalFigureNote = document.getElementById('modalFigureNote');
+  const modalFigure = document.getElementById('modalFigure');
   const closeBtn = document.getElementById('closeModal');
+
+  const COPPER = '#c9834f', BLUE = '#6fa2c4', MUTED = '#6d7981', LINE = 'rgba(206,216,224,0.16)', TEXT = '#eef1f0';
+
+  function svgWrap(inner, vb){ return `<svg viewBox="${vb}" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Mono, monospace">${inner}</svg>`; }
+
+  const chartBuilders = {
+    weibull: () => {
+      // Weibull-like cumulative failure curve with scattered cycle data
+      let pts = [];
+      const n = 46;
+      for (let i=0;i<n;i++){
+        const x = i/(n-1);
+        const beta = 2.3;
+        const y = 1 - Math.exp(-Math.pow(x*1.6,beta));
+        const jitter = (Math.sin(i*12.9)*0.5+0.5 - 0.5)*0.05;
+        pts.push([40 + x*540, 210 - (y+jitter)*180]);
+      }
+      const path = pts.map((p,i)=> (i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+      const dots = pts.filter((_,i)=>i%3===0).map(p=>`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="3" fill="${BLUE}" opacity="0.85"/>`).join('');
+      return {
+        vb: '0 0 620 240',
+        inner: `
+          <line x1="40" y1="20" x2="40" y2="210" stroke="${LINE}" stroke-width="1"/>
+          <line x1="40" y1="210" x2="600" y2="210" stroke="${LINE}" stroke-width="1"/>
+          <text x="40" y="14" fill="${MUTED}" font-size="11">P(failure)</text>
+          <text x="520" y="228" fill="${MUTED}" font-size="11">cycles →</text>
+          <path d="${path}" fill="none" stroke="${COPPER}" stroke-width="2.4"/>
+          ${dots}
+          <text x="46" y="34" fill="${TEXT}" font-size="12">Weibull fit, β ≈ 2.3</text>
+        `,
+        caption: 'Fig. 03 — representative Weibull cumulative-failure curve fit to MAPbI₃ cyclic reliability data (illustrative shape, not raw values).'
+      };
+    },
+    'stress-strain': () => {
+      let pts = [[40,210]];
+      const n = 60;
+      for (let i=1;i<=n;i++){
+        const x = i/n;
+        let y;
+        if (x < 0.35) y = x/0.35 * 0.62; // elastic
+        else if (x < 0.85) y = 0.62 + (x-0.35)/0.5 * 0.33 * (1-Math.pow((x-0.35)/0.5,1.4)*0.3); // plastic/hardening
+        else y = 0.9 - (x-0.85)/0.15 * 0.28; // necking/fracture drop
+        pts.push([40 + x*540, 210 - y*185]);
+      }
+      const path = pts.map((p,i)=> (i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+      return {
+        vb: '0 0 620 240',
+        inner: `
+          <line x1="40" y1="20" x2="40" y2="210" stroke="${LINE}" stroke-width="1"/>
+          <line x1="40" y1="210" x2="600" y2="210" stroke="${LINE}" stroke-width="1"/>
+          <text x="40" y="14" fill="${MUTED}" font-size="11">stress</text>
+          <text x="530" y="228" fill="${MUTED}" font-size="11">strain →</text>
+          <line x1="40" y1="94" x2="255" y2="94" stroke="${LINE}" stroke-width="1" stroke-dasharray="3,3"/>
+          <path d="${path}" fill="none" stroke="${BLUE}" stroke-width="2.4"/>
+          <text x="255" y="88" fill="${MUTED}" font-size="10">elastic → plastic</text>
+        `,
+        caption: 'Fig. 02 — representative tensile stress–strain curve for an LPBF metamaterial specimen (illustrative shape).'
+      };
+    },
+    doe: () => {
+      const cats = ['Power','Pressure','Substrate T','Gas ratio','Distance'];
+      const vals = [0.82,0.61,0.94,0.47,0.55];
+      const bw = 88, gap = 22, base = 210, top = 24;
+      const bars = cats.map((c,i)=>{
+        const x = 46 + i*(bw+gap);
+        const bh = vals[i]*(base-top);
+        const y = base - bh;
+        return `<rect x="${x}" y="${y.toFixed(1)}" width="${bw}" height="${bh.toFixed(1)}" rx="6" fill="${i===2?COPPER:BLUE}" opacity="${i===2?0.9:0.55}"/>
+                <text x="${x+bw/2}" y="${base+20}" fill="${MUTED}" font-size="10" text-anchor="middle">${c}</text>`;
+      }).join('');
+      return {
+        vb: '0 0 620 250',
+        inner: `
+          <line x1="40" y1="24" x2="40" y2="210" stroke="${LINE}" stroke-width="1"/>
+          <line x1="40" y1="210" x2="600" y2="210" stroke="${LINE}" stroke-width="1"/>
+          <text x="40" y="14" fill="${MUTED}" font-size="11">effect on film uniformity (normalized)</text>
+          ${bars}
+        `,
+        caption: 'Fig. 01 — representative DOE effect-size ranking across sputtering parameters; substrate temperature shows the largest effect on film uniformity.'
+      };
+    },
+    circuit: () => {
+      return {
+        vb: '0 0 620 220',
+        inner: `
+          <rect x="40" y="40" width="90" height="50" rx="6" fill="none" stroke="${BLUE}" stroke-width="1.6"/>
+          <text x="85" y="70" fill="${TEXT}" font-size="11" text-anchor="middle">Joystick</text>
+          <path d="M130 65 H190" stroke="${LINE}" stroke-width="1.6"/>
+          <rect x="190" y="40" width="110" height="50" rx="6" fill="none" stroke="${COPPER}" stroke-width="1.6"/>
+          <text x="245" y="70" fill="${TEXT}" font-size="11" text-anchor="middle">Motor driver</text>
+          <path d="M300 65 H360" stroke="${LINE}" stroke-width="1.6"/>
+          <rect x="360" y="40" width="90" height="50" rx="6" fill="none" stroke="${BLUE}" stroke-width="1.6"/>
+          <text x="405" y="70" fill="${TEXT}" font-size="11" text-anchor="middle">Drive motors</text>
+          <path d="M245 90 V150" stroke="${LINE}" stroke-width="1.6"/>
+          <rect x="190" y="150" width="110" height="45" rx="6" fill="none" stroke="${BLUE}" stroke-width="1.6"/>
+          <text x="245" y="177" fill="${TEXT}" font-size="11" text-anchor="middle">Battery + BMS</text>
+          <path d="M405 90 V150" stroke="${LINE}" stroke-width="1.6"/>
+          <rect x="360" y="150" width="120" height="45" rx="6" fill="none" stroke="${COPPER}" stroke-width="1.6"/>
+          <text x="420" y="177" fill="${TEXT}" font-size="11" text-anchor="middle">Cutoff / e-stop</text>
+        `,
+        caption: 'Project figure — simplified block diagram of the wheelchair drive electronics: joystick input, motor driver, and a hardware e-stop cutoff.'
+      };
+    },
+    iterations: () => {
+      const stages = ['v1 CAD','v2 print','v3 fit test','v4 final'];
+      const scores = [0.35,0.55,0.78,0.95];
+      const x0=50, x1=560, y0=190;
+      const pts = scores.map((s,i)=>[x0 + i*((x1-x0)/(scores.length-1)), y0 - s*150]);
+      const path = pts.map((p,i)=>(i===0?'M':'L')+p[0]+','+p[1]).join(' ');
+      const dots = pts.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="5" fill="${COPPER}"/><text x="${p[0]}" y="${y0+22}" fill="${MUTED}" font-size="10" text-anchor="middle">${stages[i]}</text>`).join('');
+      return {
+        vb: '0 0 610 230',
+        inner: `
+          <line x1="50" y1="30" x2="50" y2="190" stroke="${LINE}" stroke-width="1"/>
+          <line x1="50" y1="190" x2="560" y2="190" stroke="${LINE}" stroke-width="1"/>
+          <text x="50" y="20" fill="${MUTED}" font-size="11">fit &amp; function score</text>
+          <path d="${path}" fill="none" stroke="${BLUE}" stroke-width="2.2" stroke-dasharray="1,0"/>
+          ${dots}
+        `,
+        caption: 'Project figure — qualitative fit/function progress across four print-and-test iterations.'
+      };
+    },
+    pid: () => {
+      let pts = [];
+      const n=70;
+      for (let i=0;i<=n;i++){
+        const t = i/n*4*Math.PI;
+        const damp = Math.exp(-i/n*3.2);
+        const y = Math.cos(t)*damp;
+        pts.push([50 + (i/n)*510, 110 - y*80]);
+      }
+      const path = pts.map((p,i)=>(i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+      return {
+        vb: '0 0 610 220',
+        inner: `
+          <line x1="50" y1="20" x2="50" y2="200" stroke="${LINE}" stroke-width="1"/>
+          <line x1="50" y1="110" x2="560" y2="110" stroke="${LINE}" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="50" y="14" fill="${MUTED}" font-size="11">heading error</text>
+          <text x="500" y="215" fill="${MUTED}" font-size="11">time →</text>
+          <path d="${path}" fill="none" stroke="${COPPER}" stroke-width="2.2"/>
+        `,
+        caption: 'Project figure — representative damped step response of the tuned PID heading controller.'
+      };
+    },
+    waveform: () => {
+      function pulse(x0, states){
+        let d = `M${x0},80`;
+        let x = x0;
+        const w = 30;
+        states.forEach((s,i) => {
+          const y = s ? 40 : 80;
+          if (i===0){ d += ` L${x},${y}`; }
+          else { d += ` L${x},${d.endsWith('') ? y : y} L${x},${y}`; }
+          d += ` L${x+w},${y}`;
+          x += w;
+        });
+        return d;
+      }
+      const clk = [0,1,0,1,0,1,0,1,0,1,0,1];
+      let clkPath = 'M50,80';
+      let x=50;
+      clk.forEach((s,i)=>{ const y = s? 40:80; clkPath += ` L${x},${y} L${x+25},${y}`; x+=25; });
+      const state = [0,0,1,1,1,0,0,1,1,0,0,1];
+      let statePath = 'M50,170';
+      x=50;
+      state.forEach((s,i)=>{ const y = s? 130:170; statePath += ` L${x},${y} L${x+25},${y}`; x+=25; });
+      return {
+        vb: '0 0 610 200',
+        inner: `
+          <text x="46" y="30" fill="${MUTED}" font-size="11">clk</text>
+          <path d="${clkPath}" fill="none" stroke="${BLUE}" stroke-width="2"/>
+          <text x="46" y="120" fill="${MUTED}" font-size="11">state[1:0]</text>
+          <path d="${statePath}" fill="none" stroke="${COPPER}" stroke-width="2"/>
+        `,
+        caption: 'Project figure — representative FSM waveform: state register transitions on the rising clock edge.'
+      };
+    }
+  };
+
+  function renderChart(key){
+    const b = chartBuilders[key];
+    if (!b) return '';
+    const { vb, inner, caption } = b();
+    return svgWrap(inner, vb) + `<figcaption>${caption}</figcaption>`;
+  }
 
   function openModal(card){
     modalFig.textContent = card.dataset.fig || '';
     modalTitle.textContent = card.dataset.title || '';
     modalMeta.textContent = card.dataset.meta || '';
     modalSummary.textContent = card.dataset.summary || '';
-    modalFigureNote.textContent = card.dataset.figure || '';
     const bullets = (card.dataset.bullets || '').split('|').filter(Boolean);
     modalBullets.innerHTML = bullets.map(b => `<li>${b}</li>`).join('');
+    const chartKey = card.dataset.chart;
+    modalFigure.innerHTML = chartKey ? renderChart(chartKey) : '';
+    modalFigure.style.display = chartKey ? '' : 'none';
     backdrop.classList.add('open');
     backdrop.setAttribute('aria-hidden','false');
     document.body.style.overflow = 'hidden';
+
+    // sync hero crystal viewer to the relevant structure, if applicable
+    if (window.__setCrystalStructure){
+      if (chartKey === 'weibull') window.__setCrystalStructure('perovskite');
+      else if (chartKey === 'stress-strain') window.__setCrystalStructure('fcc');
+      else if (chartKey === 'doe') window.__setCrystalStructure('diamond');
+    }
   }
   function closeModalFn(){
     backdrop.classList.remove('open');
