@@ -6,6 +6,7 @@
 <title>Shatakshi Iksha — Computational Materials &amp; Systems Engineering</title>
 <meta name="description" content="Portfolio of Shatakshi Iksha: thin-film and materials research, computer systems engineering, and computational modeling at Arizona State University." />
 <meta name="theme-color" content="#0b0d10" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23c9834f'/%3E%3Cstop offset='1' stop-color='%236fa2c4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='IBM Plex Mono, monospace' font-size='26' font-weight='700' fill='%230b0d10' text-anchor='middle'%3ESI%3C/text%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;1,9..144,460&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -197,7 +198,11 @@
   .structure-tab.active{ color:#140b06; border-color:transparent; background: linear-gradient(135deg, var(--copper), var(--blue)); }
   .structure-desc{ color:var(--muted-2); font-size:0.78rem; line-height:1.6; margin:10px 2px 0; font-family:'IBM Plex Mono', monospace; }
 
-  .hero-stats{display:grid; grid-template-columns:repeat(2,1fr); gap:12px;}
+  .hero-stats{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; transition: opacity .35s ease;}
+  .hero-stats.fading{ opacity:0; }
+  .stat-dots{ display:flex; justify-content:center; gap:6px; margin:10px 0 0; }
+  .dot-ind{ width:6px; height:6px; border-radius:50%; background: var(--line-strong); transition: background .2s ease, transform .2s ease; }
+  .dot-ind.active{ background: var(--copper); transform: scale(1.3); }
   .stat{
     padding:16px; border-radius:14px;
     background: rgba(255,255,255,0.02); border:1px solid var(--line);
@@ -334,19 +339,18 @@
   .contact-grid{display:grid; grid-template-columns:1.2fr 0.8fr; gap:18px;}
   .contact-links{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px;}
 
-  .waypoints{ position:relative; display:grid; gap:18px; padding-left:6px; }
-  .waypoints::before{
-    content:""; position:absolute; left:9.5px; top:6px; bottom:6px; width:1px;
-    background: repeating-linear-gradient(180deg, var(--line-strong) 0 4px, transparent 4px 8px);
+  .basecamp-card{ cursor:pointer; transition: transform .2s ease, border-color .2s ease; }
+  .basecamp-card:hover{ transform:translateY(-3px); border-color:var(--blue); }
+  .geo-coord{ color:var(--copper); font-size:1.05rem; letter-spacing:0.02em; }
+
+  .travel-path{ stroke-dasharray:5 6; animation: travel-dash 2.4s linear infinite; }
+  .travel-node-pulse{ animation: travel-pulse 2.4s ease-in-out infinite; transform-origin:center; transform-box:fill-box; }
+  @keyframes travel-dash{ to{ stroke-dashoffset:-66; } }
+  @keyframes travel-pulse{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.35); } }
+  @media (prefers-reduced-motion: reduce){
+    .travel-path{ animation:none; }
+    .travel-node-pulse{ animation:none; }
   }
-  .waypoint{ display:flex; gap:14px; align-items:flex-start; position:relative; }
-  .wp-dot{
-    width:9px; height:9px; border-radius:50%; margin-top:5px; flex:none;
-    background: var(--muted-2); border:2px solid var(--bg2); box-shadow:0 0 0 1px var(--line-strong);
-  }
-  .wp-dot.wp-current{ background: var(--copper); box-shadow:0 0 0 1px var(--copper), 0 0 10px var(--copper-soft); }
-  .wp-name{ font-weight:600; font-size:0.95rem; }
-  .wp-sub{ color:var(--muted); font-size:0.84rem; margin-top:2px; }
 
   .footer{
     padding:40px 0 50px; text-align:center; color:var(--muted-2);
@@ -471,11 +475,11 @@
           <div class="lattice-caption"><span id="latticeStructName">Diamond cubic (Si)</span><span id="latticeViewLabel">Isometric</span></div>
           <div class="structure-tabs" id="structureTabs">
             <button type="button" class="structure-tab active" data-structure="diamond">Si — sputtering</button>
-            <button type="button" class="structure-tab" data-structure="perovskite">MAPbI3 — perovskite</button>
-            <button type="button" class="structure-tab" data-structure="fcc">Octet-truss — LPBF lattice</button>
+            <button type="button" class="structure-tab" data-structure="perovskite">ABX₃ — perovskite</button>
+            <button type="button" class="structure-tab" data-structure="gyroid">Gyroid — TPMS lattice</button>
           </div>
           <canvas id="crystalCanvas"></canvas>
-          <p class="structure-desc" id="structureDesc">Diamond cubic silicon — the film structure grown and optimized via RF magnetron sputtering at Fraunhofer USA.</p>
+          <p class="structure-desc" id="structureDesc">Same crystal structure as diamond — interlocking tetrahedra of Si atoms, the reason both are exceptionally hard and stable.</p>
           <div class="lattice-controls">
             <button type="button" class="view-btn" data-view="x">View a</button>
             <button type="button" class="view-btn" data-view="y">View b</button>
@@ -484,12 +488,13 @@
           </div>
           <p class="lattice-hint">Drag to rotate · tabs switch structure per project</p>
         </div>
-        <div class="hero-stats">
+        <div class="hero-stats" id="heroStats">
           <div class="stat"><b>3.5 / 4.0</b><span>GPA · Dean's List</span></div>
           <div class="stat"><b>May 2027</b><span>Expected graduation</span></div>
           <div class="stat"><b>50+</b><span>DOE-based sputtering experiments run</span></div>
-          <div class="stat"><b>3</b><span>Countries worked in: US · Germany · South Africa</span></div>
+          <div class="stat"><b>1,000+</b><span>Reliability test cycles run</span></div>
         </div>
+        <p class="stat-dots" id="statDots" aria-hidden="true"><span class="dot-ind active"></span><span class="dot-ind"></span></p>
       </aside>
     </div>
   </section>
@@ -851,23 +856,16 @@
           <a class="chip" href="resume.pdf" download>Résumé (PDF)</a>
         </div>
       </div>
-      <div class="panel card-pad reveal">
+      <div class="panel card-pad reveal open-modal basecamp-card"
+        data-fig="Basecamp"
+        data-title="Fieldwork map"
+        data-meta="Tempe, AZ \u00b7 Dresden, DE \u00b7 Johannesburg, ZA \u00b7 East Lansing, MI"
+        data-summary="Home base in Tempe, with research and fieldwork stints in Dresden, Johannesburg, and East Lansing."
+        data-bullets=""
+        data-chart="travelmap">
         <h3 style="font-size:1.15rem; margin-bottom:4px;">Basecamp</h3>
-        <div class="mono" style="color:var(--muted-2); font-size:0.78rem; letter-spacing:0.03em; margin-bottom:16px;">33.4242° N, 111.9281° W</div>
-        <div class="waypoints">
-          <div class="waypoint">
-            <span class="wp-dot wp-current"></span>
-            <div><div class="wp-name">Tempe, Arizona</div><div class="wp-sub">Home base · ASU</div></div>
-          </div>
-          <div class="waypoint">
-            <span class="wp-dot"></span>
-            <div><div class="wp-name">Dresden, Germany</div><div class="wp-sub">Fraunhofer IWS · DAAD RISE Scholar</div></div>
-          </div>
-          <div class="waypoint">
-            <span class="wp-dot"></span>
-            <div><div class="wp-name">Johannesburg, South Africa</div><div class="wp-sub">EPICS Wheels2Africa deployment</div></div>
-          </div>
-        </div>
+        <div class="mono geo-coord">33.4242° N, 111.9281° W</div>
+        <p class="small" style="margin:10px 0 0;">Tempe, Arizona — tap to see where the research has traveled.</p>
       </div>
     </div>
   </section>
@@ -896,7 +894,34 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // ---------- mobile nav toggle ----------
+  // ---------- rotating hero stats ----------
+  (function(){
+    const el = document.getElementById('heroStats');
+    const dotsWrap = document.getElementById('statDots');
+    if (!el) return;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const groups = [
+      [ ['3.5 / 4.0','GPA · Dean\u2019s List'], ['May 2027','Expected graduation'], ['50+','DOE-based sputtering experiments run'], ['1,000+','Reliability test cycles run'] ],
+      [ ['3','Countries worked in: US · Germany · South Africa'], ['2','Fraunhofer institutes: USA &amp; IWS'], ['3','Research roles across ASU &amp; Fraunhofer'], ['2025','DAAD RISE Germany Scholar'] ]
+    ];
+    let idx = 0;
+    function render(i){
+      el.innerHTML = groups[i].map(([v,l]) => `<div class="stat"><b>${v}</b><span>${l}</span></div>`).join('');
+      dotsWrap.querySelectorAll('.dot-ind').forEach((d,di) => d.classList.toggle('active', di===i));
+    }
+    render(0);
+    if (reduceMotion) return;
+    setInterval(() => {
+      el.classList.add('fading');
+      setTimeout(() => {
+        idx = (idx+1) % groups.length;
+        render(idx);
+        el.classList.remove('fading');
+      }, 350);
+    }, 5000);
+  })();
+
+
   (function(){
     const topbar = document.getElementById('topbar');
     const toggle = document.getElementById('navToggle');
@@ -1025,10 +1050,37 @@
       return { atoms, bonds };
     }
 
+    function buildGyroid(divisions, threshold){
+      divisions = divisions || 11;
+      threshold = threshold || 0.3;
+      const pts = [];
+      for (let i=0;i<=divisions;i++){
+        for (let j=0;j<=divisions;j++){
+          for (let k=0;k<=divisions;k++){
+            const x = i/divisions, y = j/divisions, z = k/divisions;
+            const tau = 2*Math.PI;
+            const f = Math.sin(tau*x)*Math.cos(tau*y) + Math.sin(tau*y)*Math.cos(tau*z) + Math.sin(tau*z)*Math.cos(tau*x);
+            if (Math.abs(f) < threshold){
+              pts.push({ p: [x-0.5, y-0.5, z-0.5], kind: 'g' });
+            }
+          }
+        }
+      }
+      const linkDist = (1/divisions) * 1.55;
+      const bonds = [];
+      for (let a=0; a<pts.length; a++){
+        for (let b=a+1; b<pts.length; b++){
+          const d = Math.hypot(...pts[a].p.map((v,idx)=>v-pts[b].p[idx]));
+          if (d < linkDist) bonds.push([a,b]);
+        }
+      }
+      return { atoms: pts, bonds };
+    }
+
     const structures = {
       diamond: {
         name: 'Diamond cubic (Si)',
-        desc: 'Diamond cubic silicon — the film structure grown and optimized via RF magnetron sputtering at Fraunhofer USA.',
+        desc: 'Same atomic arrangement as diamond \u2014 interlocking tetrahedra of Si atoms, the reason both are exceptionally hard and thermally stable.',
         cutoff: 0.45,
         basis: [
           {p:[0,0,0], kind:'a'}, {p:[0,0.5,0.5], kind:'a'}, {p:[0.5,0,0.5], kind:'a'}, {p:[0.5,0.5,0], kind:'a'},
@@ -1036,8 +1088,8 @@
         ]
       },
       perovskite: {
-        name: 'ABX\u2083 perovskite (MAPbI\u2083)',
-        desc: 'Methylammonium lead iodide perovskite (idealized cubic cell) — the thin-film material behind the cyclic reliability testing at ASU. MA\u207a at the corners (A-site, 12-fold coordination), Pb\u00b2\u207a at the body center (B-site), I\u207b at the face centers (X-site), forming PbI\u2086 octahedra. Note: MAPbI\u2083 is actually tetragonal near room temperature and only adopts this cubic phase above ~57°C — shown here in its simplified cubic form.',
+        name: 'ABX\u2083 perovskite (placeholder)',
+        desc: 'Placeholder cell \u2014 named after a mineral discovered in Russia\u2019s Ural Mountains in 1839; the same ABX\u2083 scaffold shows up in solar-cell absorbers, ceramics, and superconductors. Exact site coordinates pending.',
         cutoff: 0.62,
         basis: [
           {p:[0,0,0], kind:'b'},
@@ -1045,15 +1097,11 @@
           {p:[0.5,0.5,0], kind:'c'}, {p:[0.5,0,0.5], kind:'c'}, {p:[0,0.5,0.5], kind:'c'}
         ]
       },
-      fcc: {
-        name: 'Octet-truss unit cell (metamaterial)',
-        desc: 'Not an atomic crystal structure — this is the mathematically-derived, mm-scale strut lattice architecture (octet-truss topology) printed via LPBF and characterized at Fraunhofer IWS. The base alloy itself has its own separate atomic crystal structure (e.g., FCC austenitic steel, or BCC/HCP for titanium alloys) — the two are independent length scales, and I\u2019m keeping this placeholder honest until real strut/node data comes in.',
-        cutoff: 0.75,
-        strut: true,
-        basis: [
-          {p:[0,0,0], kind:'s'},
-          {p:[0.5,0.5,0], kind:'s'}, {p:[0.5,0,0.5], kind:'s'}, {p:[0,0.5,0.5], kind:'s'}
-        ]
+      gyroid: {
+        name: 'Gyroid (TPMS)',
+        desc: 'A triply periodic minimal surface with zero mean curvature everywhere \u2014 the same surface family soap films settle into, which is why it splits space into two interlocking chambers without ever self-intersecting.',
+        surface: true,
+        builder: buildGyroid
       }
     };
 
@@ -1070,8 +1118,8 @@
       const s = structures[key];
       if (!s) return;
       current = key;
-      strutMode = !!s.strut;
-      scene = buildFrom(s.basis, s.cutoff);
+      strutMode = !!s.surface;
+      scene = s.builder ? s.builder() : buildFrom(s.basis, s.cutoff);
       structNameEl.textContent = s.name;
       descEl.textContent = s.desc;
       document.querySelectorAll('.structure-tab').forEach(t => t.classList.toggle('active', t.dataset.structure === key));
@@ -1105,7 +1153,7 @@
       a: {fill:'201,131,79', r:1.0},
       b: {fill:'111,162,196', r:0.82},
       c: {fill:'238,241,240', r:1.25},
-      s: {fill:'157,167,174', r:0.55}
+      g: {fill:'138,196,186', r:0.34}
     };
 
     function draw(){
@@ -1133,8 +1181,8 @@
         const avgDepth = (a.z+b.z)/2;
         const op = 0.3 + (avgDepth+0.9)/1.8*0.4;
         if (strutMode){
-          ctx.strokeStyle = `rgba(157,167,174,${Math.max(0.35,Math.min(0.85,op+0.15))})`;
-          ctx.lineWidth = 3.2;
+          ctx.strokeStyle = `rgba(138,196,186,${Math.max(0.14,Math.min(0.4,op-0.05))})`;
+          ctx.lineWidth = 0.9;
           ctx.lineCap = 'round';
         } else {
           ctx.strokeStyle = `rgba(111,162,196,${Math.max(0.12,Math.min(0.55,op))})`;
@@ -1431,6 +1479,36 @@
         `,
         caption: 'Project figure — representative FSM waveform: state register transitions on the rising clock edge.'
       };
+    },
+    travelmap: () => {
+      const hub = [150, 235];
+      const stops = [
+        { name: 'East Lansing, MI', year: '2026', pos: [255, 150] },
+        { name: 'Dresden, DE', year: '2025', pos: [365, 110] },
+        { name: 'Johannesburg, ZA', year: '2026', pos: [420, 250] }
+      ];
+      const rings = [60,100,140].map(r => `<circle cx="${hub[0]}" cy="${hub[1]}" r="${r}" fill="none" stroke="${LINE}" stroke-width="1"/>`).join('');
+      const spokes = stops.map((s,i) => {
+        const mx = (hub[0]+s.pos[0])/2 + (i-1)*14;
+        const my = (hub[1]+s.pos[1])/2 - 26;
+        return `
+          <path class="travel-path" d="M${hub[0]},${hub[1]} Q${mx},${my} ${s.pos[0]},${s.pos[1]}" fill="none" stroke="${BLUE}" stroke-width="1.6" opacity="0.75"/>
+          <circle class="travel-node-pulse" cx="${s.pos[0]}" cy="${s.pos[1]}" r="5" fill="${BLUE}"/>
+          <text x="${s.pos[0]+9}" y="${s.pos[1]-6}" fill="${TEXT}" font-size="11">${s.name}</text>
+          <text x="${s.pos[0]+9}" y="${s.pos[1]+9}" fill="${MUTED}" font-size="10">${s.year}</text>
+        `;
+      }).join('');
+      return {
+        vb: '0 0 560 300',
+        inner: `
+          ${rings}
+          ${spokes}
+          <circle cx="${hub[0]}" cy="${hub[1]}" r="7" fill="${COPPER}"/>
+          <text x="${hub[0]+11}" y="${hub[1]-8}" fill="${TEXT}" font-size="12" font-weight="600">Tempe, AZ</text>
+          <text x="${hub[0]+11}" y="${hub[1]+9}" fill="${MUTED}" font-size="10">home base</text>
+        `,
+        caption: 'Research footprint radiating from ASU: Fraunhofer USA (East Lansing), Fraunhofer IWS (Dresden), and EPICS Wheels2Africa (Johannesburg).'
+      };
     }
   };
 
@@ -1458,7 +1536,7 @@
     // sync hero crystal viewer to the relevant structure, if applicable
     if (window.__setCrystalStructure){
       if (chartKey === 'weibull') window.__setCrystalStructure('perovskite');
-      else if (chartKey === 'stress-strain') window.__setCrystalStructure('fcc');
+      else if (chartKey === 'stress-strain') window.__setCrystalStructure('gyroid');
       else if (chartKey === 'doe') window.__setCrystalStructure('diamond');
     }
   }
