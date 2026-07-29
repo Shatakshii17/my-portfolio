@@ -473,14 +473,14 @@
 
       <aside class="hero-side">
         <div class="panel lattice-panel reveal">
-          <div class="lattice-caption"><span id="latticeStructName">Diamond cubic (Si)</span><span id="latticeViewLabel">Isometric</span></div>
+          <div class="lattice-caption"><span id="latticeStructName">AFM topography (sputtered film)</span><span id="latticeViewLabel">Isometric</span></div>
           <div class="structure-tabs" id="structureTabs">
-            <button type="button" class="structure-tab active" data-structure="diamond">Si — sputtering</button>
+            <button type="button" class="structure-tab active" data-structure="diamond">AFM — sputtered film</button>
             <button type="button" class="structure-tab" data-structure="perovskite">ABX₃ — perovskite</button>
             <button type="button" class="structure-tab" data-structure="gyroid">Gyroid — TPMS lattice</button>
           </div>
           <canvas id="crystalCanvas"></canvas>
-          <p class="structure-desc" id="structureDesc">Same crystal structure as diamond — interlocking tetrahedra of Si atoms, the reason both are exceptionally hard and stable.</p>
+          <p class="structure-desc" id="structureDesc">AFM topography isn't a photo of atoms — it's an isoforce surface, the shape traced by holding probe–sample force constant while scanning.</p>
           <div class="lattice-controls">
             <button type="button" class="view-btn" data-view="x">View a</button>
             <button type="button" class="view-btn" data-view="y">View b</button>
@@ -581,7 +581,8 @@
         data-meta="Fraunhofer USA, Inc. · Coatings Technology Group · East Lansing, MI · May 2026 – Present"
         data-summary="Designing and executing 50+ DOE-based experiments to optimize RF magnetron sputtering and PVD thin-film processes."
         data-bullets="Design and execute 50+ DOE-based experiments optimizing RF magnetron sputtering and PVD thin-film processes|Analyze XRD, AFM, and electrochemical data to isolate root causes of process variability|Work within the Coatings Technology Group on thin-film coating development"
-        data-chart="doe">
+        data-chart="doe"
+        data-photos="sputtering">
         <div class="fig-tag">Fig. 01</div>
         <div>
           <h3>R&amp;D Engineering Intern</h3>
@@ -597,7 +598,8 @@
         data-meta="Fraunhofer IWS · Dresden, Germany · May 2025 – Aug. 2025 · DAAD RISE Germany Scholar"
         data-summary="Characterized mechanical behavior of laser powder bed fusion (LPBF) metamaterials via tensile testing, SEM, EBSD, and DIC."
         data-bullets="Characterized mechanical behavior of LPBF metamaterials via tensile testing, SEM, EBSD, and digital image correlation (DIC)|Applied Random Forest and Bayesian models linking process parameters to mechanical performance|Funded by a DAAD RISE Germany scholarship"
-        data-chart="stress-strain">
+        data-chart="stress-strain"
+        data-photos="lpbf">
         <div class="fig-tag">Fig. 02</div>
         <div>
           <h3>Research Assistant</h3>
@@ -613,7 +615,8 @@
         data-meta="Arizona State University · Tempe, AZ · May 2024 – Dec. 2025"
         data-summary="Ran 1,000+ cycle reliability tests on MAPbI3 perovskite thin films and built Weibull/regression degradation models."
         data-bullets="Ran 1,000+ cycle reliability tests on MAPbI3 perovskite thin films|Built Weibull and regression models in Python/R to translate degradation trends into process recommendations|Presented findings at FURI and C3E symposiums"
-        data-chart="weibull">
+        data-chart="weibull"
+        data-photos="perovskite">
         <div class="fig-tag">Fig. 03</div>
         <div>
           <h3>Undergraduate Research Assistant</h3>
@@ -672,7 +675,7 @@
         data-meta="Electrical Lead · Johannesburg, South Africa · May 2026"
         data-summary="Led electrical design of a low-cost, joystick-controlled automatic wheelchair for children with cerebral palsy."
         data-bullets="Led electrical design of a low-cost, joystick-controlled automatic wheelchair for children with cerebral palsy|Worked directly with children and caregivers to design for mobility, dignity, and inclusion|Delivered a working prototype and established a partnership with the University of Johannesburg, which took on production and supply of wheelchairs to local schools"
-        data-chart="circuit">
+        data-photos="wheels2africa">
         <span class="tag">Electrical Lead</span>
         <h3>EPICS @ ASU — Wheels2Africa</h3>
         <div class="meta">Johannesburg, South Africa · May 2026</div>
@@ -685,7 +688,7 @@
         data-meta="Prototyping Lead · Tempe, AZ · Jan 2024 – May 2024"
         data-summary="Delivered a functional, low-cost prosthetic device via CAD modeling and iterative additive manufacturing."
         data-bullets="Delivered a functional, low-cost prosthetic device via CAD modeling and iterative additive manufacturing|Validated the design through successful assembly and user-centered testing"
-        data-chart="iterations">
+        data-photos="prosthetics">
         <span class="tag">Prototyping Lead</span>
         <h3>3D Printed Prosthetics</h3>
         <div class="meta">Tempe, AZ · Jan 2024 – May 2024</div>
@@ -698,7 +701,7 @@
         data-meta="CHART Labs · Robotics and control"
         data-summary="Programmed swarm robots using ROS, C++, and UART communication protocols."
         data-bullets="Programmed swarm robots using ROS, C++, and UART communication protocols|Integrated sensors for localization, environmental awareness, and inter-robot coordination|Designed and tuned PID control algorithms for motion control and obstacle avoidance"
-        data-chart="pid">
+        data-photos="robotics">
         <span class="tag">Robotics</span>
         <h3>Autonomous Robotics Navigation</h3>
         <div class="meta">CHART Labs</div>
@@ -711,7 +714,7 @@
         data-meta="Hardware design · embedded logic"
         data-summary="Designed, simulated, and validated FPGA-based digital systems in Verilog/SystemVerilog using Xilinx Vivado."
         data-bullets="Designed finite state machines and sequential logic in Verilog/SystemVerilog|Simulated and debugged designs in Xilinx Vivado|Validated timing and correctness on hardware"
-        data-chart="waveform">
+        data-photos="fpga">
         <span class="tag">FPGA</span>
         <h3>FPGA Digital Design</h3>
         <div class="meta">Verilog/SystemVerilog · Xilinx Vivado</div>
@@ -1089,7 +1092,7 @@
     const structures = {
       diamond: {
         name: 'AFM topography (sputtered film)',
-        desc: 'A simulated atomic-force-microscopy height map of a sputtered Si film surface — this is the kind of scan I use to read grain size and surface roughness after each deposition run.',
+        desc: 'AFM topography isn\u2019t a photo of atoms \u2014 it\u2019s an isoforce surface, the shape traced by holding probe\u2013sample force constant while scanning.',
         builder: () => buildAFM(26),
         mesh: true
       },
@@ -1429,104 +1432,35 @@
         `,
         caption: 'Fig. 01 — representative DOE effect-size ranking across sputtering parameters; substrate temperature shows the largest effect on film uniformity.'
       };
-    },
-    circuit: () => {
-      return {
-        vb: '0 0 620 220',
-        inner: `
-          <rect x="40" y="40" width="90" height="50" rx="6" fill="none" stroke="${BLUE}" stroke-width="1.6"/>
-          <text x="85" y="70" fill="${TEXT}" font-size="11" text-anchor="middle">Joystick</text>
-          <path d="M130 65 H190" stroke="${LINE}" stroke-width="1.6"/>
-          <rect x="190" y="40" width="110" height="50" rx="6" fill="none" stroke="${COPPER}" stroke-width="1.6"/>
-          <text x="245" y="70" fill="${TEXT}" font-size="11" text-anchor="middle">Motor driver</text>
-          <path d="M300 65 H360" stroke="${LINE}" stroke-width="1.6"/>
-          <rect x="360" y="40" width="90" height="50" rx="6" fill="none" stroke="${BLUE}" stroke-width="1.6"/>
-          <text x="405" y="70" fill="${TEXT}" font-size="11" text-anchor="middle">Drive motors</text>
-          <path d="M245 90 V150" stroke="${LINE}" stroke-width="1.6"/>
-          <rect x="190" y="150" width="110" height="45" rx="6" fill="none" stroke="${BLUE}" stroke-width="1.6"/>
-          <text x="245" y="177" fill="${TEXT}" font-size="11" text-anchor="middle">Battery + BMS</text>
-          <path d="M405 90 V150" stroke="${LINE}" stroke-width="1.6"/>
-          <rect x="360" y="150" width="120" height="45" rx="6" fill="none" stroke="${COPPER}" stroke-width="1.6"/>
-          <text x="420" y="177" fill="${TEXT}" font-size="11" text-anchor="middle">Cutoff / e-stop</text>
-        `,
-        caption: 'Project figure — simplified block diagram of the wheelchair drive electronics: joystick input, motor driver, and a hardware e-stop cutoff.'
-      };
-    },
-    iterations: () => {
-      const stages = ['v1 CAD','v2 print','v3 fit test','v4 final'];
-      const scores = [0.35,0.55,0.78,0.95];
-      const x0=50, x1=560, y0=190;
-      const pts = scores.map((s,i)=>[x0 + i*((x1-x0)/(scores.length-1)), y0 - s*150]);
-      const path = pts.map((p,i)=>(i===0?'M':'L')+p[0]+','+p[1]).join(' ');
-      const dots = pts.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="5" fill="${COPPER}"/><text x="${p[0]}" y="${y0+22}" fill="${MUTED}" font-size="10" text-anchor="middle">${stages[i]}</text>`).join('');
-      return {
-        vb: '0 0 610 230',
-        inner: `
-          <line x1="50" y1="30" x2="50" y2="190" stroke="${LINE}" stroke-width="1"/>
-          <line x1="50" y1="190" x2="560" y2="190" stroke="${LINE}" stroke-width="1"/>
-          <text x="50" y="20" fill="${MUTED}" font-size="11">fit &amp; function score</text>
-          <path d="${path}" fill="none" stroke="${BLUE}" stroke-width="2.2" stroke-dasharray="1,0"/>
-          ${dots}
-        `,
-        caption: 'Project figure — qualitative fit/function progress across four print-and-test iterations.'
-      };
-    },
-    pid: () => {
-      let pts = [];
-      const n=70;
-      for (let i=0;i<=n;i++){
-        const t = i/n*4*Math.PI;
-        const damp = Math.exp(-i/n*3.2);
-        const y = Math.cos(t)*damp;
-        pts.push([50 + (i/n)*510, 110 - y*80]);
-      }
-      const path = pts.map((p,i)=>(i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
-      return {
-        vb: '0 0 610 220',
-        inner: `
-          <line x1="50" y1="20" x2="50" y2="200" stroke="${LINE}" stroke-width="1"/>
-          <line x1="50" y1="110" x2="560" y2="110" stroke="${LINE}" stroke-width="1" stroke-dasharray="3,3"/>
-          <text x="50" y="14" fill="${MUTED}" font-size="11">heading error</text>
-          <text x="500" y="215" fill="${MUTED}" font-size="11">time →</text>
-          <path d="${path}" fill="none" stroke="${COPPER}" stroke-width="2.2"/>
-        `,
-        caption: 'Project figure — representative damped step response of the tuned PID heading controller.'
-      };
-    },
-    waveform: () => {
-      const clk = [0,1,0,1,0,1,0,1,0,1,0,1];
-      let clkPath = 'M50,80';
-      let x=50;
-      clk.forEach((s,i)=>{ const y = s? 40:80; clkPath += ` L${x},${y} L${x+25},${y}`; x+=25; });
-      const state = [0,0,1,1,1,0,0,1,1,0,0,1];
-      let statePath = 'M50,170';
-      x=50;
-      state.forEach((s,i)=>{ const y = s? 130:170; statePath += ` L${x},${y} L${x+25},${y}`; x+=25; });
-      return {
-        vb: '0 0 610 200',
-        inner: `
-          <text x="46" y="30" fill="${MUTED}" font-size="11">clk</text>
-          <path d="${clkPath}" fill="none" stroke="${BLUE}" stroke-width="2"/>
-          <text x="46" y="120" fill="${MUTED}" font-size="11">state[1:0]</text>
-          <path d="${statePath}" fill="none" stroke="${COPPER}" stroke-width="2"/>
-        `,
-        caption: 'Project figure — representative FSM waveform: state register transitions on the rising clock edge.'
-      };
     }
   };
 
   const modalPhotoSets = {
-    perovskite: [
-      { src: 'assets/fig-perovskite-films.jpg', caption: 'Control vs. PVP-modified MAPbI₃ films, as-deposited' },
-      { src: 'assets/fig-perovskite-sem.jpg', caption: 'SEM comparison after switching to gold sputter coating' }
+    sputtering: [
+      { src: 'assets/fig-sputtering-chamber.jpg', caption: 'RF magnetron sputtering chamber, Fraunhofer USA' },
+      { src: 'assets/fig-sputtering-doe.jpg', caption: 'DOE run sheet and film-uniformity mapping' }
     ],
     lpbf: [
       { src: 'assets/fig-lpbf-specimens.jpg', caption: 'LPBF-printed lattice and dog-bone tensile specimens' },
       { src: 'assets/fig-lpbf-ebsd.jpg', caption: 'EBSD inverse pole figure map across the build direction' },
       { src: 'assets/fig-lpbf-fracture.jpg', caption: 'Fracture-surface SEM across all five gauge geometries' }
     ],
-    lipon: [
-      { src: 'assets/fig-lipon-grid.jpg', caption: '4×4 contact grid after PVD deposition' }
+    perovskite: [
+      { src: 'assets/fig-perovskite-films.jpg', caption: 'Control vs. PVP-modified MAPbI₃ films, as-deposited' },
+      { src: 'assets/fig-perovskite-sem.jpg', caption: 'SEM comparison after switching to gold sputter coating' }
+    ],
+    wheels2africa: [
+      { src: 'assets/fig-wheels2africa-team.jpg', caption: 'Delivering the prototype in Johannesburg' },
+      { src: 'assets/fig-wheels2africa-circuit.jpg', caption: 'Electrical wiring and control board' }
+    ],
+    prosthetics: [
+      { src: 'assets/fig-prosthetics-cad.jpg', caption: 'CAD model and print iterations' }
+    ],
+    robotics: [
+      { src: 'assets/fig-robotics-swarm.jpg', caption: 'Swarm robots during a navigation test' }
+    ],
+    fpga: [
+      { src: 'assets/fig-fpga-board.jpg', caption: 'FPGA board and Vivado simulation waveform' }
     ]
   };
 
